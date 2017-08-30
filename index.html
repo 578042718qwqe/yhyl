@@ -2,11 +2,254 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="stylesheet" href="css/base.css"><!--公共-->
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/new-document.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/highcharts.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/index.js"></script><!--公共-->
+    <script src="js/angular.min.js"></script>
+    <!--文件新建于2017-6月-->
 </head>
-<body>
-    <div>
-        5555
+<body ng-app="myApp">
+    <!--公用头部-->
+    <div class="head">
+            <div class="head-con">
+                <div class="head-left animated flipInY"><img src="img/logo.png"></div>
+                <div class="head-dh">
+                    <ul>
+                        <li class="glyphicon glyphicon-home home ah"><a class="head-dh-a active" href="index.html" >首页</a></li>
+                        <li class="glyphicon glyphicon-heart service btn-group ah">
+                            <a class="head-dh-a" data-toggle="dropdown" style="cursor: pointer;">
+                                健康服务
+                            </a>
+                            <ul class="dropdown-menu service-word" ng-controller="siteCtrl">
+                                <li ng-if="dh1">
+                                    <div class="head-dh-01">{{dh1}}</div>
+                                    <div ng-repeat="x in names">
+                                        <span><a href="{{ x.moduleStaticUrl }}">{{ x.moduleName }}</a></span>
+                                    </div>
+                                </li>
+                                <li ng-if="dh2">
+                                    <div class="head-dh-01">{{dh2}}</div>
+                                    <div ng-repeat="x in xingzheng">
+                                        <span><a href="{{ x.moduleStaticUrl }}">{{ x.moduleName }}</a></span>
+                                    </div>
+                                </li>
+                                <li ng-if="dh3">
+                                    <div class="head-dh-01">{{dh3}}</div>
+                                    <div ng-repeat="x in quanxian">
+                                        <span><a href="{{ x.moduleStaticUrl }}">{{ x.moduleName }}</a></span>
+                                    </div>
+                                </li>
+                                <li ng-if="dh3">
+                                    <div class="head-dh-01">{{dh4}}</div>
+                                    <div ng-repeat="x in suifang">
+                                        <span><a href="{{ x.moduleStaticUrl }}">{{ x.moduleName }}</a></span>
+                                    </div>
+                                </li>
+                                <li ng-if="dh3">
+                                    <div class="head-dh-01">{{dh5}}</div>
+                                    <div ng-repeat="x in zuoye">
+                                        <span><a href="{{ x.moduleStaticUrl }}">{{ x.moduleName }}</a></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="glyphicon glyphicon-file jk ah"><a class="head-dh-a" onclick="sessionStorage.removeItem('user')" href="templates/document/new-document1.html">新建文档</a></li>
+                    </ul>
+                </div>
+                <!--右边用户-->
+                <div class="head-right">
+                    <div class="head-admin"></div>
+                    <div class="dropdown head-admin2 ">
+                        <button type="button" class="btn dropdown-toggle" id="dropdownMenu1"
+                                data-toggle="dropdown">
+                            用户
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="#">用户信息</a>
+                            </li>
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="#">账号安全</a>
+                            </li>
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" onclick="logout()">退出账号</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!--公用头部end-->
+    <!--内容部分-->
+    <div class="content">
+        <div class="home-left">
+            <h2>管理人群情况</h2>
+            <div class="home-left-date">
+                <ul>
+                    <li><b class="on1"></b><span>糖尿病人群</span></li>
+                    <li><b class="on2"></b><span>高血压人群</span></li>
+                    <li><b class="on3"></b><span>精神病人群</span></li>
+                    <li><b class="on4"></b><span>肺结核人群</span></li>
+                    <li><b class="on5"></b><span>一般人群</span></li>
+                </ul>
+            </div>
+            <div id="container" style="width:650px; height:500px;"></div>
+            <script language="JavaScript">
+                var admin_id =$.cookie("admin_id");
+                $.ajax({
+                    type: "GET",
+                    url: "/apis/index/firstSlowDiseaseCount/"+admin_id,
+                    dataType: "json",
+                    success: function(e){
+                        if((e.data[4].count)>0){
+                            $(function () {
+                                var ser_0_1 = e.data[0].diseaseName;
+                                var ser_0_2 = e.data[0].count;
+                                var ser_1_1 = e.data[1].diseaseName;
+                                var ser_1_2 = e.data[1].count;
+                                var ser_2_1 = e.data[2].diseaseName;
+                                var ser_2_2 = e.data[2].count;
+                                var ser_3_1 = e.data[3].diseaseName;
+                                var ser_3_2 = e.data[3].count;
+                                var ser_5_1 = e.data[5].diseaseName;
+                                var ser_5_2 = e.data[5].count;
+
+                                $('#container').highcharts({
+                                    chart: {
+                                        plotBackgroundColor: null,
+                                        plotBorderWidth: null,
+                                        plotShadow: false
+                                    },
+                                    colors:[
+                                        '#0C4C8B',
+                                        '#97D5E1',
+                                        '#89B14A',
+                                        '#F7D358',
+                                        '#EF562C'
+                                    ],
+                                    title: {
+                                        text: ''
+                                    },
+                                    tooltip: {
+                                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                                    },
+                                    plotOptions: {
+                                        pie: {
+                                            allowPointSelect: true,
+                                            cursor: 'pointer',
+                                            dataLabels: {
+                                                enabled: true,
+                                                color: '#000000',
+                                                connectorColor: '#000000',
+                                                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                                            }
+                                        }
+                                    },
+                                    series: [{
+                                        type: 'pie',
+                                        name: '用户比例',
+                                        data: [
+                                            [ser_0_1,ser_0_2],
+                                            [ser_1_1,ser_1_2],
+                                            [ser_2_1,ser_2_2],
+                                            [ser_3_1,ser_3_2],
+                                            [ser_5_1,ser_5_2]
+                                        ]
+                                    }]
+                                });
+                            });
+                        }else {
+                            $(".home-left").hide();
+                        }
+                    },
+                    error:function (data) {
+                        alert("请求失败")
+                    }
+                });
+            </script>
+        </div>
+        <div class="home-right">
+            <div class="home-right-work">
+                <ul class="home-right-work-1">
+                    <li class="on">今天工作</li>
+                    <li>随访工作</li>
+                </ul>
+                <div class="home-right-work-2">
+                    <div class="on"><ul class="home-right-work-2"></ul></div>
+                    <div>
+                        <ul class="home-right-work-3">
+                            <li><span class="home-right-work-l">1、</span><a href="/templates/follow-up/record.html">随访工作:<span class="shenfen">总随访人数:30人</span></a><span class="home-right-work-r">随访</span></li>
+                            <li><span class="home-right-work-l">1、</span><a href="/templates/follow-up/record.html">随访工作:<span class="shenfen">总随访人数:30人</span></a><span class="home-right-work-r">随访</span></li>
+                            <li><span class="home-right-work-l">1、</span><a href="/templates/follow-up/record.html">随访工作:<span class="shenfen">总随访人数:30人</span></a><span class="home-right-work-r">随访</span></li>
+                            <li><span class="home-right-work-l">1、</span><a href="/templates/follow-up/record.html">随访工作:<span class="shenfen">总随访人数:30人</span></a><span class="home-right-work-r">随访</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <!--内容部分end-->
+    <script>
+        $("body").on("click",".home-right-work ul li a",function () {//首页数据跳转
+            $.cookie("user",$(this).attr("data"));
+        });
+        var admin_id =$.cookie("admin_id");
+        var app = angular.module('myApp', []);
+        app.controller('siteCtrl', function($scope, $http) {
+            $http({
+                method: 'GET',
+                url: "apis/user/navigationBar/"+admin_id
+            }).then(function successCallback(e) {
+                if(e.data.data.档案中心 != undefined){
+                    $scope.names = e.data.data.档案中心;
+                    $scope.dh1 = e.data.data.档案中心[0].fatherName;
+                }
+                if(e.data.data.行政区域管理 != undefined){
+                    $scope.xingzheng = e.data.data.行政区域管理;
+                    $scope.dh2 = e.data.data.行政区域管理[0].fatherName;
+                }
+                if(e.data.data.权限管理 != undefined){
+                    $scope.quanxian = e.data.data.权限管理;
+                    $scope.dh3 = e.data.data.权限管理[0].fatherName;
+                }
+                if(e.data.data.随访管理 != undefined){
+                    $scope.suifang = e.data.data.随访管理;
+                    $scope.dh4 = e.data.data.随访管理[0].fatherName;
+                }
+                if(e.data.data.消息作业管理 != undefined){
+                    $scope.zuoye = e.data.data.消息作业管理;
+                    $scope.dh5 = e.data.data.消息作业管理[0].fatherName;
+                }
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            });
+        });
+        //tab 切换
+        $(".home-right-work-1 li").bind("click",function () {
+            var index =$(this).index();
+            $(this).addClass("on").siblings().removeClass("on");
+            $(".home-right-work-2 div").eq(index).addClass("on").siblings().removeClass("on");
+        })
+    </script>
+    <!--Foot-->
+    <div class="foot">
+        <div class="foot-border">Copyright &copy; 2017-2020 Yinghai Software Co., Ltd, Technical Support<br>
+            鹰海医疗信息技术有限公司 技术支持</div>
+    </div>
+    <!--Foot end-->
 </body>
 </html>
