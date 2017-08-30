@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鹰健康服务平台</title>
+    <link rel="shortcut icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="../../css/base.css"><!--公共-->
+    <link rel="stylesheet" href="../../css/health.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/jquery-ui.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <!--time控件-->
+    <link type="text/css" href="../../js/datetimepicker/css/jquery-ui-1.8.17.custom.css" rel="stylesheet" />
+    <link type="text/css" href="../../js/datetimepicker/css/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../js/datetimepicker/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../../js/datetimepicker/js/jquery-ui-1.8.17.custom.min.js"></script>
+    <script type="text/javascript" src="../../js/datetimepicker/js/jquery-ui-timepicker-addon.js"></script>
+    <script type="text/javascript" src="../../js/datetimepicker/js/jquery-ui-timepicker-zh-CN.js"></script>
+    <!--time控件-->
+    <script src="../../js/index.js"></script>
+    <script src="../../js/bootstrap.table/bootstrap-table.min.js"></script>
+    <script src="../../js/bootstrap.table/bootstrap-table-zh-CN.min.js"></script>
+    <script src="../../js/angular.min.js"></script>
+</head>
+<body ng-app="">
+    <!--公用头部-->
+    <div ng-include="'../headr.html'"></div>
+    <!--公用头部end-->
+    <div class="search-chronic">
+        <input type="text" class="form-control" name="chronic-search">
+        <div class="search-cx btn btn-primary" onclick="searchcx()">查询</div>
+        <div class="search-add btn btn-primary" onclick="add()">新增</div>
+    </div>
+    <div class="chronicw">
+        <table id="test-table" class="test-table-chronic" data-toolbar="#toolbar"></table>
+    </div>
+    <!--新增弹窗-->
+    <div class="chr-add-win" title="添加" style="display: none">
+        <div class="chronic-add-win-t"><span>信息标题:</span><input type="text" name="messageTitle" class="form-control"></div>
+        <div class="chronic-add-win-t">
+            <span>信息类型:</span>
+            <input type="radio" value="1" name="messageSendType">短信
+            <input type="radio" value="2" name="messageSendType">微信
+        </div>
+        <div class="chronic-add-win-t">
+            <span>发送对象:</span>
+            <input type="radio" value="1" name="messageSendObject">高血压人群
+            <input type="radio" value="2" name="messageSendObject">糖尿病人群
+        </div>
+        <div class="chronic-add-win-t">
+            <span>发送时间:</span>
+            <input type="text" name="messageSendDatetime" class="form-control">
+        </div>
+        <div class="chronic-add-win-t">
+            <span>状态:</span>
+            <input type="radio" value="0" name="messageEnable">失效
+            <input type="radio" value="1" name="messageEnable">生效
+        </div>
+        <div class="chronic-add-win-t mb10">
+            <span>消息内容:</span>
+            <textarea name="chronic-news" id="messageContent" style="width:200px;height:80px;" class="form-control"></textarea>
+        </div>
+        <div class="chronic-error"></div>
+        <a class="btn btn-default chronic-anniu btn btn-default" onclick="chranniu()" href="#" role="button">提交</a>
+        <a class="btn btn-default chronic-win-dele btn btn-default" href="#" role="button">取消</a>
+    </div>
+    <script>
+        function initTable() {
+            $('#test-table').bootstrapTable({
+                method: 'get',
+                toolbar: '#toolbar',    //工具按钮用哪个容器
+                striped: true,      //是否显示行间隔色
+                cache: false,      //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                pagination: true,     //是否显示分页（*）
+                sortable: true,      //是否启用排序
+                sortOrder: "asc",     //排序方式
+                pageNumber: 1,      //初始化加载第一页，默认第一页
+                pageSize: 10,      //每页的记录行数（*）
+                pageList: [10, 25, 50, 100],  //可供选择的每页的行数（*）
+                url: "/apis/chronicDisease/message/list",//这个接口需要处理bootstrap table传递的固定参数
+                queryParamsType: '', //默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
+                                     // 设置为 ''  在这种情况下传给服务器的参数为：pageSize,pageNumber
+                //queryParams: queryParams,//前端调用服务时，会默认传递上边提到的参数，如果需要添加自定义参数，可以自定义一个函数返回请求参数
+                sidePagination: "client",   //分页方式：client客户端分页，server服务端分页（*）
+                search:false,      //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                strictSearch: true,
+                showColumns: false,     //是否显示所有的列
+                showRefresh: false,     //是否显示刷新按钮
+                minimumCountColumns: 2,    //最少允许的列数
+                clickToSelect: true,    //是否启用点击选中行
+                searchOnEnterKey: true,
+                columns: [
+                    {
+                        title: '序号',//标题
+                        align: 'center',
+                        formatter: function (value, row, index) {
+                            return index+1;
+                        }
+                    },{
+                        field: 'messageTitle',
+                        title: '信息标题',
+                        align: 'center'
+                    },{
+                        field: 'messageContentTypeName',
+                        title: '信息类型',
+                        align: 'center'
+                    },{
+                        field: 'messageContent',
+                        title: '信息内容',
+                        align: 'center'
+                    },{
+                        field: 'messageSendObjectName',
+                        title: '发送对象',
+                        align: 'center'
+                    },{
+                        field: 'messageSendDatetime',
+                        title: '发送时间',
+                        align: 'center'
+                    },{
+                        field: 'messageEnableName',
+                        title: '状态',
+                        align: 'center'
+                    },{
+                        field: 'hadSendName',
+                        title: '是否已发送',
+                        align: 'center'
+                    },{
+                        title: '操作',
+                        align: 'center',
+                        formatter:function(value,row,index){
+                         console.log(value,row,index);
+                         return '<a href="JavaScript:;" onclick="edit('+row["id"]+')">编辑</a> '+'<a href="JavaScript:;" onclick="deletes('+row["id"]+')">删除</a> ';
+                         }
+                    }
+                ]
+            });
+        }
+        initTable();
+
+        $( ".chr-add-win" ).dialog({//弹窗部分
+            autoOpen: false,
+            width :600,
+            height :450
+        });
+        $(".chronic-win-dele").bind("click",function () {//删除
+            $( ".chr-add-win" ).dialog( "close" );
+        });
+        function deletes(id) {//删除
+            $.ajax({
+                type: "DELETE",
+                url: "/apis/chronicDisease/message/delete/"+id,
+                success: function(date){
+                    window.location.reload();
+                }
+            });
+        }
+        function add() {//添加
+            $( ".chr-add-win" ).dialog( "open" );
+            $( ".role-add-win" ).dialog({position: [450,350]});
+            $("#ui-dialog-title-1").text("添加");
+            $("input[type='text'],#messageContent").val("");
+            $("input[type='radio']").attr("checked",false)
+        }
+        $("input[name='messageSendType']").change(function () {
+            SendType = $(this).val();
+        });
+        $("input[name='messageSendObject']").change(function () {
+            SendObject = $(this).val();
+        });
+        $("input[name='messageEnable']").change(function () {
+            Enable = $(this).val();
+        });
+        function chranniu() {//添加按钮
+            if ($("input[name='messageTitle']").val()==""){
+                $(".chronic-error").text("标题信息不能为空");
+            }else if(typeof(SendType) =="undefined"){
+                $(".chronic-error").text("信息类型不能为空");
+            }else if(typeof(SendObject) =="undefined"){
+                $(".chronic-error").text("发送对象不能为空");
+            }else if($("input[name='messageSendDatetime']").val()==""){
+                $(".chronic-error").text("发送时间不能为空");
+            }else if(typeof(Enable) =="undefined"){
+                $(".chronic-error").text("状态不能为空");
+            }else if($("#messageContent").val()==""){
+                $(".chronic-error").text("消息内容不能为空");
+            }else {
+                if($("#ui-dialog-title-1").text() == "添加"){
+                    function getadd() {
+                        var chradd ={
+                            messageTitle: $("input[name='messageTitle']").val(),
+                            messageSendType: parseFloat(SendType),
+                            messageSendObject: parseFloat(SendObject),
+                            messageSendDatetime: $("input[name='messageSendDatetime']").val(),
+                            messageEnable: parseFloat(Enable),
+                            messageContent: $("#messageContent").val()
+                        };
+                        $.ajax({
+                            type: "POST",
+                            url: "/apis/chronicDisease/message/post",
+                            data: JSON.stringify(chradd),
+                            dataType: "json",
+                            contentType: 'application/json',
+                            success: function (data) {
+                                window.location.reload();
+                            }
+                        });
+                    }
+                    getadd();
+                }else {
+                    var chradd ={
+                        id :editid,
+                        messageTitle: $("input[name='messageTitle']").val(),
+                        messageSendType: parseFloat(SendType),
+                        messageSendObject: parseFloat(SendObject),
+                        messageSendDatetime: $("input[name='messageSendDatetime']").val(),
+                        messageEnable: parseFloat(Enable),
+                        messageContent: $("#messageContent").val()
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "/apis/chronicDisease/message/post",
+                        data: JSON.stringify(chradd),
+                        dataType: "json",
+                        contentType: 'application/json',
+                        success: function (data) {
+                            window.location.reload();
+                        }
+                    });
+                }
+            }
+        }
+        function searchcx() {//查询
+            $('#test-table').bootstrapTable('destroy'); //先销毁表格
+            var search = $("input[name='chronic-search']").val();
+            $('#test-table').bootstrapTable({
+                method: 'get',
+                toolbar: '#toolbar',    //工具按钮用哪个容器
+                striped: true,      //是否显示行间隔色
+                cache: false,      //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+                pagination: true,     //是否显示分页（*）
+                sortable: true,      //是否启用排序
+                sortOrder: "asc",     //排序方式
+                pageNumber: 1,      //初始化加载第一页，默认第一页
+                pageSize: 10,      //每页的记录行数（*）
+                pageList: [10, 25, 50, 100],  //可供选择的每页的行数（*）
+                url: "/apis/chronicDisease/message/list/"+ search,//这个接口需要处理bootstrap table传递的固定参数
+                queryParamsType: '', //默认值为 'limit' ,在默认情况下 传给服务端的参数为：offset,limit,sort
+                                     // 设置为 ''  在这种情况下传给服务器的参数为：pageSize,pageNumber
+                //queryParams: queryParams,//前端调用服务时，会默认传递上边提到的参数，如果需要添加自定义参数，可以自定义一个函数返回请求参数
+                sidePagination: "client",   //分页方式：client客户端分页，server服务端分页（*）
+                search:false,      //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+                strictSearch: true,
+                showColumns: false,     //是否显示所有的列
+                showRefresh: false,     //是否显示刷新按钮
+                minimumCountColumns: 2,    //最少允许的列数
+                clickToSelect: true,    //是否启用点击选中行
+                searchOnEnterKey: true,
+                columns: [
+                    {
+                        title: '序号',//标题
+                        align: 'center',
+                        formatter: function (value, row, index) {
+                            return index+1;
+                        }
+                    },{
+                        field: 'messageTitle',
+                        title: '信息标题',
+                        align: 'center'
+                    },{
+                        field: 'messageContentTypeName',
+                        title: '信息类型',
+                        align: 'center'
+                    },{
+                        field: 'messageContent',
+                        title: '信息内容',
+                        align: 'center'
+                    },{
+                        field: 'messageSendObjectName',
+                        title: '发送对象',
+                        align: 'center'
+                    },{
+                        field: 'messageSendDatetime',
+                        title: '发送时间',
+                        align: 'center'
+                    },{
+                        field: 'messageEnableName',
+                        title: '状态',
+                        align: 'center'
+                    },{
+                        field: 'hadSendName',
+                        title: '是否已发送',
+                        align: 'center'
+                    },{
+                        title: '操作',
+                        align: 'center',
+                        formatter:function(value,row,index){
+                            console.log(value,row,index);
+                            return '<a href="JavaScript:;" onclick="edit('+row["id"]+')">编辑</a> '+'<a href="JavaScript:;" onclick="deletes('+row["id"]+')">删除</a> ';
+                        }
+                    }
+                ]
+            });
+        }
+        function edit(id) {//编辑
+            $( ".chr-add-win" ).dialog( "open" );
+            $( ".role-add-win" ).dialog({position: [450,350]});
+            $("#ui-dialog-title-1").text("编辑");
+            editid =id;
+            $.ajax({
+                type: "GET",
+                url: "/apis/chronicDisease/message/get/"+id,
+                dataType: "json",
+                contentType: 'application/json',
+                success: function (data) {
+                   $("input[name='messageTitle']").val(data.data.messageTitle);
+                   $("input[name='messageSendType'][value='"+data.data.messageSendType+"']").attr("checked",true).change();
+                   $("input[name='messageSendObject'][value='"+data.data.messageSendObject+"']").attr("checked",true).change();
+                   $("input[name='messageSendDatetime']").val(data.data.messageSendDatetime);
+                    $("input[name='messageEnable'][value='"+data.data.messageEnable+"']").val(data.data.messageEnable).attr("checked",true).change();
+                   $("#messageContent").val(data.data.messageContent);
+                }
+            });
+        }
+        $(function () {//时间控件
+            $("input[name='messageSendDatetime']").datetimepicker({
+                changeMonth: true,
+                changeYear: true,
+                showSecond: true,
+                timeFormat: 'hh:mm:ss',
+                stepHour: 1,
+                stepMinute: 1,
+                stepSecond: 1
+            })
+        })
+    </script>
+    <!--内容部分end-->
+    <!--尾部-->
+    <div ng-include="'../foot.html'"></div>
+    <!--尾部end-->
+
+</body>
+</html>

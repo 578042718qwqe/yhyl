@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/new-document.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/highcharts.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/index.js"></script>
+    <script src="../../js/angular.min.js"></script>
+    <style>
+        input[name='institu']{ width: 150px; float: left; margin-right: 15px;}
+    </style>
+</head>
+<body ng-app="">
+<!--公用头部-->
+<div ng-include="'../headr.html'"></div>
+<!--公用头部end-->
+<!--内容部分-->
+<link rel="stylesheet" href="../../js/bootstrap.table/bootstrap-table.min.css">
+<link rel="stylesheet" href="../../js/jquery.niftymodals/component.css">
+<div class="content3">
+    <div class="content3-head">
+        <input type="text" class="form-control" name="institu">
+        <div class="diqu-chaxun btn btn-info" onclick="queryPresonArchives()">查询</div>
+        <div class="diqu-chaxun btn btn-info" onclick="seeInfo()">添加</div>
+    </div>
+
+    <div class="content3-body">
+        <table id="tableArchives" class="table table-hover"
+               data-side-pagination = "server"
+               data-unique-id="id"
+               data-toggle="tableArchives"
+               data-pagination="true"
+               data-pagination-loop = "false">
+            <thead>
+            <tr>
+                <th data-field="index" data-width="50" data-formatter="indexFormatter" data-align="center">序号</th>
+                <th data-field="organizationCode" data-align="center" >所属编码</th>
+                <th data-field="organizationSimpleName" data-align="center" >机构简称</th>
+                <th data-field="organizationFullName" data-align="center">机构全称</th>
+                <th data-field="organizationType" data-align="center">机构类型</th>
+                <th data-field="organizationLevel" data-align="center">机构级别</th>
+                <th data-field="organizationConnectPerson" data-align="center">联系人</th>
+                <th data-field="organizationConnectPhone" data-align="center">联系方式</th>
+                <th data-field="organizationAddressDetail" data-formatter="jigoudizhi" data-align="center">机构地址</th>
+                <th data-field="enableFlag" data-formatter="enableFlag2" data-align="center">状态</th>
+                <th data-field="id" data-formatter="operate3Formatter" data-align="center" >操作</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <!-- 归档-->
+    <!--新增弹窗-->
+    <div class="institu-add-win" title="添加" style="display: none">
+        <div class="instiutions-add-win-t"><span>所属编码:</span><input type="text" name="organizationCode" class="form-control"></div>
+        <div class="instiutions-add-win-t"><span>机构简称:</span><input type="text" name="organizationSimpleName" class="form-control"></div>
+        <div class="instiutions-add-win-t"><span>机构全称:</span><input type="text" name="organizationFullName" class="form-control"></div>
+        <div class="instiutions-add-win-t"><span>机构类型:</span><input type="text" name="organizationType" class="form-control"></div>
+        <div class="instiutions-add-win-t"><span>机构级别:</span>
+            <select class="form-control" id="instiutions-jb">
+                <option value="">请选择</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </div>
+
+        <div class="instiutions-add-win-t"><span>联系人:</span><input type="text" name="organizationConnectPerson" class="form-control"></div>
+        <div class="instiutions-add-win-t"><span>联系方式:</span><input type="text" name="organizationConnectPhone" class="form-control"></div>
+        <div class="instiutions-add-win-t"><span>状态:</span>
+            <select class="form-control" id="instiutions-zt">
+                <option value="">请选择</option>
+                <option value="0">否</option>
+                <option value="1">是</option>
+            </select>
+        </div>
+        <div class="instiutions-anniu">
+            <span>居住地址:</span>
+            <div class="form-group">
+                <select name="jsbsheng" id="jsb_sheng" class="form-control" data-bv-notempty data-bv-notempty-message="">
+                    <option value="">请选择</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select name="jsbshi" id="jsb_shi" disabled="disabled" class="form-control" data-bv-notempty data-bv-notempty-message="">
+                    <option value="">请选择</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <select name="jsbqu" id="jsb_qu" disabled="disabled" class="form-control" data-bv-notempty data-bv-notempty-message="">
+                    <option value="">请选择</option>
+                </select>
+            </div>
+        </div>
+        <div class="instiutions-add-win-t"><span>机构地址:</span><input type="text" name="organizationAddressDetail" class="form-control"></div>
+        <div class="institu-error"></div>
+        <div class="instiutions-anniu">
+            <a class="btn btn-default" onclick="inanniu()" href="#" role="button">提交</a>
+            <a class="btn btn-default instiutions-win-dele" href="#" role="button">取消</a>
+        </div>
+    </div>
+</div>
+<script src="../../js/bootstrap.table/bootstrap-table.min.js"></script>
+<script src="../../js/bootstrap.table/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../js/jquery.niftymodals/jquery.modalEffects.js"></script>
+<script src="../../js/date.js"></script>
+<script>
+    /*查询结果*/
+    function queryPresonArchives(){
+        querybootstrapTable();
+    }
+    querybootstrapTable();
+    function querybootstrapTable(){
+        $('#tableArchives').bootstrapTable('destroy'); //先销毁表格
+        $('#tableArchives').bootstrapTable({
+            method:"post",
+            url: "/apis/baseOrganization/list/page?n="+Math.random(),
+            queryParams: function (params) {
+                params.organizationFullName= $("input[name='institu']").val();
+                params.pageNum = this.pageNumber;
+                params.pageSize = this.pageSize;
+                return params;
+            },
+            onLoadSuccess: function (data) {
+                var json ={};
+                json["list"] = data.data.list;
+                json["total"] = data.data.total;
+                $('#tableArchives').bootstrapTable('load',json);
+            },
+            onLoadError: function () {
+                alert(" 服务器无响应！");
+            }
+        })
+    }
+    function indexFormatter(value,row,index){
+        var page = $("table").bootstrapTable("getPage");
+        return page.pageSize * (page.pageNumber - 1) + index + 1;
+    }
+    function operate3Formatter(value,row,index){
+        return '<a href="JavaScript:;" onclick=seeInfo('+index+','+row['id']+') class="look">编辑</a> '
+    }
+    function enableFlag2(value,row,index) {
+        return (row['enableFlag']==1)?"是":"否";
+    }
+    function jigoudizhi(value,row,index) {
+        return ("<div data='"+row['organizationAddressId']+'_'+row['organizationAddressDetail']+"'>"+row['organizationProvinceName']+row['organizationCityName']+row['organizationAreaName']+row['organizationAddressDetail']+"</div>")
+    }
+    /*弹窗部分*/
+    $( ".institu-add-win" ).dialog({
+        autoOpen: false,
+        width :610,
+        height :370
+    });
+    function seeInfo(e,id){//编辑
+        if(arguments.length == 0){
+            $(".institu-add-win").dialog( "open" );
+            $(".institu-add-win input,#instiutions-jb,#instiutions-zt,#jsb_sheng,#jsb_shi,#jsb_qu").val("");
+            edit_id = id;
+            //省
+            $.getJSON("/apis/baseRegion/baseSelect/0",function(date){
+                date.data.forEach(function(item){
+                    var pOption = "<option value='"+item.value+"'>"+item.name+"</option>";
+                    $("#jsb_sheng").append(pOption);
+                });
+            });
+            //省-联动市
+            $("#jsb_sheng").change(function(){
+                var pId = $("#jsb_sheng").val(); //获取省级Value
+                $("#jsb_shi").attr("disabled",false);//打开选项
+                $("#jsb_shi").children(":not(:first)").remove();//第一个符合条件的去除 市
+                $("#jsb_qu").children(":not(:first)").remove();//第一个符合条件的去除  区
+                $.getJSON("/apis/baseRegion/baseSelect/"+pId,function(date){
+                    date.data.forEach(function(item){//遍历
+                        if(item.value.slice(0,2) == pId.slice(0,2)){
+                            var sOption = "<option value='"+item.value+"'>"+item.name+"</option>";
+                            $("#jsb_shi").append(sOption);
+                        }
+                    });
+                });
+            });
+            //市-联动区
+            $("#jsb_shi").change(function(){
+                var sId = $("#jsb_shi").val();//获取市级Value
+                $("#jsb_qu").attr("disabled",false);//打开区选项
+                $("#jsb_qu").children(":not(:first)").remove();//第一个符合条件的去除 区
+                $.getJSON("/apis/baseRegion/baseSelect/"+sId,function(date){
+                    date.data.forEach(function(item){
+                        if(item.value.slice(0,4) == sId.slice(0,4)){
+                            var qOption = "<option value='"+item.value+"'>"+item.name+"</option>";
+                            $("#jsb_qu").append(qOption);
+                        }
+                    });
+                });
+            });
+        }else {
+            //省
+            $.getJSON("/apis/baseRegion/baseSelect/0",function(date){
+                date.data.forEach(function(item){
+                    var pOption = "<option value='"+item.value+"'>"+item.name+"</option>";
+                    $("#jsb_sheng").append(pOption);
+                });
+                $("#jsb_sheng").val(dizhis[0]);//设置默认选中 省
+                $('#jsb_sheng').trigger("change");
+            });
+            //省-联动市
+            $("#jsb_sheng").change(function(){
+                var pId = $("#jsb_sheng").val(); //获取省级Value
+                $("#jsb_shi").attr("disabled",false);//打开选项
+                $("#jsb_shi").children(":not(:first)").remove();//第一个符合条件的去除 市
+                $("#jsb_qu").children(":not(:first)").remove();//第一个符合条件的去除  区
+                $.getJSON("/apis/baseRegion/baseSelect/"+pId,function(date){
+                    date.data.forEach(function(item){//遍历
+                        if(item.value.slice(0,2) == pId.slice(0,2)){
+                            var sOption = "<option value='"+item.value+"'>"+item.name+"</option>";
+                            $("#jsb_shi").append(sOption);
+                        }
+                    });
+                    $("#jsb_shi").val(dizhis[1]);//设置默认选中 省
+                    $('#jsb_shi').trigger("change");
+                });
+            });
+            //市-联动区
+            $("#jsb_shi").change(function(){
+                var sId = $("#jsb_shi").val();//获取市级Value
+                $("#jsb_qu").attr("disabled",false);//打开区选项
+                $("#jsb_qu").children(":not(:first)").remove();//第一个符合条件的去除 区
+                $.getJSON("/apis/baseRegion/baseSelect/"+sId,function(date){
+                    date.data.forEach(function(item){
+                        if(item.value.slice(0,4) == sId.slice(0,4)){
+                            var qOption = "<option value='"+item.value+"'>"+item.name+"</option>";
+                            $("#jsb_qu").append(qOption);
+                        }
+                    });
+                    $("#jsb_qu").val(dizhis[2]);//设置默认选中 省
+                    $('#jsb_qu').trigger("change");
+                });
+            });
+            $(".institu-add-win").dialog( "open" );
+            var zhuangtai = ($("tbody tr").eq(e).find("td").eq(9).text() == "是")?"1":"0";
+            var dizhis = ($("tbody tr").eq(e).find("td").eq(8).find("div").attr("data")).split('_');
+            $("input[name='organizationCode']").val($("tbody tr").eq(e).find("td").eq(1).text());
+            $("input[name='organizationSimpleName']").val($("tbody tr").eq(e).find("td").eq(2).text());
+            $("input[name='organizationFullName']").val($("tbody tr").eq(e).find("td").eq(3).text());
+            $("input[name='organizationType']").val($("tbody tr").eq(e).find("td").eq(4).text());
+            $("#instiutions-jb").val($("tbody tr").eq(e).find("td").eq(5).text());
+            $("input[name='organizationConnectPerson']").val($("tbody tr").eq(e).find("td").eq(6).text());
+            $("input[name='organizationConnectPhone']").val($("tbody tr").eq(e).find("td").eq(7).text());
+            $("input[name='organizationAddressDetail']").val(dizhis[3]);
+            $("#instiutions-zt").val(zhuangtai);
+            edit_id = id;
+            /*获取*/
+        }
+    }
+    function inanniu() {//编辑提交
+        if($("input[name='organizationCode']").val()==""){
+            $(".institu-error").text("所属编码不能为空!")
+        }else if($("input[name='organizationSimpleName']")==""){
+            $(".institu-error").text("机构简称不能为空!")
+        }else if($("input[name='organizationFullName']").val()==""){
+            $(".institu-error").text("机构全称不能为空!")
+        }else if($("input[name='organizationType']").val()==""){
+            $(".institu-error").text("机构类型不能为空!")
+        }else if($("#instiutions-jb").val()==""){
+            $(".institu-error").text("机构级别不能为空!")
+        }else if($("input[name='organizationConnectPerson']").val()==""){
+            $(".institu-error").text("联系人不能为空!")
+        }else if($("input[name='organizationConnectPhone']").val()==""){
+            $(".institu-error").text("联系方式不能为空!")
+        }else if($("input[name='organizationAddressDetail']").val()==""){
+            $(".institu-error").text("机构地址不能为空!")
+        }else if($("#instiutions-zt").val()==""){
+            $(".institu-error").text("状态不能为空!")
+        }else if($("#jsb_sheng").val()==""){
+            $(".institu-error").text("居住地址不能为空!")
+        }
+        else {
+            var instiutionszt = $("#instiutions-zt").val();
+            var institutions = {};
+            var institutiondz =($("#jsb_sheng").val())+"_"+($("#jsb_shi").val())+"_"+($("#jsb_qu").val());
+            institutions.id=edit_id;
+            institutions.organizationCode = $("input[name='organizationCode']").val();
+            institutions.organizationSimpleName = $("input[name='organizationSimpleName']").val();
+            institutions.organizationFullName = $("input[name='organizationFullName']").val();
+            institutions.organizationType = $("input[name='organizationType']").val();
+            institutions.organizationLevel = $("#instiutions-jb").val();
+            institutions.organizationConnectPerson = $("input[name='organizationConnectPerson']").val();
+            institutions.organizationConnectPhone = $("input[name='organizationConnectPhone']").val();
+            institutions.organizationAddressDetail = $("input[name='organizationAddressDetail']").val();
+            institutions.organizationAddressId = institutiondz;
+            institutions.enableFlag = instiutionszt;
+            $.ajax({
+                type: "POST",
+                url: "/apis/baseOrganization/upsert",
+                data: JSON.stringify(institutions),
+                dataType: "json",
+                contentType: 'application/json',
+                success: function (data) {
+                    if(data.returnFlag == "1"){
+                        $(".institu-error").text(data.data)
+                    }else {
+                        $(".institu-error").text("提交成功");
+                        console.log(institutiondz);
+                        querybootstrapTable();
+                    }
+                }
+            });
+        }
+    }
+</script>
+<!--内容部分end-->
+<!--尾部-->
+<div ng-include="'../foot.html'"></div>
+<!--尾部end-->
+
+</body>
+</html>

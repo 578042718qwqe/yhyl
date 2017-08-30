@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="../../css/base.css"><!--公共-->
+    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/bootstrapValidator.css"><!--表单验证-->
+    <link rel="stylesheet" href="../../css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/new-document.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/index.js"></script><!--公共-->
+    <script src="../../js/new-document.js"></script><!--新建文档-->
+    <script src="../../js/bootstrapValidator.js"></script><!--表单验证-->
+    <script src="../../js/angular.min.js"></script>
+    <!--文件新建于2017-6月-->
+</head>
+<body ng-app="">
+<!--公用头部-->
+<div ng-include="'../headr.html'"></div>
+<!--公用头部end-->
+<!--内容部分-->
+<div class="content2">
+    <div class="new-left">
+        <ul>
+            <li class="updata"><a href="new-document1.html">个人信息</a></li>
+            <li class="updata"><a href="new-document2.html">基本信息</a></li>
+            <li class="updata"><a href="new-document3.html">既往史</a></li>
+            <li class="updata"><a href="new-document4.html">过敏史</a></li>
+            <li class="updata"><a href="new-document5.html">个人史</a></li>
+            <li class="updata yjs"><a href="new-document6.html">月经及婚育史</a></li>
+            <li class="on"><a href="new-document7.html">家族史</a></li>
+            <li>育苗接种记录</li>
+            <li class="Chronic1">高血压情况</li>
+            <li class="Chronic2">糖尿病情况</li>
+            <li class="Chronic3">肺结核情况</li>
+            <li class="Chronic4">精神病情况</li>
+        </ul>
+    </div>
+    <div class="new-right">
+        <div class="new-right-baochun">
+            保存
+        </div>
+        <ul>
+            <li class="new-right-show">
+                <div class="new-right-show-n">
+                    <ul>
+                        <li><div class="new-right-show-n-1-1">姓名:</div><div class="new-right-show-n-1"></div></li>
+                        <li><div class="new-right-show-n-1-1">性别:</div><div class="new-right-show-n-2"></div></li>
+                        <li><div class="new-right-show-n-1-1">年龄:</div><div class="new-right-show-n-3"></div></li>
+                    </ul>
+                </div>
+            </li>
+            <!--家族史-->
+            <li class="on">
+                <div class="jzs-top"><span><b>*</b>直系三代是否罹患相关疾病:</span>
+                    <div class="jzs-top-1"><input name="Fruits" type="radio" value="1"/>是</div>
+                    <div class="jzs-top-1"><input name="Fruits" type="radio" value="0"/>否</div>
+                </div>
+                <div class="jzs-all">
+                    <ul>
+                        <li class="jzs-all-head">
+                            <div>疾病名称</div>
+                            <div>亲属关系</div>
+                            <div>是否死亡</div>
+                            <div>本人是否罹患</div>
+                            <div>操作</div>
+                        </li>
+                        <li class="jzs-all-word"></li>
+                    </ul>
+                </div>
+                <div class="jzs-tishi">
+                    *请详细罗列直系三代的家族患病情况，主要包括遗传病、传染病（结核、肝炎、性病等）、精神类疾病患者。
+                </div>
+                <div class="jzs-anniu">
+                    <button class="btn jzs-all-anniu" disabled>添加</button>
+                </div>
+                <div class="page-all">
+                    <a class="updata7-l page-1" href="new-document5.html">上一步</a>
+                    <button id="next" class="btn updata7-r page-1" disabled>下一步</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--弹窗-->
+<div class="duihua5" title="家族史" style="display: none;">
+    <ul>
+        <li class="duihua5-head">
+            <div>疾病名称</div>
+            <div>亲属关系</div>
+            <div>是否死亡</div>
+            <div>本人是否罹患</div>
+        </li>
+        <li>
+            <div><input name="jbmc" class="jiazhu jbmingcheng form-control" value=""/></div>
+            <div>
+                <select class="jz-qinshu jz-qinshu-all form-control">
+                    <option value="">选择</option>
+                    <option value="1">父亲</option>
+                    <option value="2">母亲</option>
+                    <option value="3">爷爷</option>
+                    <option value="4">奶奶</option>
+                    <option value="5">兄弟</option>
+                    <option value="6">姐妹</option>
+                    <option value="-1">其他监护人</option>
+                </select>
+            </div>
+            <div>
+                <select class="jz-die form-control">
+                    <option value="">选择</option>
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                </select>
+            </div>
+            <div>
+                <select class="jz-benren form-control">
+                    <option value="">选择</option>
+                    <option value="0">否</option>
+                    <option value="1">是</option>
+                </select>
+            </div>
+        </li>
+    </ul>
+    <p class="error document-7-error1-msg" style="color: red"></p>
+    <a class="btn btn-default duihua5-1-an" href="#" role="button">提交</a>
+    <a class="btn btn-default duihua5-2-an" href="#" role="button">修改</a>
+    <p class="error error5-msg" style="color: red"></p>
+</div>
+<div class="baochun" title="保存">
+    <div>已成功建档，请确认一下信息;</div>
+    <div><div class="baocun-l">姓名:</div><div class="baocun-name"></div></div>
+    <div><div class="baocun-l">性别:</div><div class="baocun-sex"></div></div>
+    <div><div class="baocun-l">年龄:</div><div class="baocun-age"></div></div>
+    <div><div class="baocun-l">档案号:</div><div class="baocun-fileNumber"></div></div>
+    <div><div class="baocun-l">所属人群:</div><div class="baocun-slowDiseaseFlag"></div></div>
+    <div class="baocun-queren">确认</div>
+    <div class="baocun-fanhui">返回修改</div>
+</div>
+<script>
+    /*新建文档*/
+    var work = new FindSure();
+    work.init();
+    $(".ui-dialog-titlebar-close").append("x")
+</script>
+
+<!--内容部分end-->
+<!--Foot-->
+<div class="foot">
+    <div class="foot-border">Copyright &copy; 2017-2020 Yinghai Software Co., Ltd, Technical Support<br>
+        鹰海医疗信息技术有限公司 技术支持
+    </div>
+</div>
+<!--Foot end-->
+
+</body>
+</html>

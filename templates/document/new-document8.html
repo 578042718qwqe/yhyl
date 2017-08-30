@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/new-document.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/highcharts.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/index.js"></script>
+    <script src="../../js/new-document.js"></script>
+    <script src="../../js/bootstrapValidator.js"></script>
+    <script src="../../js/angular.min.js"></script>
+</head>
+<body ng-app="">
+<!--公用头部-->
+<div ng-include="'../headr.html'"></div>
+    <!--公用头部end-->
+    <!--内容部分-->
+    <div class="content2">
+        <div class="new-left">
+            <ul>
+                <li class="updata"><a href="new-document1.html">个人信息</a></li>
+                <li class="updata"><a href="new-document2.html">基本信息</a></li>
+                <li class="updata"><a href="new-document3.html">既往史</a></li>
+                <li class="updata"><a href="new-document4.html">过敏史</a></li>
+                <li class="updata"><a href="new-document5.html">个人史</a></li>
+                <li class="updata yjs"><a href="new-document6.html">月经及婚育史</a></li>
+                <li class="updata"><a href="new-document7.html">家族史</a></li>
+                <li class="on page" data="new-document8.html"><a href="new-document8.html">育苗接种记录</a></li>
+                <li class="Chronic1">高血压情况</li>
+                <li class="Chronic2">糖尿病情况</li>
+                <li class="Chronic3">肺结核情况</li>
+                <li class="Chronic4">精神病情况</li>
+            </ul>
+        </div>
+        <div class="new-right">
+            <ul>
+                <li class="new-right-show">
+                    <div class="new-right-show-n">
+                        <ul>
+                            <li><div class="new-right-show-n-1-1">姓名:</div><div class="new-right-show-n-1"></div></li>
+                            <li><div class="new-right-show-n-1-1">性别:</div><div class="new-right-show-n-2"></div></li>
+                            <li><div class="new-right-show-n-1-1">年龄:</div><div class="new-right-show-n-3"></div></li>
+                        </ul>
+                    </div>
+                </li>
+                <!--疫苗接种记录-->
+                <li class="on">
+                    <dl class="jz-word-2">
+                        <dt>
+                        <table class="jz-tb">
+                            <thead>
+                                <tr>
+                                    <th><b>*</b>接种时间</th>
+                                    <th><b>*</b>年龄</th>
+                                    <th><b>*</b>疫苗名称</th>
+                                    <th><b>*</b>接种剂次</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <input type="text" class="dhdate3">
+                                    </td>
+                                    <td><input /></td>
+                                    <td>
+                                        <select>
+                                            <option> </option>
+                                            <option>疫苗1</option>
+                                            <option>疫苗2</option>
+                                        </select><span class="glyphicon glyphicon-plus tj-1"><a>添加</a></span>
+                                    </td>
+                                    <td>
+                                        <input />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </dt>
+                    </dl>
+
+                    <dl class="jz-word-2">
+                        <dt class="jz-word-2-dt">
+                            <span class="glyphicon glyphicon-plus tj"><a>添加</a></span>
+                        </dt>
+                    </dl>
+
+                    <div class="page-all">
+                        <a class="updata3-l page-1" href="new-document7.html">上一步</a>
+                        <button id="next" class="btn updata8-r page-1 page-s"><a>下一步</a></button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        /*新建文档*/
+        var work = new FindSure();
+        work.init();
+    </script>
+
+    <!--内容部分end-->
+    <!--Foot-->
+    <div class="foot">
+        <div class="foot-border">Copyright &copy; 2017-2020 Yinghai Software Co., Ltd, Technical Support<br>
+            鹰海医疗信息技术有限公司 技术支持</div>
+    </div>
+    <!--Foot end-->
+<script>
+    $(document).ready(function(){
+        $(".tj").click(function(){
+            $("tbody").append("<tr>"+
+            "<td>"+"<input type='text' class='dhdate'>"+"</td>"+
+            "<td>"+"<input />"+"</td>"+
+            "<td>"+
+            "<select>"+
+            "<option> </option>"+
+            "<option>疫苗1</option>"+
+            "<option>疫苗2</option>"+
+            "</select>"+
+            "<span class='glyphicon glyphicon-plus tj-1'><a>添加</a></span>"+
+            "</td>"+
+            "<td>"+
+            "<input />"+
+            "</td>"+
+            "</tr>");
+        });
+    });
+</script>
+</body>
+</html>

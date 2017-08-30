@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/new-document.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <link rel="stylesheet" href="../../js/bootstrap.table/bootstrap-table.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="../../js/highcharts.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="../../js/index.js"></script>
+    <script src="../../js/new-document.js"></script>
+    <script src="../../js/bootstrapValidator.js"></script>
+    <script src="../../js/bootstrap.table/bootstrap-table.min.js"></script>
+    <script src="../../js/bootstrap.table/bootstrap-table-zh-CN.min.js"></script>
+</head>
+<body>
+<!--公用头部-->
+<div class="head">
+    <div class="head-con">
+        <div class="head-left"><img src="../../img/logo.png"></div>
+        <div class="head-dh">
+            <ul>
+                <li class="glyphicon glyphicon-home home ah"><a class="head-dh-a" href="../../index.html" >首页</a></li>
+                <li class="glyphicon glyphicon-heart service btn-group ah">
+                    <a class="head-dh-a active" data-toggle="dropdown" style="cursor: pointer;">
+                        健康服务
+                    </a>
+                    <ul class="dropdown-menu service-word">
+                        <li>
+                            <h4>档案中心</h4>
+                            <span><a href="../../templates/archives/new-archives.html" class="archives menu-a">个人档案管理</a></span>
+                            <span><a href="../../templates/health/chronic.html" class="menu-a">慢性病人群管理</a></span>
+                        </li>
+                        <li>
+                            <h4>就诊信息</h4>
+                            <span><a href="" class="menu-a">门诊信息</a></span>
+                            <span><a href="" class="menu-a">住院信息</a></span>
+                        </li>
+                        <li>
+                            <h4>体检信息</h4>
+                            <span><a href="" class="menu-a">体检信息-管理</a></span>
+                            <span><a href="" class="menu-a">体检信息-新增</a></span>
+                        </li>
+                        <li>
+                            <h4>随访管理</h4>
+                            <span><a href="" class="menu-a">常规随访</a></span>
+                            <span><a href="" class="menu-a">慢性随访</a></span>
+                            <span><a href="" class="menu-a">满意度调查</a></span>
+                            <span><a href="" class="menu-a">统计分析</a></span>
+                        </li>
+                        <li>
+                            <h4>行政区域管理</h4>
+                            <span><a href="../../templates/health/area.html#?/apis/baseRegion/regionGrade/1" class="menu-a">行政区</a></span>
+                        </li>
+                        <li>
+                            <h4>权限管理</h4>
+                            <span><a href="../../templates/admin/role.html" class="menu-a">角色管理</a></span>
+                            <span><a href="../../templates/admin/user.html" class="menu-a">用户管理</a></span>
+                        </li>
+                    </ul>
+                </li>
+                <li class="glyphicon glyphicon-file jk ah"><a class="head-dh-a" onclick="sessionStorage.removeItem('user')" href="../../templates/document/new-document1.html">新建文档</a></li>
+            </ul>
+            <div class="health">
+                <div class="health-1">
+                    <h3>档案中心</h3>
+                    <span>个人档案管理</span>
+                    <span>慢性病人群管理</span>
+                </div>
+                <div class="health-1">
+                    <h3>就诊信息</h3>
+                    <span>门诊信息</span>
+                    <span>住院信息</span>
+                </div>
+                <div class="health-1">
+                    <h3>体检信息</h3>
+                    <span>体检信息-管理</span>
+                    <span>体检信息-新增</span>
+                </div>
+                <div class="health-1 onbot">
+                    <h3>随访管理</h3>
+                    <span>常规随访</span>
+                    <span>慢性随访</span>
+                    <span>满意度调查</span>
+                    <span>统计分析</span>
+                </div>
+            </div>
+        </div>
+        <!--右边用户-->
+        <div class="head-right">
+            <div class="head-admin">
+                当前用户:王五
+            </div>
+            <div class="dropdown head-admin2 ">
+                <button type="button" class="btn dropdown-toggle" id="dropdownMenu1"
+                        data-toggle="dropdown">
+                    用户
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="#">用户信息</a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="#">账号安全</a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" onclick="logout()">退出账号</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--公用头部end-->
+<!--内容部分-->
+<div class="content2">
+    <div class="new-left">
+        <ul>
+            <li class="updata"><a href="new-archives-da1.html">个人信息</a></li>
+            <li class="updata"><a href="new-archives-da2.html">基本信息</a></li>
+            <li class="updata"><a href="new-archives-da3.html">既往史</a></li>
+            <li class="updata on"><a href="new-archives-da4.html">过敏史</a></li>
+            <li class="updata"><a href="new-archives-da5.html">个人史</a></li>
+            <li class="updata  yjs"><a href="new-archives-da6.html">月经及婚育史</a></li>
+            <li class="updata"><a href="new-archives-da7.html">家族史</a></li>
+            <li class="updata Chronic1"><a href="new-archives-da9.html">高血压情况</a></li>
+            <li class="updata Chronic2"><a href="new-archives-da10.html">糖尿病情况</a></li>
+            <li class="updata Chronic3"><a href="new-archives-da11.html">肺结核情况</a></li>
+            <li class="updata Chronic4"><a href="new-archives-da12.html">精神病情况</a></li>
+        </ul>
+    </div>
+    <div class="new-right">
+        <ul>
+            <!--过敏史-->
+            <li class="on">
+                <dl id="history-iless" class="word-2">
+                    <table id="tableGMS" class="table table-hover"
+                           data-toggle="tableGMS"
+                           data-show-header = "false">
+                        <thead>
+                        <tr>
+                            <th  data-field="requestName" data-align="center" data-width="150" data-valign="middle" data-cell-style ="cellStyle"></th>
+                            <th data-field="answerText" data-align="left" ></th>
+                            <!--<th data-field="answerId" data-align="center" data-valign="middle" data-formatter="timeFormatter" data-cell-style ="cellStyle"></th>-->
+                            <!--<th data-field="answerDate" data-align="left"></th>-->
+                        </tr>
+                        </thead>
+                    </table>
+                </dl>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    /*新建文档*/
+    var work = new FindSure();
+    work.init();
+</script>
+
+<!--内容部分end-->
+<!--Foot-->
+<div class="foot">
+    <div class="foot-border">Copyright &copy; 2017-2020 Yinghai Software Co., Ltd, Technical Support<br>
+        鹰海医疗信息技术有限公司 技术支持</div>
+</div>
+<!--Foot end-->
+<script>
+    $(function(){
+        queryGMS();// 查询过敏史
+    })
+    // 查询过敏史
+    function queryGMS(){
+        var id = sessionStorage.getItem("user");
+        $('#tableGMS').bootstrapTable('destroy'); //先销毁表格
+        $('#tableGMS').bootstrapTable({
+            url: "/apis/fileAllergicHistoryInfo/"+id,
+            onLoadSuccess: function (data) {
+                if (data.returnFlag != 0) {
+                    alert( data.message);
+                } else {
+                    mergeCell(data.data);
+                }
+                console.log(data);
+            },
+            onLoadError: function () {
+                alert(" 服务器无响应！");
+            }
+        })
+
+    };
+    /**
+     * 合并元各
+     * @param rows
+     */
+    function mergeCell(rows){
+        var index = 0;
+        var rowspan = 1;
+        for(var i = 0;i<rows.length;i++){
+            if(i == rows.length - 1)
+                $("#tableGMS").bootstrapTable('mergeCells', {index: index, field: 'requestName', colspan: 1, rowspan: rowspan});
+            else{
+                if(rows[i].requestId == rows[i+1].requestId) rowspan++;
+                else {
+                    $("#tableGMS").bootstrapTable('mergeCells', {index: index, field: 'requestName', colspan: 1, rowspan: rowspan});
+                    index = i+1;
+                    rowspan = 1;
+                }
+            }
+        }
+    };
+
+
+    function cellStyle(value,row,index){
+        return  {  css: {"color": "#000","font-weight":" bold"} };
+    }
+
+</script>
+</body>
+</html>

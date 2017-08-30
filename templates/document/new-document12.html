@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="../../css/base.css"><!--公共-->
+    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/bootstrapValidator.css"><!--表单验证-->
+    <link rel="stylesheet" href="../../css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/new-document.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/index.js"></script><!--公共-->
+    <script src="../../js/new-document.js"></script><!--新建文档-->
+    <script src="../../js/bootstrapValidator.js"></script><!--表单验证-->
+    <script src="../../js/angular.min.js"></script>
+    <!--文件新建于2017-6月-->
+</head>
+<body ng-app="">
+<!--公用头部-->
+<div ng-include="'../headr.html'"></div>
+    <!--公用头部end-->
+    <!--内容部分-->
+    <div class="content2">
+        <div class="new-left">
+            <ul>
+                <li class="updata"><a href="new-document1.html">个人信息</a></li>
+                <li class="updata"><a href="new-document2.html">基本信息</a></li>
+                <li class="updata"><a href="new-document3.html">既往史</a></li>
+                <li class="updata"><a href="new-document4.html">过敏史</a></li>
+                <li class="updata"><a href="new-document5.html">个人史</a></li>
+                <li class="updata yjs"><a href="new-document6.html">月经及婚育史</a></li>
+                <li class="updata"><a href="new-document7.html">家族史</a></li>
+                <li class="updata page" data="new-document8.html"><a href="new-document8.html">育苗接种记录</a></li>
+                <li class="updata Chronic1"><a href="new-document9.html">高血压情况</a></li>
+                <li class="updata Chronic2"><a href="new-document10.html">糖尿病情况</a></li>
+                <li class="updata Chronic3"><a href="new-document11.html">肺结核情况</a></li>
+                <li class="on Chronic4">精神病情况</li>
+            </ul>
+        </div>
+        <div class="new-right">
+            <ul>
+                <form id="jsbform" class="form-horizontal">
+                <li class="new-right-show">
+                    <div class="new-right-show-n">
+                        <ul>
+                            <li><div class="new-right-show-n-1-1">姓名:</div><div class="new-right-show-n-1"></div></li>
+                            <li><div class="new-right-show-n-1-1">性别:</div><div class="new-right-show-n-2"></div></li>
+                            <li><div class="new-right-show-n-1-1">年龄:</div><div class="new-right-show-n-3"></div></li>
+                        </ul>
+                    </div>
+                </li>
+                <!--精神病情况-->
+                <li class="on">
+                        <div class="jsb-all">
+                            <ul>
+                                <li>
+                                    <div class="jsb-all-left"><b>*</b>随访频率</div>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" name="jsbpinlv">
+                                    </div>
+                                    <span style="margin-left: 5px; line-height: 40px; float: left;">次/</span>
+                                    <div class="form-group">
+                                        <select name="jsbday" id="jsbday" class="form-control" data-bv-notempty data-bv-notempty-message="">
+                                            <option value="">请选择</option>
+                                            <option value="月">月</option>
+                                            <option value="年">年</option>
+                                        </select>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="jsb-all-left"><b>*</b>监护人姓名</div>
+                                    <div class="jsb-all-left-2">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="jsbname" required>
+                                        </div>
+                                    </div>
+                                        <div class="jsb-all-guanxi"><b>*</b>与患者关系</div>
+                                        <div class="form-group">
+                                            <select class="form-control" id="jsbguanxi" name="jsbguanxi" data-bv-notempty data-bv-notempty-message="">
+                                                <option value="">请选择</option>
+                                                <option value="父女">父女</option>
+                                                <option value="母女">母女</option>
+                                                <option value="父子">父子</option>
+                                                <option value="母子">母子</option>
+                                                <option value="姐妹">姐妹</option>
+                                                <option value="兄妹">兄妹</option>
+                                                <option value="姐弟">姐弟</option>
+                                                <option value="兄弟">兄弟</option>
+                                            </select>
+                                        </div>
+                                </li>
+                                <li>
+                                    <div class="jsb-all-left"><b>*</b>监护人住址</div>
+                                    <div>
+                                        <div class="form-group">
+                                            <select name="jsbsheng" id="jsb_sheng" class="form-control" data-bv-notempty data-bv-notempty-message="">
+                                                <option value="">请选择</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <select name="jsbshi" id="jsb_shi" disabled="disabled" class="form-control" data-bv-notempty data-bv-notempty-message="">
+                                                <option value="">请选择</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <select name="jsbqu" id="jsb_qu" disabled="disabled" class="form-control" data-bv-notempty data-bv-notempty-message="">
+                                                <option value="">请选择</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group" style="width:34%; padding:0 10px!important;">
+                                            <input type="text" class="form-control" name="jsbdizhi">
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="jsb-all-guanxi"><b>*</b>监护人电话</div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="jsbphone">
+                                    </div>
+                                    <div class="jsb-all-guanxi-tishi">座机格式0898-XXXXXX</div>
+                                </li>
+                                <li>
+                                    <div class="jsb-all-left"><b>*</b>初次发病时间</div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control jsbtime" name="jsbtime" required>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="jsb-all-left higet"><b>*</b>既往主要症状</div>
+                                    <div class="form-group jsb-all-left-3">
+                                        <div class="jsb-all-left-3-2">
+                                            <span class="jsb-list4"><input type="checkbox" name="jsbzz" value="幻觉" class="form-control gxy_zx" required>幻觉</span>
+                                            <span class="jsb-list4"><input type="checkbox" name="jsbzz" value="交流困难">交流困难</span>
+                                            <span class="jsb-list4"><input type="checkbox" name="jsbzz" value="猜疑">猜疑</span>
+                                            <span class="jsb-list4"><input type="checkbox" name="jsbzz" value="喜怒无常">喜怒无常</span>
+                                            <span class="jsb-list4"><input type="checkbox" name="jsbzz" value="行为怪异">行为怪异</span>
+                                            <span class="jsb-list4"><input type="checkbox" name="jsbzz" value="兴奋多话">兴奋多话</span>
+                                        </div>
+                                        <div class="jsb-all-left-3-2">
+                                            <span class="jsb-list4"><input type="checkbox" name="jsbzz" value="伤人损物">伤人损物</span>
+                                            <span class="jsb-list4"><input type="checkbox" name="jsbzz" value="悲观厌世">悲观厌世</span>
+                                            <span class="jsb-list4"><input type="checkbox" name="jsbzz" value="无故外走">无故外走</span>
+                                            <span class="jsb-list4"><input type="checkbox" name="jsbzz" value="自语自笑">自语自笑</span>
+                                            <span class="jsb-list4"><input type="checkbox" name="jsbzz" value="孤僻懒散">孤僻懒散</span>
+                                            <span class="jsb-list4"><input type="checkbox" class="jsbqt" name="jsbzz" value="其它">其它</span><input class="form-control" style="margin-top:8px; height: 24px;" type="text" name="jsbzz_qt" value="" >
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="jsb-all-left  higet"><b>*</b>既往治疗情况</div>
+                                    <div class="jsb-all-left-men">
+                                        <div class="jsb-all-left-men-1">门诊</div>
+                                        <div class="form-group">
+                                            <span class="jsb-list4"><input type="radio" name="jsbqingkuang" value="未治" class="form-control gxy_zx" required>未治</span>
+                                            <span class="jsb-list4"><input type="radio" name="jsbqingkuang" value="间断门诊治疗" class="form-control gxy_zx">间断门诊治疗</span>
+                                            <span class="jsb-list4"><input type="radio" name="jsbqingkuang" value="幻觉" class="form-control gxy_zx">幻觉</span>
+                                        </div>
+                                    </div>
+                                    <div class="jsb-all-left-zhuyuan">
+                                        <div class="jsb-all-left-men-1">住院</div>
+                                        <div class="jsb-all-left-men-2">
+                                            <div class="jsb-all-left-men-2-1">曾住精神专科医院/综合医院精神专科</div>
+                                            <div class="form-group">
+                                                <input style="height: 24px;" type="text" name="jsbzhuyuan" required>
+                                            </div>
+                                            <div class="jsb-all-left-men-2-2">次</div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="jsb-all-left"><b>*</b>最近诊断情况</div>
+                                    <div class="jsb-all-left-men-2">
+                                        <div class="jsb-all-left-men-2-1">诊断</div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="jsbzhenduan" required>
+                                        </div>
+                                        <div class="jsb-all-left-men-2-1">诊断医院</div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="jsbyiyuan" required>
+                                        </div>
+                                        <div class="jsb-all-left-men-2-1">诊断日期</div>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control jsbriqi" name="jsbriqi" required>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="jsb-all-left"><b>*</b>最近一次治疗效果</div>
+                                    <div class="form-group">
+                                        <span class="jsb-list4"><input type="radio" name="jsbzlxg" value="痊愈" class="form-control gxy_zx" required>痊愈</span>
+                                        <span class="jsb-list4"><input type="radio" name="jsbzlxg" value="好转" class="form-control gxy_zx">好转</span>
+                                        <span class="jsb-list4"><input type="radio" name="jsbzlxg" value="无变化" class="form-control gxy_zx">无变化</span>
+                                        <span class="jsb-list4"><input type="radio" name="jsbzlxg" value="加里" class="form-control gxy_zx">加里</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="jsb-all-left higet"><b>*</b>患病对家庭社会的影响</div>
+                                       <div class="form-group">
+                                           <div class="jsb-all-left-yingxiang">
+                                               <span class="jsb-list4"><input type="radio" name="jsbyingxiang" value="轻度滋事" class="form-control gxy_zx" required><div class="jsb-list4-yingxiang">轻度滋事</div><input type="number" name="jsbyingxiang02">次</span>
+                                               <span class="jsb-list4"><input type="radio" name="jsbyingxiang" value="肇事" class="form-control gxy_zx"><div class="jsb-list4-yingxiang">肇事</div><input type="number" name="jsbyingxiang02">次</span>
+                                               <span class="jsb-list4"><input type="radio" name="jsbyingxiang" value="肇祸" class="form-control gxy_zx"><div class="jsb-list4-yingxiang">肇祸</div><input type="number" name="jsbyingxiang02">次</span>
+                                           </div>
+                                           <div class="jsb-all-left-yingxiang">
+                                               <span class="jsb-list4"><input type="radio" name="jsbyingxiang" value="自伤" class="form-control gxy_zx"><div class="jsb-list4-yingxiang">自伤</div><input type="number" name="jsbyingxiang02">次</span>
+                                               <span class="jsb-list4"><input type="radio" name="jsbyingxiang" value="自杀未遂" class="form-control gxy_zx"><div class="jsb-list4-yingxiang">自杀未遂</div><input type="number" name="jsbyingxiang02">次</span>
+                                               <span class="jsb-list4"><input type="radio" name="jsbyingxiang" value="无" class="form-control gxy_zx"><div class="jsb-list4-yingxiang">无</div></span>
+                                           </div>
+                                       </div>
+                                </li>
+                                <li>
+                                    <div class="jsb-all-left"><b>*</b>关锁情况</div>
+                                    <div class="form-group">
+                                        <span class="jsb-list4"><input type="radio" name="jsbguanjian" value="无关锁" class="form-control gxy_zx" required>无关锁</span>
+                                        <span class="jsb-list4"><input type="radio" name="jsbguanjian" value="关锁" class="form-control gxy_zx">关锁</span>
+                                        <span class="jsb-list4"><input type="radio" name="jsbguanjian" value="关锁已解除" class="form-control gxy_zx">关锁已解除</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="jsb-all-left"><b>*</b>遵医行为</div>
+                                    <div class="form-group">
+                                        <span class="jsb-list4"><input type="radio" name="jsbyingwei" value="良好" class="form-control gxy_zx" required>良好</span>
+                                        <span class="jsb-list4"><input type="radio" name="jsbyingwei" value="一般" class="form-control gxy_zx">一般</span>
+                                        <span class="jsb-list4"><input type="radio" name="jsbyingwei" value="差" class="form-control gxy_zx">差</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="page-all">
+                            <a class="updata12-l page-1 page-u">上一步</a>
+                            <div class="form-group form-group-r">
+                                <button type="submit" class="btn updata13-r btn-primary">下一步</button>
+                            </div>
+                        </div>
+                </li>
+                </form>
+            </ul>
+        </div>
+    </div>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        成功建档，是否保存全部信息!
+                    </h4>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="button" class="btn btn-primary doc-updata-all-12">
+                        提交全部
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <script>
+        /*新建文档*/
+        var work = new FindSure();
+        work.init();
+    </script>
+    <!--内容部分end-->
+    <!--Foot-->
+    <div class="foot">
+        <div class="foot-border">Copyright &copy; 2017-2020 Yinghai Software Co., Ltd, Technical Support<br>
+            鹰海医疗信息技术有限公司 技术支持</div>
+    </div>
+    <!--Foot end-->
+</body>
+</html>

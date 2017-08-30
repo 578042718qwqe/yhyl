@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/new-document.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/index.js"></script>
+    <script src="../../js/new-document.js"></script>
+
+    <script src="../../js/bootstrap.table/bootstrap-table.min.js"></script>
+    <script src="../../js/bootstrap.table/bootstrap-table-zh-CN.min.js"></script>
+    <script src="../../js/jquery.niftymodals/jquery.modalEffects.js"></script>
+    <script src="../../js/date.js"></script>
+</head>
+<body>
+    <!--公用头部-->
+    <div class="head">
+            <div class="head-con">
+                <div class="head-left"><img src="../../img/logo.png"></div>
+                <div class="head-dh">
+                    <ul>
+                        <li class="glyphicon glyphicon-home home ah"><a class="head-dh-a" href="../../index.html" >首页</a></li>
+                        <li class="glyphicon glyphicon-heart service btn-group ah">
+                            <a class="head-dh-a active" data-toggle="dropdown" style="cursor: pointer;">
+                                健康服务
+                            </a>
+                            <ul class="dropdown-menu service-word">
+                                <li>
+                                    <h4>档案中心</h4>
+                                    <span><a href="../../templates/archives/new-archives.html" class="archives menu-a">个人档案管理</a></span>
+                                    <span><a href="../../templates/health/chronic.html" class="menu-a">慢性病人群管理</a></span>
+                                </li>
+                                <li>
+                                    <h4>就诊信息</h4>
+                                    <span><a href="" class="menu-a">门诊信息</a></span>
+                                    <span><a href="" class="menu-a">住院信息</a></span>
+                                </li>
+                                <li>
+                                    <h4>体检信息</h4>
+                                    <span><a href="" class="menu-a">体检信息-管理</a></span>
+                                    <span><a href="" class="menu-a">体检信息-新增</a></span>
+                                </li>
+                                <li>
+                                    <h4>随访管理</h4>
+                                    <span><a href="" class="menu-a">常规随访</a></span>
+                                    <span><a href="" class="menu-a">慢性随访</a></span>
+                                    <span><a href="" class="menu-a">满意度调查</a></span>
+                                    <span><a href="" class="menu-a">统计分析</a></span>
+                                </li>
+                                <li>
+                                    <h4>行政区域管理</h4>
+                                    <span><a href="/templates/health/area.html#?/apis/baseRegion/regionGrade/1" class="menu-a">行政区</a></span>
+                                </li>
+                                <li>
+                                    <h4>权限管理</h4>
+                                    <span><a href="../admin/role.html" class="menu-a">角色管理</a></span>
+                                    <span><a href="../admin/user.html" class="menu-a">用户管理</a></span>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="glyphicon glyphicon-file jk ah"><a class="head-dh-a" onclick="sessionStorage.removeItem('user')" href="../document/new-document1.html">新建文档</a></li>
+                    </ul>
+                    <div class="health">
+                        <div class="health-1">
+                            <h3>档案中心</h3>
+                            <span>个人档案管理</span>
+                            <span>慢性病人群管理</span>
+                        </div>
+                        <div class="health-1">
+                            <h3>就诊信息</h3>
+                            <span>门诊信息</span>
+                            <span>住院信息</span>
+                        </div>
+                        <div class="health-1">
+                            <h3>体检信息</h3>
+                            <span>体检信息-管理</span>
+                            <span>体检信息-新增</span>
+                        </div>
+                        <div class="health-1 onbot">
+                            <h3>随访管理</h3>
+                            <span>常规随访</span>
+                            <span>慢性随访</span>
+                            <span>满意度调查</span>
+                            <span>统计分析</span>
+                        </div>
+                    </div>
+                </div>
+                <!--右边用户-->
+                <div class="head-right">
+                    <div class="head-admin">
+                        当前用户:王五
+                    </div>
+                    <div class="dropdown head-admin2 ">
+                        <button type="button" class="btn dropdown-toggle" id="dropdownMenu1"
+                                data-toggle="dropdown">
+                            用户
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="#">用户信息</a>
+                            </li>
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="#">账号安全</a>
+                            </li>
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" onclick="logout()">退出账号</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!--公用头部end-->
+    <!--内容部分-->
+    <div class="archives-show-all">
+        <div class="container-fluid">
+            <div class="accordion" id="accordion2">
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne" id="tag_1">
+                            个人信息
+                        </a>
+                    </div>
+                    <div id="collapseOne" class="accordion-body collapse" style="height:0;">
+                        <div class="accordion-inner">
+                            <div id="infor">
+                                <p><span></span><span></span></p>
+                                <p><span></span><span></span></p>
+                                <p><span></span><span></span></p>
+                                <p><span></span><span></span></p>
+                                <p><span></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo" id="tag_2">
+                            基本信息
+                        </a>
+                    </div>
+                    <div id="collapseTwo" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <div id="basic">
+                                <p><span></span><span></span></p>
+                                <p><span></span><span></span></p>
+                                <p><span></span><span></span></p>
+                                <p><span></span><span></span></p>
+                                <p><span></span><span></span></p>
+                                <p><span></span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree" id="tag_3">
+                            既往史
+                        </a>
+                    </div>
+                    <div id="collapseThree" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <div id="history">
+                                <b>疾病名称：</b><p class="history-1"></p>
+                                <b>手术名称：</b><p class="history-2"></p>
+                                <b>外伤名称：</b><p class="history-3"></p>
+                                <b>输血原因：</b><p class="history-4"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse5" id="tag_4">
+                            过敏史
+                        </a>
+                    </div>
+                    <div id="collapse5" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <div id="allergy">
+                                <b>药物名称：</b><p class="allergy-1"></p>
+                                <b>食物名称：</b><p class="allergy-2"></p>
+                                <b>花粉名称：</b><p class="allergy-3"></p>
+                                <b>其他：</b><p class="allergy-4"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse6"  id="tag_5">
+                            个人史
+                        </a>
+                    </div>
+                    <div id="collapse6" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <div class="perso-info-w-all-ck">
+                                <dl class="word-3-ck">
+                                    <dt class="perso-info-w-ck">
+                                        <span class="word-3-ck-huan">饮酒：</span>
+                                        <label id="grswt_yj" class="word-2-ck-huan-1">否</label>
+                                    </dt>
+                                    <dt class="perso-info-w-ck grswt_yj" hidden>
+                                        <span class="word-3-ck-huan">饮酒类型：</span>
+                                        <label id="grswt_yj_1" class="word-2-ck-huan-1" style="width: 52px;"></label>
+                                        <span class="word-3-ck-huan" style="width: 70px;">饮酒量：</span>
+                                        <label id="grswt_yj_2" class="word-2-ck-huan-1" style="width: 77px;"></label>
+                                    </dt>
+                                </dl>
+                                <dl class="word-3-ck">
+                                    <dt class="perso-info-w-ck ">
+                                        <span class="word-3-ck-huan">吸烟：</span>
+                                        <label id="grswt_xy" class="word-2-ck-huan-1">否</label>
+                                    </dt>
+                                    <dt class="perso-info-w-ck grswt_xy" hidden>
+                                        <span class="word-3-ck-huan">吸烟量：</span>
+                                        <label id="grswt_xy_1" class="word-2-ck-huan-1"></label>
+                                    </dt>
+                                </dl>
+                                <dl class="word-3-ck">
+                                    <dt class="perso-info-w-ck">
+                                        <span class="word-3-ck-huan">疫水、疫区接触史：</span>
+                                        <label id="grswt_ysyqjc" class="word-2-ck-huan-1">否</label>
+                                    </dt>
+                                    <dt class="perso-info-w-ck grswt_ysyqjc" hidden>
+                                        <span class="word-3-ck-huan">疫区：</span>
+                                        <label id="grswt_ysyqjc_1" class="word-2-ck-huan-1"></label>
+                                    </dt>
+                                </dl>
+                                <dl class="word-3-ck">
+                                    <dt class="perso-info-w-ck">
+                                        <span class="word-3-ck-huan">毒物接触史：</span>
+                                        <label id="grswt_dwjcs" class="word-2-ck-huan-1">否</label>
+                                    </dt>
+                                    <dt class="perso-info-w-ck grswt_dwjcs" hidden>
+                                        <span class="word-3-ck-huan">毒物：</span>
+                                        <label id="grswt_dwjcs_1" class="word-2-ck-huan-1"></label>
+                                    </dt>
+                                </dl>
+                                <dl class="word-3-ck">
+                                    <dt class="perso-info-w-ck ">
+                                        <span class="word-3-ck-huan">放射性物质接触史：</span>
+                                        <label id="grswt_fsxwzjc" class="word-2-ck-huan-1">否</label>
+                                    </dt>
+                                    <dt class="perso-info-w-ck grswt_fsxwzjc" hidden>
+                                        <span class="word-3-ck-huan">放射性物质：</span>
+                                        <label id="grswt_fsxwzjc_1" class="word-2-ck-huan-1"></label>
+                                    </dt>
+                                </dl>
+                                <dl class="word-3-ck">
+                                    <dt class="perso-info-w-ck">
+                                        <span class="word-3-ck-huan">冶游史：</span>
+                                        <label id="grswt_zys" class="word-2-ck-huan-1">否</label>
+                                    </dt>
+                                </dl>
+                                <dl class="word-3-ck">
+                                    <dt class="perso-info-w-ck">
+                                        <span class="word-3-ck-huan">性病：</span>
+                                        <label id="grswt_xb" class="word-2-ck-huan-1">否</label>
+                                    </dt>
+                                    <dt class="perso-info-w-ck grswt_xb" hidden>
+                                        <span class="word-3-ck-huan">性病名称:</span>
+                                        <label id="grswt_xb_1" class="word-2-ck-huan-1"></label>
+                                    </dt>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group  yjs">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse13" id="tag_12">
+                            月经史
+                        </a>
+                    </div>
+                    <div id="collapse13" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <div id="yjhy" class="perso-info-w-all-ck">
+                                <dl class="word-3-ck">
+                                    <dt class="perso-info-w-ck">
+                                        <span class="word-3-ck-huan">初潮年龄：</span>
+                                        <label id="menarcheAge" class="word-2-ck-huan-1 age"></label>
+                                    </dt>
+                                    <dt class="perso-info-w-ck grswt_yj" >
+                                        <span class="word-3-ck-huan">月经周期：</span>
+                                        <label id="menstruationTimeBegin" ></label>
+                                        <label id="menstruationTimeEnd" class="range"></label>
+                                    </dt>
+                                </dl>
+                                <dl class="word-3-ck">
+                                    <dt class="perso-info-w-ck ">
+                                        <span class="word-3-ck-huan">经量：</span>
+                                        <label id="menstrualFlow" class="word-2-ck-huan-1"></label>
+                                    </dt>
+                                    <dt class="perso-info-w-ck grswt_xy" >
+                                        <span class="word-3-ck-huan">经期天数：</span>
+                                        <label id="menstruationDaysBegin" ></label>
+                                        <label id="menstruationDaysEnd" class="range sd"></label>
+                                    </dt>
+                                </dl>
+                                <dl class="word-3-ck">
+                                    <dt class="perso-info-w-ck">
+                                        <span class="word-3-ck-huan">痛经：</span>
+                                        <label id="dysmenorrhea" class="word-2-ck-huan-1 radios"></label>
+                                    </dt>
+                                    <dt class="perso-info-w-ck grswt_ysyqjc" >
+                                        <span class="word-3-ck-huan">绝经年龄：</span>
+                                        <label id="menopauseAge" class="word-2-ck-huan-1 age"></label>
+                                    </dt>
+                                </dl>
+                                <dl class="word-3-ck">
+                                    <dt class="perso-info-w-ck">
+                                        <span class="word-3-ck-huan">结婚：</span>
+                                        <label id="marry" class="word-2-ck-huan-1 radios"></label>
+                                    </dt>
+                                    <dt class="perso-info-w-ck grswt_dwjcs" >
+                                        <span class="word-3-ck-huan">结婚年龄：</span>
+                                        <label id="marryAge" class="word-2-ck-huan-1 age"></label>
+                                    </dt>
+                                </dl>
+                                <dl class="word-3-ck">
+                                    <dt class="perso-info-w-ck ">
+                                        <span class="word-3-ck-huan">育有子女：</span>
+                                        <label id="sonNumber" ></label> 男
+                                        <label id="daughterNumber" ></label> 女
+                                    </dt>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse7" id="tag_6">
+                            家族史
+                        </a>
+                    </div>
+                    <div id="collapse7" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <div class="jiazu-ls">
+                                <div class="heads">直系三代是否羅患相关疾病: 是</div>
+                                <ul>
+                                    <li>
+                                        <div>疾病名称</div>
+                                        <div>亲属关系</div>
+                                        <div>是否死亡</div>
+                                        <div>本人是否羅患</div>
+                                    </li>
+                                    <li id="family"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group Chronic1">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse8" id="tag_7">
+                            高血压情况
+                        </a>
+                    </div>
+                    <div id="collapse8" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <ul class="gxy_show">
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="gxy-huan">病情分级:</span><span class="gxy_show_fj"></span>/<span class="gxy_show_fj2"></span></div><div class="gxy_show_r"><span class="jsb-huan">随访频率:</span><span class="gxy_show_pinlv"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="gxy-huan">高血压类型:</span><span class="gxy_show_leixing"></span></div><div class="gxy_show_r"><span class="jsb-huan">检出途径:</span><span class="gxy_show_tuijing"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="gxy-huan">高血压知晓情况:</span><span class="gxy_show_zhixiao"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="gxy-huan">未服用降压药前血压水平:</span><span class="gxy_show_shuiping1"></span><span class="gxy_show_shuiping2"></span></div><div class="gxy_show_r"><span class="jsb-huan">是否服用降压药:</span><span class="gxy_show_jyy"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="gxy-huan">血脂知晓情况:</span><span class="gxy_show_xuezhi"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="gxy-huan">体重/身高（kg/m）:</span><span class="gxy_show_tizhong"></span><span class="gxy_show_shengao"></span></div><div class="gxy_show_r"><span class="jsb-huan">*BMI（kg/m²）:</span><span class="gxy_show_BMI"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="gxy-huan">靶器官损坏:</span><span class="gxy_show_sunhuai"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="gxy-huan">患其它慢病:</span><span class="gxy_show_manbing"></span></div></li>
+                                <li class="gxy_show_li" style="margin-bottom: 20px;"><div class="gxy_show_l"><span class="gxy-huan">遵医行为:</span><span class="gxy_show_xingwei"></span></div></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group Chronic2">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse9" id="tag_8">
+                            糖尿病情况
+                        </a>
+                    </div>
+                    <div id="collapse9" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <ul class="gxy_show">
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="gxy-huan">随访频率:</span><span class="tnb_show_1"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="gxy-huan">糖尿病类型:</span><span class="tnb_show_2"></span></div><div class="gxy_show_r"><span class="jsb-huan">检出途径:</span><span class="tnb_show_3"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="gxy-huan">糖尿病知晓情况:</span><span class="tnb_show_4"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="gxy-huan">未服用降糖药前血糖水平:</span><span class="tnb_show_5"></span></div><div class="gxy_show_r"><span class="jsb-huan">是否服药:</span><span class="tnb_show_6"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="gxy-huan">并发症:</span><span class="tnb_show_7"></span></div></li>
+                                <li class="gxy_show_li" style="margin-bottom: 20px;"><div class="gxy_show_l"><span class="gxy-huan">遵医行为:</span><span class="tnb_show_8"></span></div></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group Chronic3">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse10" id="tag_9">
+                            肺结核病情况
+                        </a>
+                    </div>
+                    <div id="collapse10" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <ul class="gxy_show">
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="jsb-huan">随访频率:</span><span class="fjh_show_1"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="jsb-huan">肺结核类型:</span><span class="fjh_show_2"></span></div><div class="gxy_show_r"><span class="jsb-huan">检出途径:</span><span class="fjh_show_3"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="jsb-huan">症状:</span><span class="fjh_show_4"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="jsb-huan">合并症:</span><span class="fjh_show_5"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="jsb-huan">体重/身高（kg/m）:</span><span class="fjh_show_6"></span></div><div class="gxy_show_r"><span class="jsb-huan">BMI（kg/m²）:</span><span class="fjh_show_7"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="jsb-huan">肝功能检测:</span><span class="fjh_show_8"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="jsb-huan">化疗方案:</span><span class="fjh_show_9"></span></div></li>
+                                <li class="gxy_show_li" style="margin-bottom: 20px;"><div class="gxy_show_l"><span class="jsb-huan">遵医行为:</span><span class="fjh_show_10"></span></div></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group Chronic4">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse11" id="tag_10">
+                            精神病情况
+                        </a>
+                    </div>
+                    <div id="collapse11" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <ul class="gxy_show">
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="jsb-huan">随访频率:</span><span class="jsb_show_l"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="jsb-huan">监护人姓名:</span><span class="jsb_show_2"></span></div><div class="gxy_show_r"><span class="jsb-huan">与患者关系:</span><span class="jsb_show_3"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="jsb-huan">监护人住址:</span><span class="jsb_show_4"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="jsb-huan">监护人电话:</span><span class="jsb_show_5"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="jsb-huan">初次发病时间:</span><span class="jsb_show_6"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="jsb-huan">既往主要症状:</span><span class="jsb_show_7"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="jsb-huan">既往治疗情况:</span><span class="jsb_show_8"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l jsb_showjc"><span class="jsb-huan">最近诊断情况:</span><span class="jsb_show_9"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="jsb-huan">最近一次治疗效果:</span><span class="jsb_show_10"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="jsb-huan">患病对家庭社会的影响:</span><span class="jsb_show_11"></span></div></li>
+                                <li class="gxy_show_li"><div class="gxy_show_l"><span class="jsb-huan">关锁情况:</span><span class="jsb_show_12"></span></div></li>
+                                <li class="gxy_show_li" style="margin-bottom: 20px;"><div class="gxy_show_l"><span class="jsb-huan">遵医行为:</span><span class="jsb_show_13"></span></div></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-group">
+                    <div class="accordion-heading">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse12" id="tag_11">
+                            变更记录
+                        </a>
+                    </div>
+                    <div id="collapse12" class="accordion-body collapse">
+                        <div class="accordion-inner">
+                            <div class="change-head">
+                                <div>变更时间</div>
+                                <div>变更类型</div>
+                                <div>变更人</div>
+                            </div>
+                            <div class="change"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--内容部分end-->
+    <!--Foot-->
+    <div class="foot">
+        <div class="foot-border">Copyright &copy; 2017-2020 Yinghai Software Co., Ltd, Technical Support<br>
+            鹰海医疗信息技术有限公司 技术支持</div>
+    </div>
+    <!--Foot end-->
+    <script>
+        var id =sessionStorage.getItem("user");
+        function timeStamp(time){
+            var datetime = new Date();
+            datetime.setTime(time);
+            var year = datetime.getFullYear();
+            var month = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+            var date = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+            var hour = datetime.getHours()< 10 ? "0" + datetime.getHours() : datetime.getHours();
+            var minute = datetime.getMinutes()< 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+            var second = datetime.getSeconds()< 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
+            return year + "-" + month + "-" + date;
+        }
+        $.getJSON("/apis/fileHistoryPastIllnessInfo/"+sessionStorage.getItem("user"),function(date){//慢性病显示
+            date.data.forEach(function(item){
+                if(item.requestId == "zwswt_jbmc" || !item.answerName == "无" ){
+                    var mxb_cs1=(item.answerName.split('高血压')).length-1;
+                    var mxb_cs2=(item.answerName.split('糖尿病')).length-1;
+                    var mxb_cs3=(item.answerName.split('肺结核')).length-1;
+                    var mxb_cs4=(item.answerName.split('精神病')).length-1;
+                    if(mxb_cs1 >0){
+                        $(".Chronic1").show()
+                    }
+                    else if(mxb_cs2 >0){
+                        $(".Chronic2").show()
+                    }
+                    else if(mxb_cs3 >0){
+                        $(".Chronic3").show()
+                    }
+                    else if(mxb_cs4 >0){
+                        $(".Chronic4").show()
+                    }
+                }
+            });
+        });
+        $("#tag_1").bind("click",function () {//1
+            $.ajax({
+                async:false,
+                url:"/apis/file/"+id,
+                success:function(data) {
+                    if (data.returnFlag != 0) {
+                        alert(data.message);
+                    } else {
+                        fileNumbers = data.data.fileNumber;
+                        var sexs =(data.data.sex == true)?"男":"女";
+                        if(data.data.sex == false){
+                            $(".yjs").show()
+                        }
+                        var style = {
+                            bs1:"身份证"
+                        };
+                        var country={
+                            bs1:"中国"
+                        };
+                        var bloodType={
+                            bs1:"A型",
+                            bs2:"B型",
+                            bs3:"O型",
+                            bs4:"AB型",
+                            bs5 :"不详"
+                        };
+                        var bloodTypes = (data.data.bloodType == -1)?"5":data.data.bloodType;
+                        var rh = (data.data.rh == null)?"":"HR阴性";
+                        var cardNums = (data.data.cardNum).slice(0,4)+"**********"+(data.data.cardNum).slice(14,16);
+                        $("#infor p:nth-child(1)").find("span:nth-child(1)").html("<b>姓名:</b>"+data.data.name);
+                        $("#infor p:nth-child(1)").find("span:nth-child(2)").html("<b>性别:</b>"+sexs);
+                        $("#infor p:nth-child(2)").find("span:nth-child(1)").html("<b>证件类型:</b>"+style["bs"+data.data.cardType]);
+                        $("#infor p:nth-child(2)").find("span:nth-child(2)").html("<b>证件号:</b>"+cardNums);
+                        $("#infor p:nth-child(3)").find("span:nth-child(1)").html("<b>国籍:</b>"+country["bs"+data.data.country]);
+                        $("#infor p:nth-child(3)").find("span:nth-child(2)").html("<b>民族:</b>"+data.data.nationName);
+                        $("#infor p:nth-child(4)").find("span:nth-child(1)").html("<b>出生日期:</b>"+timeStamp(data.data.birthday));
+                        $("#infor p:nth-child(4)").find("span:nth-child(2)").html("<b>血型:</b>"+bloodType["bs"+bloodTypes]+"<span style='float: right'>"+rh+"</span>");
+                        $("#infor p:nth-child(5)").find("span:nth-child(1)").html("<b>建档时间:</b>"+timeStamp(data.data.fileCreateTime))
+                    }
+                }});
+        });
+        $("#tag_1").click();
+        $("#tag_2").bind("click",function () {//2
+            $.ajax({
+                async:false,
+                url:"/apis/file/"+sessionStorage.getItem("user"),
+                success:function(data) {
+                    var medicare = {
+                        m1:"新农合",
+                        m2:"城镇职工",
+                        m3:"城镇居民"
+                    };
+                    var AddressName2 = (data.data.registerAddressName == null)?"":data.data.registerAddressName;
+                    var professionName = (data.data.professionName == null)?"":data.data.professionName;
+                    var connectDetails = (data.data.connectDetail).slice(0,3)+"*******"+(data.data.connectDetail).slice(8,11);
+                    if (data.returnFlag != 0) {
+                        alert(data.message);
+                    } else {
+                        $("#basic p:nth-child(1)").find("span:nth-child(1)").html("<b>姓名:</b>"+medicare["m"+data.data.medicareType]);
+                        $("#basic p:nth-child(1)").find("span:nth-child(2)").html("<b>医保编号:</b>"+data.data.medicareCode);
+                        $("#basic p:nth-child(2)").find("span:nth-child(1)").html("<b>常住地址:</b>"+data.data.commonAddressName);
+                        $("#basic p:nth-child(3)").find("span:nth-child(1)").html("<b>户籍地址:</b>"+AddressName2);
+                        $("#basic p:nth-child(4)").find("span:nth-child(1)").html("<b>职业类别:</b>"+professionName);
+                        $("#basic p:nth-child(4)").find("span:nth-child(2)").html("<b>工作单位:</b>"+data.data.companyOrOrganization);
+                        $("#basic p:nth-child(5)").find("span:nth-child(1)").html("<b>联系人:</b>"+data.data.connectPersonName);
+                        $("#basic p:nth-child(5)").find("span:nth-child(2)").html("<b>联系电话:</b>"+connectDetails);
+                        $("#basic p:nth-child(6)").find("span:nth-child(1)").html("<b>所属人群:</b>"+data.data.slowDiseaseFlag);
+                    }
+                }});
+        });
+        $("#tag_3").bind("click",function () {//3
+            $(".history-1,.history-2,.history-3,.history-4").empty();
+            $.getJSON("/apis/fileHistoryPastIllnessInfo/"+sessionStorage.getItem("user"),function(date){
+                date.data.forEach(function(item){
+                    if(item.requestId == "zwswt_jbmc" || !item.answerName == "无" ){
+                        var sOption = "<div class='mode-word-1 jy'>" + "<div class='mingcheng-1' data='"+item.answerId+"'>" + item.answerName + "</div>" + "<div class='shijian-1'>" + item.answerDate + "</div>" + "</div>";
+                        $(".history-1").append(sOption);
+
+                        var mxb_cs1=(item.answerName.split('高血压')).length-1;
+                        var mxb_cs2=(item.answerName.split('糖尿病')).length-1;
+                        var mxb_cs3=(item.answerName.split('肺结核')).length-1;
+                        var mxb_cs4=(item.answerName.split('精神病')).length-1;
+                        if(mxb_cs1 >0){
+                            $(".Chronic1").show()
+                        }
+                        else if(mxb_cs2 >0){
+                            $(".Chronic2").show()
+                        }
+                        else if(mxb_cs3 >0){
+                            $(".Chronic3").show()
+                        }
+                        else if(mxb_cs4 >0){
+                            $(".Chronic4").show()
+                        }
+                    }
+                    if(item.requestId == "zwswt_ssmc" || !item.answerName == "无"){
+                        var sOption = "<div class='mode-word-2 jy'>" + "<div class='mingcheng-2' data='"+item.answerId+"'>" + item.answerName + "</div>" + "<div class='shijian-2'>" + item.answerDate + "</div>" + "</div>";
+                        $(".history-2").append(sOption);
+                    }
+                    if(item.requestId == "zwswt_wsmc" || !item.createdTime == "无"){
+                        var sOption = "<div class='mode-word-3 jy'>" + "<div class='mingcheng-3' data='"+item.answerId+"'>" + item.answerName + "</div>" + "<div class='shijian-3'>" + item.answerDate + "</div>" + "</div>";
+                        $(".history-3").append(sOption);
+                    }
+                    if(item.requestId == "zwswt_sxyy" || !item.createdTime == "无"){
+                        var sOption = "<div class='mode-word-4 jy'>" + "<div class='mingcheng-4' data='"+item.answerId+"'>" + item.answerName + "</div>" + "<div class='shijian-4'>" + item.answerDate + "</div>" + "</div>";
+                        $(".history-4").append(sOption);
+                    }
+                });
+            });
+        });
+        $("#tag_4").bind("click",function () {//4
+            $(".allergy-1,.allergy-2,.allergy-3,.allergy-4").empty();
+            $.getJSON("/apis/fileAllergicHistoryInfo/"+id,function(date){
+                date.data.forEach(function(item){
+                    if(item.requestId == "gmswt_ywmc" || !item.answerName == "无" ){
+                        var sOption = "<div class='mode-word-1 jy'>" + "<div class='mingcheng-1'>" + item.answerText + "</div>" + "</div>";
+                        $(".allergy-1").append(sOption);
+                    }
+                    if(item.requestId == "gmswt_swmc" || !item.answerName == "无"){
+                        var sOption = "<div class='mode-word-2 jy'>" + "<div class='mingcheng-2'>" + item.answerText + "</div>" + "</div>";
+                        $(".allergy-2").append(sOption);
+                    }
+                    if(item.requestId == "gmswt_hfmc" || !item.createdTime == "无"){
+                        var sOption = "<div class='mode-word-3 jy'>" + "<div class='mingcheng-3'>" + item.answerText + "</div>" + "</div>";
+                        $(".allergy-3").append(sOption);
+                    }
+                    if(item.requestId == "gmswt_qt" || !item.createdTime == "无"){
+                        var sOption = "<div class='mode-word-4 jy'>" + "<div class='mingcheng-4'>" + item.answerText + "</div>" + "</div>";
+                        $(".allergy-4").append(sOption);
+                    }
+                });
+            });
+        });
+        $("#tag_5").bind("click",function () {//5
+            $.getJSON("/apis/filePersonalHistoryInfo/"+id,function(data){
+                console.log(data.data);
+                //写入信息
+                var drink= {
+                    d1:"白酒",
+                    d2:"啤酒",
+                    d3:"米酒",
+                    d4:"其他"
+                }
+                writeInfo(data.data);
+                function writeInfo(rows){
+                    for(var i =0;i<rows.length;i++){
+                        var row  = rows[i];
+                        if(row["answerText"] == null || row["answerText"] == undefined){
+                            row["answerText"] = "(空)";
+                        }
+                        $("."+row["requestId"].trim()).show();
+                        $("#"+row["requestId"].trim()).html("是");
+                        if(row["requestId"].trim() == "grswt_yj"){
+                            var an =row["answerText"].split("_");
+                            if(an.length < 2) an=["(空)","(空)"];
+                            $("#"+row["requestId"].trim()+"_1").html(drink["d"+an[0]]);
+                            $("#"+row["requestId"].trim()+"_2").html(an[1]);
+                        }else{
+                            $("#"+row["requestId"].trim()+"_1").html(row["answerText"]);
+                        }
+                    }
+
+                };
+            });
+        })
+        $("#tag_6").bind("click",function () {//6
+            $.getJSON("/apis/fileFamilyHistoryInfo/"+id,function(date){
+                if(date.data == null){
+                    $("#collapse7").text("无");
+                }else {
+                    $("#family").empty();
+                    date.data.forEach(function(item){
+                        switch (item.relationshipId)
+                        {
+                            case 1:
+                                item.relationshipId="父亲";
+                                break;
+                            case 2:
+                                item.relationshipId="母亲";
+                                break;
+                            case 3:
+                                item.relationshipId="爷爷";
+                                break;
+                            case 4:
+                                item.relationshipId="奶奶";
+                                break;
+                            case 5:
+                                item.relationshipId="兄弟";
+                                break;
+                            case 6:
+                                item.relationshipId="姐妹";
+                                break;
+                            case -1:
+                                item.relationshipId="其他监护人";
+                                break;
+                        }
+                        item.death = (item.death == false)?"是":"否";
+                        item.selfHad = (item.selfHad == false)?"是":"否";
+                        var pOption = '<div>'+item.diagnosisName+'</div>'+'<div>'+item.relationshipId+'</div>'+'<div>'+item.death+'</div>'+'<div>'+item.selfHad+'</div>';
+                        $("#family").append(pOption);
+                    });
+                }
+            });
+        });
+        $("#tag_7").bind("click",function () {//7
+            $.ajax({
+                type: "GET",
+                url: "/apis/fileHypertensionInfo/"+id,
+                dataType: "json",
+                success: function (e) {
+                    console.log(e.data);
+                    if(e.data == null){
+                        console.log("空")
+                    }else {
+                        $(".gxy_show_fj").text(e.data.conditionGrade);
+                        $(".gxy_show_fj2").text(e.data.conditionGroup);
+                        $(".gxy_show_pinlv").text(e.data.visitCount+"次/"+e.data.visitUnit);
+                        $(".gxy_show_leixing").text(e.data.hypertensionType)
+                        $(".gxy_show_tuijing").text(e.data.checkWay)
+                        $(".gxy_show_zhixiao").text(e.data.bloodPressureSituation)
+                        var xueya_sp = e.data.bloodPressureLevel.split('/');
+                        $(".gxy_show_shuiping1").text("("+xueya_sp[0]+"/");//未服用降压药前血压水平1
+                        $(".gxy_show_shuiping2").text(xueya_sp[1]+")mmhg");//未服用降压药前血压水平2
+                        $(".gxy_show_jyy").text(e.data.takeAntihypertensiveDrugs);//未服用降压药前血压水平2
+                        $(".gxy_show_xuezhi").text(e.data.bloodFatSituation);//未服用降压药前血压水平2
+                        $(".gxy_show_shengao").text(e.data.height);//未服用降压药前血压水平2
+                        $(".gxy_show_tizhong").text(e.data.weight+"/");//未服用降压药前血压水平2
+                        $(".gxy_show_BMI").text(e.data.bodyMassIndex);//未服用降压药前血压水平2
+                        $(".gxy_show_sunhuai").text(e.data.targetOrganDamageParams);//未服用降压药前血压水平2
+                        $(".gxy_show_manbing").text(e.data.chronicDiseaseParams);//未服用降压药前血压水平2
+                        $(".gxy_show_xingwei").text(e.data.complianceBehavior);//未服用降压药前血压水平2
+                    }
+                }
+            })
+        });
+        $("#tag_8").bind("click",function () {//8
+            $.ajax({
+                type: "GET",
+                url: "/apis/fileDiabetesInfo/"+id,
+                dataType: "json",
+                success: function (e) {
+                    if(e.data == null){
+                        console.log("空")
+                    }else {
+                        $(".tnb_show_1").text(e.data.visitCount + "次/" + e.data.visitUnit);
+                        $(".tnb_show_2").text(e.data.diabetesType);
+                        $(".tnb_show_3").text(e.data.checkWay);
+                        $(".tnb_show_4").text(e.data.bloodSugarSituation);
+                        $(".tnb_show_5").append("<span class='mg-r'>" + "空腹：" + e.data.emptyBloodSugar + "mmol/L" + "</span>" + "随机：" + e.data.randomBloodSugar + "mmol/L");
+                        $(".tnb_show_6").text(e.data.medication);
+                        $(".tnb_show_7").text(e.data.complicationParams);
+                        $(".tnb_show_8").text(e.data.complianceBehavior);
+                    }
+                }
+            })
+        })
+        $("#tag_9").bind("click",function () {//9
+            $.ajax({
+                type: "GET",
+                url: "/apis/filePulmonaryTuberculosisInfo/"+id,
+                dataType: "json",
+                success: function (e) {
+                    if(e.data == null){
+                        console.log("空")
+                    }else {
+                        $(".fjh_show_1").text(e.data.visitCount+"次/"+e.data.visitUnit);
+                        $(".fjh_show_2").text(e.data.pulmonaryTuberculosisType);
+                        $(".fjh_show_3").text(e.data.checkWay);
+                        $(".fjh_show_4").text(e.data.symptomParams);
+                        $(".fjh_show_5").text(e.data.complicationParams);
+                        $(".fjh_show_6").append("<span style=' margin-right: 10px;'>"+e.data.weight+"</span>"+"/"+e.data.height);
+                        $(".fjh_show_7").text(e.data.bodyMassIndex);
+                        $(".fjh_show_8").text(e.data.liverFunctionCheck);
+                        $(".fjh_show_9").text(e.data.chemotherapyPlan);
+                        $(".fjh_show_10").text(e.data.complianceBehavior);
+                    }
+                }
+            })
+        })
+        $("#tag_10").bind("click",function () {//10
+            function timeStamp2String(time){
+                var datetime = new Date();
+                datetime.setTime(time);
+                var year = datetime.getFullYear();
+                var month = datetime.getMonth() + 1 < 10 ? "0" + (datetime.getMonth() + 1) : datetime.getMonth() + 1;
+                var date = datetime.getDate() < 10 ? "0" + datetime.getDate() : datetime.getDate();
+                var hour = datetime.getHours()< 10 ? "0" + datetime.getHours() : datetime.getHours();
+                var minute = datetime.getMinutes()< 10 ? "0" + datetime.getMinutes() : datetime.getMinutes();
+                var second = datetime.getSeconds()< 10 ? "0" + datetime.getSeconds() : datetime.getSeconds();
+                return year + "-" + month + "-" + date;
+            }
+            $.ajax({
+                type: "GET",
+                url: "/apis/fileMentalDiseaseInfo/"+id,
+                dataType: "json",
+                success: function (e) {
+                    if(e.data == null){
+                        console.log("空")
+                    }else {
+                        var EffectCount = (e.data.familyEffectCount == null)?"":"次数:"+e.data.familyEffectCount;
+                        $(".jsb_show_l").text(e.data.visitCount+"次/"+e.data.visitUnit);
+                        $(".jsb_show_2").text(e.data.guardianName);
+                        $(".jsb_show_3").text(e.data.patientRelationship);
+                        $(".jsb_show_4").text(e.data.guardianProvinceName+e.data.guardianCityName+e.data.guardianAreaName+e.data.guardianAddressDetail);
+                        $(".jsb_show_5").text(e.data.guardianTelephone);
+                        $(".jsb_show_6").text(timeStamp2String(e.data.firstMorbidityDate));
+                        $(".jsb_show_7").text(e.data.pastMainSymptomParams);
+                        $(".jsb_show_8").text("门诊："+e.data.pastTreatmentDepartment+"------住院："+e.data.pastTreatmentCount);
+                        $(".jsb_show_9").text("诊断："+e.data.latelyDiagnosisDisease+"------诊断医院："+e.data.latelyDiagnosisHospital+"------诊断日期："+timeStamp2String(e.data.latelyDiagnosisTime));
+                        $(".jsb_show_10").text(e.data.latelyDiagnosisEffect);
+                        $(".jsb_show_11").text(e.data.familyEffectSituation+EffectCount);
+                        $(".jsb_show_12").text(e.data.closeLockSituation);
+                        $(".jsb_show_13").text(e.data.complianceBehavior);
+                    }
+                }
+            })
+        });
+        $("#tag_11").bind("click",function () {//11 fileNumbers
+            $(".change").empty();
+            $.ajax({
+                type: "GET",
+                url: "/apis/logFileCharge/getList/"+fileNumbers,
+                dataType: "json",
+                success: function (e) {
+                    for(var i =0; i<e.data.list.length; i++){
+                        console.log(e.data.list[i].chargeType);
+                        $(".change").append("<div class='change-c'>"+"<div>"+e.data.list[i].chargeTime+"</div>"+"<div>"+e.data.list[i].chargeType+"</div>"+"<div>"+e.data.list[i].chargeName+"</div>"+"</div>")
+                    }
+                }
+            })
+        });
+        $("#tag_12").bind("click",function () {//12
+            $(function(){
+                queryYJHYS();
+            });
+            // 查询
+            function queryYJHYS(){
+                var id = sessionStorage.getItem("user");
+                $.ajax({
+                    url:"/apis/fileMerryHistoryInfo/"+id,
+                    dataType:"json",
+                    success:function(data){
+                        if (data.returnFlag != 0) {
+                            alert( data.message);
+                        }else{
+                            writeInfo(data.data);
+                        }
+                    }
+                });
+
+            };
+            function writeInfo(row){
+                $("#yjhy label").each(function(){
+                    if(row[this.id]==null ||row[this.id].trim() == ""){
+                        if($.inArray('range', this.classList) > -1) {
+                            this.innerHTML = "";
+                        }else this.innerHTML = "无";
+                    }else{
+                        if($.inArray('range', this.classList) >-1){
+                            this.innerHTML = " ~ " + row[this.id] +" 天";
+                        }else if($.inArray('radios', this.classList) >-1){
+                            if(row[this.id] == 0) this.innerHTML ="否";
+                            else this.innerHTML ="是";
+                        }else if($.inArray('age', this.classList) >-1){
+                            var age =row[this.id].split("_");
+                            if(age[0] == 0)
+                                this.innerHTML = this.id =="menopauseAge" ? "未绝经":"无";
+                            else this.innerHTML = (age[1]||age[0] )+" 岁";
+                        }
+                        else   this.innerHTML = row[this.id];
+                    }
+                })
+            };
+        })
+    </script>
+</body>
+</html>

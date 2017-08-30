@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/new-document.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/index.js"></script>
+    <script src="../../js/new-document.js"></script>
+    <script src="../../js/bootstrapValidator.js"></script>
+    <script src="../../js/angular.min.js"></script>
+    <script src="../../js/cookie.js"></script>
+</head>
+<body ng-app="">
+<!--公用头部-->
+<div ng-include="'../headr.html'"></div>
+    <!--公用头部end-->
+    <!--内容部分-->
+    <div class="content2">
+        <div class="new-left">
+            <ul>
+                <li class="updata"><a href="new-document1.html">个人信息</a></li>
+                <li class="updata"><a href="new-document2.html">基本信息</a></li>
+                <li class="updata"><a href="new-document3.html">既往史</a></li>
+                <li class="on"><a href="new-document4.html">过敏史</a></li>
+                <li>个人史</li>
+                <li class="yjs">月经及婚育史</li>
+                <li>家族史</li>
+                <li>育苗接种记录</li>
+                <li class="Chronic1">高血压情况</li>
+                <li class="Chronic2">糖尿病情况</li>
+                <li class="Chronic3">肺结核情况</li>
+                <li class="Chronic4">精神病情况</li>
+            </ul>
+        </div>
+        <div class="new-right">
+            <div class="new-right-baochun">
+                保存
+            </div>
+            <ul>
+                <li class="new-right-show">
+                    <div class="new-right-show-n">
+                        <ul>
+                            <li><div class="new-right-show-n-1-1">姓名:</div><div class="new-right-show-n-1"></div></li>
+                            <li><div class="new-right-show-n-1-1">性别:</div><div class="new-right-show-n-2"></div></li>
+                            <li><div class="new-right-show-n-1-1">年龄:</div><div class="new-right-show-n-3"></div></li>
+                        </ul>
+                    </div>
+                </li>
+                <!--过敏史-->
+                <li class="on">
+                    <dl class="word-2">
+                        <dd class="mode-head-1">
+                           <h5><b style="color: red">*</b>过敏史：
+                               <label><input type="radio" name="gms" value="0" />无</label>
+                               &nbsp;&nbsp;
+                               <label><input type="radio" name="gms" value="1" checked/>有</label>
+                           </h5>
+                        </dd>
+                        <dd class="mode-head-1">
+                            <h5>药物名称： </h5><span class="mode-tianjia-1 btn btn-success">添加</span>
+                            <div class="mode-jb-1 mj"></div>
+                        </dd>
+                        <dd class="mode-head-2">
+                            <h5>食物名称：</h5><span class="mode-tianjia-2 btn btn-success">添加</span>
+                            <div class="mode-jb-2 mj"></div>
+                        </dd>
+                        <dd class="mode-head-3">
+                            <h5>花粉名称：</h5><span class="mode-tianjia-3 btn btn-success">添加</span>
+                            <div class="mode-jb-3 mj"></div>
+                        </dd>
+                        <dd class="mode-head-4">
+                            <h5>其他：</h5><span class="mode-tianjia-4 btn btn-success">添加</span>
+                            <div class="mode-jb-4 mj"></div>
+                        </dd>
+                    </dl>
+                    <div class="page-all">
+                        <a class="updata3-l page-1" href="new-document3.html">上一步</a>
+                        <button id="next" class="btn updata4-r" onclick="saveGMS()" disabled>下一步</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--弹窗-->
+    <div class="duihua1" title="药物名称">
+        药物名称:<input type="text" class="duihua1-1">
+        <a class="btn btn-default duihua1-1-an" href="#" role="button">提交</a>
+        <a class="btn btn-default duihua1-2-an" href="#" role="button">修改</a>
+        <p class="error error1-msg" style="color: red"></p>
+    </div>
+    <div class="duihua2" title="食物名称">
+        食物名称:<input type="text" class="duihua2-1">
+        <a class="btn btn-default duihua2-1-an" href="#" role="button">提交</a>
+        <a class="btn btn-default duihua2-2-an" href="#" role="button">修改</a>
+        <p class="error error2-msg" style="color: red"></p>
+    </div>
+    <div class="duihua3" title="花粉名称">
+        花粉名称:<input type="text" class="duihua3-1">
+        <a class="btn btn-default duihua3-1-an" href="#" role="button">提交</a>
+        <a class="btn btn-default duihua3-2-an" href="#" role="button">修改</a>
+        <p class="error error3-msg" style="color: red"></p>
+    </div>
+    <div class="duihua4" title="其他">
+        其他：<input type="text" class="duihua4-1 other" autocomplete="off">
+        <a class="btn btn-default duihua4-1-an" href="#" role="button">提交</a>
+        <a class="btn btn-default duihua4-2-an" href="#" role="button">修改</a>
+        <p class="error error4-msg" style="color: red"></p>
+    </div>
+    <div class="baochun" title="保存">
+        <div>已成功建档，请确认一下信息;</div>
+        <div><div class="baocun-l">姓名:</div><div class="baocun-name"></div></div>
+        <div><div class="baocun-l">性别:</div><div class="baocun-sex"></div></div>
+        <div><div class="baocun-l">年龄:</div><div class="baocun-age"></div></div>
+        <div><div class="baocun-l">档案号:</div><div class="baocun-fileNumber"></div></div>
+        <div><div class="baocun-l">所属人群:</div><div class="baocun-slowDiseaseFlag"></div></div>
+        <div class="baocun-queren">确认</div>
+        <div class="baocun-fanhui">返回修改</div>
+    </div>
+    <script>
+        /*新建文档*/
+        var work = new FindSure();
+        work.init();
+    </script>
+
+    <!--内容部分end-->
+    <!--Foot-->
+    <div class="foot">
+        <div class="foot-border">Copyright &copy; 2017-2020 Yinghai Software Co., Ltd, Technical Support<br>
+            鹰海医疗信息技术有限公司 技术支持</div>
+    </div>
+    <!--Foot end-->
+<script>
+    $(function(){
+        queryGMS();// 查询过敏史
+    });
+    var count = 0;
+    //添加 div 行数据插入时执行
+    $(".mj").on('DOMNodeInserted',function(){
+        console.log("插入count:"+count );
+        if($("input[name='gms']:checked").val() == 0)
+            $("input[name='gms']").eq(1).click();
+        if(count == 0){
+            $("#next").addClass("page-1");
+            $("#next").prop("disabled",false);
+        }
+        count++;
+    });
+    //删除 div 行数据删除时执行
+    $(".mj").on("DOMNodeRemoved",function(){
+        console.log("删除count："+count);
+        count--;
+        if(count == 0){
+            $("#next").removeClass("page-1");
+            $("#next").prop("disabled",true);
+        }
+    });
+
+    // 过敏史 有无选择执行
+    $("input[name='gms']").on("change",function(){
+        if(this.value == 0){
+            $("#error").html("");
+            $("#next").addClass("page-1");
+            $("#next").prop("disabled",false);
+        }else{
+           if(count == 0){
+                $("#next").removeClass("page-1");
+                $("#next").prop("disabled",true);
+            }
+        }
+    });
+
+   // 下一步 保存
+    function saveGMS() {
+        var gms = $("input[name='gms']:checked").val();
+        if (gms == 0) {
+            //无过敏史 直接跳转
+            var params = [{
+                "personMasterInfoId": $.cookie("user")
+            }];
+            sendSaveGMS(params);
+//            window.location.href = 'new-document5.html';
+        } else if (gms == 1) {
+            // 有过敏史 保存数据
+            getGMSParams();
+        }
+    }
+    function getGMSParams(){
+        var params = [];
+        var id = $.cookie("user");
+        if($(".mode-jb-1").html().trim() != ""){
+            $(".mode-word-1 .mingcheng-1").each(function(){
+                var param = {
+                    "answerText":$(this).attr("data"),
+                    "personMasterInfoId": id,
+                    "requestId": "gmswt_ywmc",
+                    "requestName": "药物名称"
+                };
+                params.push(param);
+            })
+        }
+        if($(".mode-jb-2").html().trim() != ""){
+            $(".mode-word-2 .mingcheng-2").each(function(){
+                var param = {
+                    "answerText": this.innerHTML,
+                    "personMasterInfoId": id,
+                    "requestId": "gmswt_swmc",
+                    "requestName": "食物名称"
+                };
+                params.push(param);
+            })
+        }
+        if($(".mode-jb-3").html().trim() != ""){
+            $(".mode-word-3 .mingcheng-3").each(function(){
+                var param = {
+                    "answerText": this.innerHTML,
+                    "personMasterInfoId": id,
+                    "requestId": "gmswt_hfmc",
+                    "requestName": "花粉名称"
+                };
+                params.push(param);
+            })
+        }
+        if($(".mode-jb-4").html().trim() != ""){
+            $(".mode-word-4 .mingcheng-4").each(function(){
+                var param = {
+                    "answerText": this.innerHTML,
+                    "personMasterInfoId": id,
+                    "requestId": "gmswt_qt",
+                    "requestName": "其他"
+                };
+                params.push(param);
+            })
+        }
+        sendSaveGMS(params);
+    }
+
+    //请求保存
+    function sendSaveGMS(params){
+        console.log(JSON.stringify(params));
+        $.ajax({
+            type : 'POST',
+            url:"/apis/file/allergicHistoryInfo?n"+Math.random(),
+            data:JSON.stringify(params),
+            dataType:"json",
+            contentType: "application/json",
+            success:function(data){
+                if (data.returnFlag != 0) {
+                    alert( data.message);
+                }else{
+                    window.location.href='new-document5.html';
+                }
+            }
+        })
+    }
+    // 查询过敏史
+    function queryGMS(){
+        var id = $.cookie("user");
+        $.ajax({
+            url:"/apis/fileAllergicHistoryInfo/"+id,
+            dataType:"json",
+            success:function(data){
+                if (data.returnFlag != 0) {
+                    alert( data.message);
+                }else{
+                    console.log(data.data);
+                   writeInfo(data.data);
+                }
+            }
+        })
+    };
+    // 写入信息
+    var s1 = new Set(),s2 = new Set(),s3= new Set(),s4 = new Set();
+    function writeInfo(rows){
+        var y = 0, s = 0, h = 0, q= 0;
+        for(var i=0;i<rows.length;i++){
+            var row = rows[i];
+            var ans = (row["answerText"] == null ||row["answerText"] ==undefined)?"无":row["answerText"].toString().trim();
+            if(ans!="无" ) {
+                if (row["requestId"] == "gmswt_ywmc") {
+                    $(".mode-jb-1").append("<div class='mode-word-1' data='" + y + "'>" + "<div class='mingcheng-1' data='"+(row["answerText"].split(" "))[0]+"'>" + row["answerText"] + "</div>" + "<div class='xiu-1'>修改" + "</div>" + "<div class='shan-1'>删除" + "</div>" + "</div>")
+                    y++;
+                s1.add(row["answerText"]);
+                } else if (row["requestId"] == "gmswt_swmc") {
+                    $(".mode-jb-2").append("<div class='mode-word-2' data='" + s + "'>" + "<div class='mingcheng-2'>" + row["answerText"] + "</div>" + "<div class='xiu-2'>修改" + "</div>" + "<div class='shan-2'>删除" + "</div>" + "</div>")
+                    s++;
+                s2.add(row["answerText"]);
+                } else if (row["requestId"] == "gmswt_hfmc") {
+                    $(".mode-jb-3").append("<div class='mode-word-3' data='" + h + "'>" + "<div class='mingcheng-3'>" + row["answerText"] + "</div>" + "<div class='xiu-3'>修改" + "</div>" + "<div class='shan-3'>删除" + "</div>" + "</div>")
+                    h++;
+                s3.add(row["answerText"]);
+                } else if (row["requestId"] == "gmswt_qt") {
+                    $(".mode-jb-4").append("<div class='mode-word-4' data='" + q + "'>" + "<div class='mingcheng-4'>" + row["answerText"] + "</div>" + "<div class='xiu-4'>修改" + "</div>" + "<div class='shan-4'>删除" + "</div>" + "</div>")
+                    q++;
+                    s4.add(row["answerText"]);
+                }
+            }
+        }
+        if(s1.size == 0 && s2.size == 0 && s3.size == 0 && s4.size == 0 ){
+          $("input[name='gms']").eq(0).click();
+        }else{
+            $("input[name='gms']").eq(1).click();
+        }
+    };
+
+</script>
+</body>
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/new-document.css">
+    <link rel="stylesheet" type="text/css" href="../../css/zTreeStyle.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/index.js"></script><!--公共-->
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/angular.min.js"></script>
+    <script type="text/javascript" src="../../js/jquery.ztree.core-3.5.js"></script>
+    <script type="text/javascript" src="../../js/jquery.ztree.excheck-3.5.js"></script>
+</head>
+<body ng-app="">
+    <!--公用头部-->
+    <div ng-include="'../headr.html'"></div>
+    <!--公用头部end-->
+    <!--内容部分-->
+    <div class="role-name">
+        <div class="role-name-1"><span>角色名称:</span><input type="text" class="form-control" name="role-search-c"></div><div class="role-name-2 btn btn-primary role-search">查询</div><div class="role-name-3 btn btn-primary role-add">新增</div>
+    </div>
+    <table class="table table-hover" id="tablerole" style="width:1400px; margin: 0 auto">
+        <caption></caption>
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>角色代码</th>
+                <th>角色名称</th>
+                <th>角色等级</th>
+                <th>角色所属</th>
+                <th>角色权限</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+
+            </tr>
+        </tbody>
+    </table>
+    <!--内容部分end-->
+    <!--尾部-->
+    <div ng-include="'../foot.html'"></div>
+    <!--尾部end-->
+    <!--新增弹窗-->
+    <div class="role-add-win" title="添加" style="display: none">
+        <div class="role-add-win-t"><span>角色名称:</span><input type="text" name="role-name" class="form-control"></div>
+        <div class="role-add-win-t"><span>角色代码:</span><input type="text" name="role-Code" class="form-control"></div>
+        <div class="role-add-win-qx">
+            <div class="role-add-win-qx-l">角色权限:</div>
+            <div class="role-add-win-qx-1-1">
+                <div class="zTreeDemoBackground left">
+                    <ul id="treeDemo2" class="ztree"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="role-add-win-suoshu">
+            <span>角色所属:</span>
+            <select id="roleFather" class="form-control">
+                <option value="">请选择</option>
+            </select>
+        </div>
+        <div class="role-error"></div>
+        <a class="btn btn-default role-anniu" href="#" role="button">提交</a>
+        <a class="btn btn-default role-win-dele" href="#" role="button">取消</a>
+    </div>
+    <!--权限编辑弹窗-->
+    <div class="role-quanxian-win" title="编辑权限" style="display: none">
+        <div class="content_wrap">
+            <div class="zTreeDemoBackground left">
+                <ul id="treeDemo" class="ztree"></ul>
+            </div>
+        </div>
+        <a class="btn btn-default role-quanxian-anniu" href="#" role="button">提交</a>
+        <a class="btn btn-default role-win-dele" href="#" role="button">取消</a>
+    </div>
+    <script>
+        /*弹窗部分*/
+        $( ".role-add-win,.role-edit-win,.role-quanxian-win" ).dialog({
+            autoOpen: false,
+            width :600,
+            height :350
+        });
+        $(".role-add").bind("click",function () {//添加弹窗
+            $(".role-error").text("");
+            $( ".role-add-win" ).dialog( "open" );
+            $( ".role-quanxian-win").dialog( "close" );
+            $(".role-add-win-qx").show();
+            $( ".role-add-win" ).dialog({position: [450,350]});
+            $(".ui-dialog-title").text("添加");
+            $(".role-anniu").removeClass("role-win-edit");
+            $(".role-anniu").addClass("role-win-add");
+            $("input[name='role-name']").val("");
+            $("input[name='role-Code']").val("");
+            $("#roleFather").get(0).selectedIndex = 0;
+            $("#rolemokuai").empty();
+            $.getJSON("/apis/sys/roleManagement/modules",function(date){//新增加 复选框
+                date.data.forEach(function(item){
+                    var pOption = "<input type='checkbox' name='role-qx' value='"+item.moduleId+"'>"+item.moduleName;
+                    $("#rolemokuai").append(pOption);
+                });
+            });
+            $.ajax({//遍历查询
+                type: "GET",
+                url: "/apis/sys/roleManagement/moduleTree?roleId=",
+                success: function(date){
+                    var setting = {
+                        check: {
+                            enable: true,
+                            chkDisabledInherit: true
+                        },
+                        data: {
+                            simpleData: {
+                                enable: true
+                            }
+                        },
+                        callback:{
+                            onCheck:onCheck
+                        }
+                    };
+                    var zNodes =date.data;
+                    function disabledNode(e) {
+                        var zTree = $.fn.zTree.getZTreeObj("treeDemo2"),
+                            disabled = e.data.disabled,
+                            nodes = zTree.getSelectedNodes(),
+                            inheritParent = false,
+                            inheritChildren = false;
+                        if (nodes.length == 0) {
+                            alert("请先选择一个节点");
+                        }
+                        if (disabled) {
+                            inheritParent = $("#py").attr("checked");
+                            inheritChildren = $("#sy").attr("checked");
+                        } else {
+                            inheritParent = $("#pn").attr("checked");
+                            inheritChildren = $("#sn").attr("checked");
+                        }
+
+                        for (var i=0, l=nodes.length; i<l; i++) {
+                            zTree.setChkDisabled(nodes[i], disabled, inheritParent, inheritChildren);
+                        }
+                    }
+
+                    $(document).ready(function(){
+                        $.fn.zTree.init($("#treeDemo2"), setting, zNodes);
+                        $("#disabledTrue").bind("click", {disabled: true}, disabledNode);
+                        $("#disabledFalse").bind("click", {disabled: false}, disabledNode);
+                    });
+
+                    function onCheck(e,treeId,treeNode){
+                        var treeObj=$.fn.zTree.getZTreeObj("treeDemo2"),
+                            nodes=treeObj.getCheckedNodes(true),
+                            v="";
+                        b=[];
+                        for(var i=0;i<nodes.length;i++){
+                            v+=nodes[i].name + ",";
+                            b.push(nodes[i].id);
+                        }
+                    }
+                    onCheck()
+                }
+            });
+        });
+
+        $(".role-win-dele").bind("click",function () {//关闭弹窗
+            $( ".role-add-win,.role-edit-win,.role-quanxian-win" ).dialog( "close" );
+        });
+        $.ajax({//查询
+            type: "GET",
+            url: "/apis/sys/roleManagement/roles",
+            success: function(date){
+                for(var i = 0 ; i<date.data.length; i++){
+                        var FatherName =(date.data[i].roleFatherName==null)?"无":date.data[i].roleFatherName;
+                        var roletr = "<tr class='tdbd'>"+"<td>"+(i+1)+"</td>"+"<td>"+date.data[i].roleCode+"</td>"+"<td class='roleName'>"+date.data[i].roleName+"</td>"+"<td>"+date.data[i].roleGrade+"</td>"+"<td>"+FatherName+"</td>"+"<td><a class='glyphicon glyphicon-lock role-quanxian' data='"+date.data[i].roleId+"'></a></td>"+"<td>"+"<a class='role-edit' data='"+date.data[i].roleId+"'>编辑</a>"+"</td>"+"</tr>";
+                        $("tbody").append(roletr);
+                }
+            }
+        });
+        $.getJSON("/apis/sys/roleManagement/roles",function(date){// 选项卡
+            date.data.forEach(function(item){
+                var pOption = "<option value='"+item.roleId+"'>"+item.roleName+"</option>";
+                $("#roleFather").append(pOption);
+            });
+        });
+        $("#roleFather").change(function () {//新增加 下拉框
+            roleFather =$(this).val();
+        });
+        $("body").on("click",".role-win-add",function () {//新增加
+            var role_json = b;
+            var roleadd ={
+                "roleCode": $("input[name='role-Code']").val(),
+                "roleFather":roleFather,
+                "roleName": $("input[name='role-name']").val(),
+                "modulesId": role_json
+            };
+            $.ajax({
+                type: "POST",
+                url: "/apis/sys/roleManagement/role/save",
+                data: JSON.stringify(roleadd),
+                dataType: "json",
+                contentType: 'application/json',
+                success: function (data) {
+                    if($("input[name='role-name']").val() == ""){
+                        $(".role-error").text("角色名称不能为空!")
+                    }else if($("input[name='role-Code']").val() == ""){
+                        $(".role-error").text("角色代码不能为空!")
+                    }else if($("#roleFather").val() ==""){
+                        $(".role-error").text("角色所属不能为空!");
+                    }else {
+                        if(data.returnFlag == 1){
+                            $(".role-error").text(data.data)
+                        }else if(data.returnFlag == 0){
+                            location.reload();
+                        }
+                    }
+                }
+            });
+        });
+        $("body").on("click",".role-edit",function () {//编辑
+            $(".role-error").text("");
+            $( ".role-add-win" ).dialog( "open" );
+            $( ".role-quanxian-win" ).dialog( "close" );
+            $( ".role-add-win" ).dialog({position: [450,250]});
+            $(".ui-dialog-title").text($(this).parents("tr").find(".roleName").text()+"-"+"编辑");
+            $(".role-add-win-qx").hide();
+            $(".role-anniu").removeClass("role-win-add");
+            $(".role-anniu").addClass("role-win-edit");
+            var roleEdit = $(this).parents("tr").find(".roleName").text();
+            $("#rolemokuai").empty();
+            $.getJSON("/apis/sys/roleManagement/modules",function(date){//新增加 复选框
+                date.data.forEach(function(item){
+                    var pOption = "<input type='checkbox' name='role-qx' value='"+item.moduleId+"'>"+item.moduleName;
+                    $("#rolemokuai").append(pOption);
+                });
+                $.ajax({
+                    type: "GET",
+                    url: "/apis/sys/roleManagement/roles?roleName="+roleEdit,
+                    success: function (data) {
+                        $("input[name='role-name']").val(data.data[0].roleName);
+                        $("input[name='role-Code']").val(data.data[0].roleCode);
+                        data.data[0].sysModuleList.forEach(function(item){
+                            $("input[name='role-qx'][value='"+item.moduleId+"']").attr("checked",true);
+                        });
+                        $("input[name='role-qx']:checked").each(function(){
+                            $(this).change();
+                        });
+                        $("#roleFather").val(data.data[0].roleFather).change();
+                        edit_roleId = data.data[0].roleId;
+                        edit_roleFather = data.data[0].roleFather;
+                    }
+                });
+            });
+            var quanxian_id = $(this).attr("data");
+            /*树*/
+            $.ajax({//遍历查询
+                type: "GET",
+                url: "/apis/sys/roleManagement/moduleTree?roleId="+quanxian_id,
+                success: function(date){
+                    var setting = {
+                        check: {
+                            enable: true,
+                            chkDisabledInherit: true
+                        },
+                        data: {
+                            simpleData: {
+                                enable: true
+                            }
+                        },
+                        callback:{
+                            onCheck:onCheck
+                        }
+                    };
+                    var zNodes =date.data;
+                    function disabledNode(e) {
+                        var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+                            disabled = e.data.disabled,
+                            nodes = zTree.getSelectedNodes(),
+                            inheritParent = false,
+                            inheritChildren = false;
+                        if (nodes.length == 0) {
+                            alert("请先选择一个节点");
+                        }
+                        if (disabled) {
+                            inheritParent = $("#py").attr("checked");
+                            inheritChildren = $("#sy").attr("checked");
+                        } else {
+                            inheritParent = $("#pn").attr("checked");
+                            inheritChildren = $("#sn").attr("checked");
+                        }
+
+                        for (var i=0, l=nodes.length; i<l; i++) {
+                            zTree.setChkDisabled(nodes[i], disabled, inheritParent, inheritChildren);
+                        }
+                    }
+
+                    $(document).ready(function(){
+                        $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+                        $("#disabledTrue").bind("click", {disabled: true}, disabledNode);
+                        $("#disabledFalse").bind("click", {disabled: false}, disabledNode);
+                    });
+
+                    function onCheck(e,treeId,treeNode){
+                        var treeObj=$.fn.zTree.getZTreeObj("treeDemo"),
+                            nodes=treeObj.getCheckedNodes(true),
+                            v="";
+                        b=[];
+                        for(var i=0;i<nodes.length;i++){
+                            v+=nodes[i].name + ",";
+                            b.push(nodes[i].id);
+                        }
+                    }
+                    onCheck()
+                }
+            });
+        });
+        $("body").on("click",".role-win-edit",function () {//编辑提交
+            var edit_json =b;
+            var roleedit ={
+                "roleId":edit_roleId,
+                "roleCode": $("input[name='role-Code']").val(),
+                "roleFather":(roleFather == null)?"0":roleFather,
+                "roleName": $("input[name='role-name']").val(),
+                "modulesId": edit_json
+            };
+            $.ajax({
+                type: "POST",
+                url: "/apis/sys/roleManagement/role/edit",
+                data: JSON.stringify(roleedit),
+                dataType: "json",
+                contentType: 'application/json',
+                success: function (data) {
+                    if(data.returnFlag == 1){
+                        $(".role-error").text(data.data)
+                    }else if(data.returnFlag == 0){
+                        location.reload();
+                    }
+                }
+            });
+        });
+        $("body").on("click",".role-quanxian",function () {//权限
+            $(this).parents("tr").find(".role-edit").click();
+            $(".role-error").text("");
+            $( ".role-add-win" ).dialog( "close" );
+            $( ".role-quanxian-win" ).dialog( "open" );
+            $( ".role-quanxian-win" ).dialog({position: [450,250]});
+            $(".ui-dialog-title").text($(this).parents("tr").find(".roleName").text()+"-"+"权限编辑");
+            var roleEdit = $(this).parents("tr").find(".roleName").text();
+            $(".role-quanxian-win-ul").empty();
+            $.getJSON("/apis/sys/moduleManagement/fatherModule/0",function(date){
+                for(var i=0; i<date.data.length; i++){
+                    var pOption = "<li class='big_liebiao'>"+"<div>"+(i+1)+"</div>"+"<div class='liebiaos liebiao"+date.data[i].moduleId+"' data='"+date.data[i].moduleId+"'>"+"+"+date.data[i].moduleName+"</div></li>";
+                    $(".role-quanxian-win-ul").append(pOption);
+                }
+            });
+            var quanxian_id = $(this).attr("data");
+            /*树*/
+            $.ajax({//遍历查询
+                type: "GET",
+                url: "/apis/sys/roleManagement/moduleTree?roleId="+quanxian_id,
+                success: function(date){
+                    var setting = {
+                        check: {
+                            enable: true,
+                            chkDisabledInherit: true
+                        },
+                        data: {
+                            simpleData: {
+                                enable: true
+                            }
+                        },
+                        callback:{
+                            onCheck:onCheck
+                        }
+                    };
+                    var zNodes =date.data;
+                    function disabledNode(e) {
+                        var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+                            disabled = e.data.disabled,
+                            nodes = zTree.getSelectedNodes(),
+                            inheritParent = false,
+                            inheritChildren = false;
+                        if (nodes.length == 0) {
+                            alert("请先选择一个节点");
+                        }
+                        if (disabled) {
+                            inheritParent = $("#py").attr("checked");
+                            inheritChildren = $("#sy").attr("checked");
+                        } else {
+                            inheritParent = $("#pn").attr("checked");
+                            inheritChildren = $("#sn").attr("checked");
+                        }
+
+                        for (var i=0, l=nodes.length; i<l; i++) {
+                            zTree.setChkDisabled(nodes[i], disabled, inheritParent, inheritChildren);
+                        }
+                    }
+
+                    $(document).ready(function(){
+                        $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+                        $("#disabledTrue").bind("click", {disabled: true}, disabledNode);
+                        $("#disabledFalse").bind("click", {disabled: false}, disabledNode);
+                    });
+
+                    function onCheck(e,treeId,treeNode){
+                        var treeObj=$.fn.zTree.getZTreeObj("treeDemo"),
+                            nodes=treeObj.getCheckedNodes(true),
+                            v="";
+                            b=[];
+                        for(var i=0;i<nodes.length;i++){
+                            v+=nodes[i].name + ",";
+                            b.push(nodes[i].id);
+                        }
+                    }
+                    onCheck()
+                }
+            });
+        });
+        $("body").on("click",".liebiaos",function () {
+           var xuhao = $(this).attr("data");
+           if(!$(this).hasClass("on")){
+               $.ajax({
+                   type: "GET",
+                   url: "/apis/sys/moduleManagement/fatherModule/"+xuhao,
+                   success: function (e) {
+                       e.data.forEach(function(item){
+                           var pOption = "<div class='small'>"+"<div></div>"+"<div class='liebiao' data='"+item.moduleId+"'>"+"-"+item.moduleName+"</div>"+"<input type='checkbox' name='role-qx' value='"+item.moduleId+"'>"+"</div>";
+                           $(".liebiao"+xuhao).after(pOption).addClass("on");
+                           //console.log(item)
+                       });
+                   }
+               });
+           }else {
+               $(this).removeClass("on").siblings(".small").remove();
+           }
+           var roleEdit = $(this).parents(".role-quanxian-win").siblings(".ui-widget-header").find(".ui-dialog-title").text();
+           console.log(roleEdit.split('-')[0]);
+            $.ajax({
+                type: "GET",
+                url: "/apis/sys/roleManagement/roles?roleName="+roleEdit.split('-')[0],
+                success: function (data) {
+                    data.data[0].sysModuleList.forEach(function(item){
+                        //console.log(item.moduleId);
+                        $("input[name='role-qx'][value='"+item.moduleId+"']").attr("checked",true);
+                    });
+                }
+            });
+        });
+        function fen(e) {
+            //console.log($(this).text());
+            $.ajax({
+                type: "GET",
+                url: "/apis/sys/moduleManagement/fatherModule/"+e,
+                success: function (e) {
+                    for(var i=0; i<e.data.length; i++){
+                        var pOption = "<li>"+"<div>--</div>"+"<div onclick='fen("+e.data[i].moduleId+")'>"+e.data[i].moduleName+"</div>"+"<input type='checkbox' name='role-qxs' value='"+e.data[i].moduleId+"'>"+"</li>";
+                        $(".role-quanxian-win-ul").append(pOption);
+                    }
+                    //console.log($(this).text())
+                }
+            });
+        }
+
+        $(".role-search").bind("click",function () {//查询
+            var rolequery =$("input[name='role-search-c']").val();
+            $.ajax({//遍历查询
+                type: "GET",
+                url: "/apis/sys/roleManagement/roles?roleName="+rolequery,
+                success: function(date){
+                    if(date.returnFlag==1){
+                        if(date.data == undefined){
+                            opentc("没有权限",200)
+                        }else {
+                            opentc(date.data,200)
+                        }
+                    }else {
+                        $("tbody").empty();
+                        for(var i = 0 ; i<date.data.length; i++){
+                            var FatherName =(date.data[i].roleFatherName==null)?"无":date.data[i].roleFatherName;
+                            var roletr = "<tr class='tdbd'>"+"<td>"+(i+1)+"</td>"+"<td>"+date.data[i].roleCode+"</td>"+"<td class='roleName'>"+date.data[i].roleName+"</td>"+"<td>"+date.data[i].roleGrade+"</td>"+"<td>"+FatherName+"</td>"+"<td><a class='glyphicon glyphicon-lock role-quanxian'></a></td>"+"<td>"+"<a class='role-edit'>编辑</a>"+"</td>"+"</tr>";
+                            $("tbody").append(roletr);
+                        }
+                    }
+                }
+            });
+        });
+        $(".ui-dialog-titlebar-close").addClass("role-close");
+        $("body").on("click",".role-quanxian-anniu",function () {//权限 按钮
+            var roleedit ={
+                "roleId":edit_roleId,
+                "roleCode": $("input[name='role-Code']").val(),
+                "roleFather":(roleFather == null)?"0":roleFather,
+                "roleName": $("input[name='role-name']").val(),
+                "modulesId": b
+            };
+            $.ajax({
+             type: "POST",
+             url: "/apis/sys/roleManagement/role/edit",
+             data: JSON.stringify(roleedit),
+             dataType: "json",
+             contentType: 'application/json',
+             success: function (data) {
+                 location.reload()
+             }
+             });
+        });
+    </script>
+</body>
+</html>

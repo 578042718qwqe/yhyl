@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="../../css/base.css"><!--公共-->
+    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/bootstrapValidator.css"><!--表单验证-->
+    <link rel="stylesheet" href="../../css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/new-document.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/index.js"></script><!--公共-->
+    <script src="../../js/new-document.js"></script><!--新建文档-->
+    <script src="../../js/bootstrapValidator.js"></script><!--表单验证-->
+    <script src="../../js/angular.min.js"></script>
+    <!--文件新建于2017-6月-->
+</head>
+<body ng-app="">
+<!--公用头部-->
+<div ng-include="'../headr.html'"></div>
+<!--公用头部end-->
+<!--内容部分-->
+<div class="content2">
+    <div class="new-left">
+        <ul>
+            <li class="updata"><a href="new-document1.html">个人信息</a></li>
+            <li class="on">基本信息</li>
+            <li>既往史</li>
+            <li>过敏史</li>
+            <li>个人史</li>
+            <li class="yjs">月经及婚育史</li>
+            <li>家族史</li>
+            <li>育苗接种记录</li>
+            <li class="Chronic1">高血压情况</li>
+            <li class="Chronic2">糖尿病情况</li>
+            <li class="Chronic3">肺结核情况</li>
+            <li class="Chronic4">精神病情况</li>
+        </ul>
+    </div>
+    <div class="new-right">
+        <ul>
+            <!--基本信息-->
+            <form id="defaultForm2" class="form-horizontal">
+                <li class="new-right-show">
+                    <div class="new-right-show-n">
+                        <ul>
+                            <li><div class="new-right-show-n-1-1">姓名:</div><div class="new-right-show-n-1"></div></li>
+                            <li><div class="new-right-show-n-1-1">性别:</div><div class="new-right-show-n-2"></div></li>
+                            <li><div class="new-right-show-n-1-1">年龄:</div><div class="new-right-show-n-3"></div></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="on">
+                    <dl class="word-2 doc-2-left">
+                        <dt>
+                            <span class="word-1-huan"><b>*</b>医保类型:</span>
+                        <div class="form-group document-leixing">
+                            <select class="word-yblb form-control"  name="yblx" data-bv-notempty data-bv-notempty-message="">
+                                <option value="">请选择</option>
+                                <option value="1">新农合</option>
+                                <option value="2">城镇职工</option>
+                                <option value="3">城镇居民</option>
+                            </select>
+                        </div>
+                        </dt>
+                        <div class="word-2-bh">
+                            <dt><span class="word-1-huan"><b class="word-l-hua-xinghao">*</b>医保编号:</span>
+                            <div class="form-group word-bh1"><input type="text" class="number form-control" value="" name="yibaobianhao"/></div>
+                            <div class="form-group word-bh2"><input type="text" class="number2 form-control" value=""/></div>
+                            </dt>
+                        </div>
+                    </dl>
+                    <dl class="doc-2-left">
+                        <dt class="word2-dz">
+                            <span class="word-1-huan"><b>*</b>常住地址:</span>
+                            <span class="word-1-huan-s"></span>
+                        <div class="form-group">
+                            <select id="dsheng" name="dsheng" class="form-control" data-bv-notempty data-bv-notempty-message="">
+                                <option value="">请选择</option>
+                                <option value="460000">海南省</option>
+                            </select>
+                        </div>
+                        <span class="word-1-huan-s"></span>
+                        <div class="form-group">
+                            <select id="sheng" name="sheng" class="form-control" data-bv-notempty data-bv-notempty-message="">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                        <span class="word-1-huan-s"></span>
+                        <div class="form-group">
+                            <select id="shi" disabled="disabled"  name="shi" class="form-control">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="changzhu"  class="form-control" name="changzhu">
+                        </div>
+                        </dt>
+                    </dl>
+                    <dl class="doc-2-left">
+                        <dt class="word2-dz">
+                            <span class="word-1-huan">户籍地址:</span>
+
+                            <select id="dsheng2" class="form-control"><!----------1------------->
+                                <option value="">请选择</option>
+                                <option value="460000">海南省</option>
+                            </select>
+
+                            <div class="form-group">
+                                <select id="sheng2" class="form-control" name="sheng2"><!-----------2------------>
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <select id="shi2" class="form-control" name="shi2"><!-----------3------------>
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text" id="huiji" class="form-control"  name="huiji"><!----------4------------->
+                            </div>
+                        </dt>
+                    </dl>
+                    <dl class="word-2 doc-2-left">
+                        <dt><span class="word-1-huan">职业类别:</span>
+                        <div class="form-group">
+                            <select  id="zhiye" class="form-control">
+                                <option value="">请选择</option>
+                                <option value="1">国家机关、党群组织、企业、事业单位负责人</option>
+                                <option value="2">专业技术人员</option>
+                                <option value="3">办事人员和有关人员</option>
+                                <option value="4">商业、服务业人员</option>
+                                <option value="5">农、林、牧、渔、水利业生产人员</option>
+                                <option value="6">生产、运输设备操作人员及有关人员</option>
+                                <option value="7">军人</option>
+                                <option value="-1">不便分类的其他从业人员</option>
+                            </select>
+                         </div>
+                        </dt>
+                        <div class="word-2-bh">
+                            <span class="word-1-huan">工作单位:</span>
+                            <div class="form-group"><input type="text" id="work" value="" class="form-control" name="gzdw"/></div>
+                        </div>
+                    </dl>
+                    <dl class="doc-2-left">
+                        <dt class="word-2-lx"><span class="word-1-huan"><b>*</b>联系人:</span>
+                        <div class="form-group"><input type="text" id="lianxiren" value="" class="form-control" name="lianxiren" /></div>
+                        </dt>
+                    </dl>
+                    <dl class="word-2 doc-2-left">
+                        <dt>
+                            <span class="word-1-huan"><b>*</b>联系电话:</span>
+                        <div class="form-group document-phone">
+                            <select id="word-2-tell" class="form-control" name="country" data-bv-notempty
+                                    data-bv-notempty-message="">
+                                <option value="">请选择</option>
+                                <option value="1">手机号码</option>
+                                <option value="2">固定电话</option>
+                            </select>
+                        </div>
+                        </dt>
+                        <div class="word-2-bh">
+                            <div class="form-group"><input type="text" class="word-2-tell2 form-control" value="" name="jbxxphone" required/></div>
+                        </div>
+                    </dl>
+                    <div class="page-all">
+                        <a class="updata2-l" href="new-document1.html">上一步</a>
+                        <div class="form-group form-group-r">
+                            <button type="submit" class="btn btn-primary updata2-r on">下一步</button>
+                        </div>
+                    </div>
+                </li>
+            </form>
+        </ul>
+    </div>
+</div>
+
+<script>
+    /*新建文档*/
+    var work = new FindSure();
+    work.init();
+</script>
+
+<!--内容部分end-->
+<!--Foot-->
+<div class="foot">
+    <div class="foot-border">Copyright &copy; 2017-2020 Yinghai Software Co., Ltd, Technical Support<br>
+        鹰海医疗信息技术有限公司 技术支持
+    </div>
+</div>
+<!--Foot end-->
+</body>
+</html>

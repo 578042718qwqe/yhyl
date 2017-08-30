@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/new-document.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/highcharts.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/index.js"></script>
+    <script src="../../js/new-document.js"></script>
+    <script src="../../js/angular.min.js"></script>
+</head>
+<body ng-app="">
+    <!--公用头部-->
+    <div ng-include="'../headr.html'"></div>
+    <!--公用头部end-->
+    <!--内容部分-->
+    <link rel="stylesheet" href="../../js/bootstrap.table/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../../js/jquery.niftymodals/component.css">
+    <div class="content3">
+        <div class="content3-head">
+            <dl>
+                <dt>
+                    <select id="regionCode"  class="diqu-xx form-control">
+                        <option value="-1">全部</option>
+                    </select>
+                </dt>
+                <dt class="new-archives-data">
+                    <span>建档日期：</span>
+                    <input id="startDate" type="text" class="diqu-befor form-control">
+                    <span>至</span>
+                    <input id="endDate" type="text" class="diqu-after form-control">
+                </dt>
+                <dt>
+                    <select id="searchType" class="form-control">
+                        <option value="1">姓名</option>
+                        <option value="2">身份证号</option>
+                    </select>
+                    <input id="searchKey"  type="text" class="form-control">
+                </dt>
+                <dt class="new-archives-renqun">
+                    <span>所属人群:</span>
+                    <select id="personType" class="form-control">
+                        <option value="1">一般人群</option>
+                        <option value="2">高血压人群</option>
+                        <option value="3">糖尿病人群</option>
+                        <option value="4">肺结核人群</option>
+                        <option value="5">精神病人群</option>
+                    </select>
+                </dt>
+                <dt>
+                <div class="diqu-chaxun btn btn-info" onclick="queryPresonArchives()">查询</div>
+                </dt>
+            </dl>
+        </div>
+
+        <div class="content3-body">
+            <table id="tableArchives" class="table table-hover"
+                   data-side-pagination = "server"
+                   data-unique-id="id"
+                   data-toggle="tableArchives"
+                   data-pagination="true"
+                   data-pagination-loop = "false">
+                <thead>
+                <tr>
+                    <th  data-field="index" data-width="50" data-formatter="indexFormatter" data-align="center">序号</th>
+                    <th data-field="fileNumber" data-align="center" >档案号</th>
+                    <th data-field="name" data-align="center" >姓名</th>
+                    <!--<th data-field="cardNum" data-align="center">医疗证号</th>-->
+                    <th data-field="sex" data-align="center">性别</th>
+                    <th data-field="age" data-align="center">年龄</th>
+                    <th data-field="commonAddress" data-align="center">所属市/县</th>
+                    <th data-field="slowDiseaseFlag" data-align="center">所属人群</th>
+                    <th data-field="" data-align="center">管理计划</th>
+                    <!--<th data-field="fileCreateTime" data-align="center">变更时间</th>-->
+                    <th data-field="id" data-formatter="operate3Formatter" data-align="center" >操作</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <!-- 归档-->
+        <div  class="md-modal colored-header  md-effect-9" id="filedPerson">
+            <div class="md-content">
+                <div class="modal-body col-md-12 "  style="padding:0;">
+                    <input id="hiddenId" type="text"  hidden>
+                    <div class="gdbt">
+                        <label id="titleArchive" class="from-lable">归档原因：</label>
+                    </div>
+                    <div class="form-group">
+                        <select id="filedReasons"  name="filedReasons"  class="form-control">
+                            <option value="1" >死亡</option>
+                            <option value="2" >出国定居</option>
+                            <option value="-1" >其他</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span id="msg" class="error-warning-msg"></span>
+                    <button type="button" class="btn btn-default btn-flat md-close" data-dismiss="modal">取 消</button>
+                    <button type="submit" class="btn btn-primary-1 btn-flat " onclick="filedOk()">归 档</button>
+                </div>
+            </div>
+        </div>
+        <div class="md-overlay"></div>
+    </div>
+    <script src="../../js/bootstrap.table/bootstrap-table.min.js"></script>
+    <script src="../../js/bootstrap.table/bootstrap-table-zh-CN.min.js"></script>
+    <script src="../../js/jquery.niftymodals/jquery.modalEffects.js"></script>
+    <script src="../../js/date.js"></script>
+    <script>
+        var dq_chaxun ={
+            createdBy: 1,
+            formatCreatedBeginDate: "2017-05-10",
+            formatCreatedEndDate: "2017-05-25",
+            pageIndex: 0,
+            pageSize: 10,
+            personType: 0,
+            regionCode: 0,
+            searchKey: "string",
+            searchType: 0
+        };
+        /*个人档案内容部分*/
+        $( ".diqu-befor,.diqu-after" ).datepicker({regional:"zh-CN",dateFormat:'yy-mm-dd'});
+        jQuery(function($) {
+            $.datepicker.regional['zh-CN'] = {
+                clearText: '清除',
+                clearStatus: '清除已选日期',
+                closeText: '关闭',
+                closeStatus: '不改变当前选择',
+                prevText: '<上月',
+                prevStatus: '显示上月',
+                prevBigText: '<<',
+                prevBigStatus: '显示上一年',
+                nextText: '下月>',
+                nextStatus: '显示下月',
+                nextBigText: '>>',
+                nextBigStatus: '显示下一年',
+                currentText: '今天',
+                currentStatus: '显示本月',
+                monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+                monthNamesShort: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'],
+                monthStatus: '选择月份',
+                yearStatus: '选择年份',
+                weekHeader: '周',
+                weekStatus: '年内周次',
+                dayNames: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+                dayNamesShort: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
+                dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
+                dayStatus: '设置 DD 为一周起始',
+                dateStatus: '选择 m月 d日, DD',
+                dateFormat: 'yy-mm-dd',
+                firstDay: 1,
+                initStatus: '请选择日期',
+                isRTL: false
+            };
+            $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
+            $("#startDate").val(getPreMonth(new Date(),1));
+            $("#endDate").val(getPreMonth(new Date(),0));
+        });
+        /*地区*/
+        $.getJSON("/apis/baseRegion/baseSelect/460000",function(date){
+            date.data.forEach(function(item){
+                var pOption = "<option value='"+item.value+"'>"+item.name+"</option>";
+                $(".diqu-xx").append(pOption);
+            });
+        });
+        /*查询结果*/
+        function queryPresonArchives(){
+            // 查询条件参数验证
+            if($("#startDate").val().trim() == "" || $("#endDate").val().trim() == ""){
+                alert("请选择建档日期！！");
+                return false;
+            }else{
+                var start = new Date($("#startDate").val());
+                var end = new Date($("#endDate").val());
+                if(start - end > 0){
+                    alert("建档日期的起始日期不能大于结束日期，请修改！");
+                    return false;
+                }else{
+                    // 查询
+                    querybootstrapTable();
+                }
+            }
+        };
+        /**
+         * 查询实现
+         */
+        function querybootstrapTable(){
+            $('#tableArchives').bootstrapTable('destroy'); //先销毁表格
+            $('#tableArchives').bootstrapTable({
+                method:"post",
+                url: "/apis/fileManager/search?n="+Math.random(),
+                queryParams: function (params) {
+                    params.regionCode= $("#regionCode").val().trim(), // 地区
+                        params.formatCreatedBeginDate= $("#startDate").val().trim(); //起始时间
+                    params.formatCreatedEndDate= $("#endDate").val().trim();
+                    params.searchType= $("#searchType").val().trim();
+                    params.searchKey= $("#searchKey").val().trim(); //
+                    params.personType= $("#personType").val().trim(); // 所属人群
+                    params.pageIndex = this.pageNumber;
+                    params.pageSize = this.pageSize;
+                    return params;
+                },
+                onLoadSuccess: function (data) {
+                    if (data.returnFlag != 0) {
+                        alert( data.message);
+                    }
+                    console.log(data);
+                    var json = {};
+                    json["list"] = data.data.list;
+                    json["total"] = data.data.total;
+                    $('#tableArchives').bootstrapTable('load',json);
+                },
+                onLoadError: function () {
+                    alert(" 服务器无响应！");
+                }
+            })
+        };
+        /**
+         * 单元格格式化  ---- 操作
+         * @param value
+         * @param row
+         * @param index
+         * @returns {string}
+         */
+        function operate3Formatter(value,row,index){
+//            '<a href="new-archives-da1.html?key='+row["id"]+'" target="_blank"  onclick=seeInfo('+row[id]+') class="look">查看</a> ' +
+            return '<a href="JavaScript:;" target="_blank"  onclick=seeInfo('+row["id"]+') class="look">查看</a> ' +
+                '<a href="JavaScript:;" onclick=editInfo('+row["id"]+') class="edit">编辑</a> ' +
+                '<a href="JavaScript:;" onclick="filed('+row["id"]+')" class="homeback">归档</a>';
+        };
+
+        function indexFormatter(value,row,index){
+            var page = $("table").bootstrapTable("getPage");
+            return page.pageSize * (page.pageNumber - 1) + index + 1;
+        }
+        /**
+         * 打开归档
+         * @param id
+         */
+        function filed(id){
+            $('#filedPerson').niftyModal("show");
+            var row = $('#tableArchives').bootstrapTable('getRowByUniqueId', id);
+            $("#titleArchive").html("请选择【" + row["name"] + "】的归档原因：");
+            $("#hiddenId").val(id);
+        };
+
+        /**
+         * 确定归档
+         * @constructor
+         */
+        function filedOk(){
+            var para = {};
+            para["fileCause"]= $("#filedReasons").val();
+            para["personMasterInfoId"]=$("#hiddenId").val();
+            $.ajax({
+                type : 'POST',
+                url:"/apis/fileManager/fileArchiving?n"+Math.random(),
+                data:JSON.stringify(para),
+                dataType:"json",
+                contentType: "application/json",
+                success:function(data){
+                    if (data.returnFlag != 0) {
+                        alert( data.message);
+                    }else{
+                       var name= $("#titleArchive").html().split("【")[1];
+                        $('#filedPerson').niftyModal("hide");
+                        alert(name.split("】")[0]+"归档成功！");
+                        $('#tableArchives').bootstrapTable('refresh');
+                    }
+                }
+            })
+        };
+        /**
+         * 查看
+         * @param id
+         */
+        function seeInfo(id){
+            sessionStorage.setItem("user",id);
+            window.open("new-archives-show.html");
+//            window.location.href = "new-archives-da1.html";
+        };
+        /**
+         * 编辑
+         * @param id
+         */
+        function editInfo(id){
+            var urls = (window.location.href).split('/');
+            var urllogin =urls[0]+"//"+urls[2]+"/";
+            sessionStorage.setItem("user",id);
+            window.open(urllogin+"/templates/document/new-document1.html");
+//            window.location.href = "new-document1.html";
+        };
+
+    </script>
+
+    <!--内容部分end-->
+    <!--尾部-->
+    <div ng-include="'../foot.html'"></div>
+    <!--尾部end-->
+
+</body>
+</html>

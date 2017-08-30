@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="../../css/base.css"><!--公共-->
+    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/bootstrapValidator.css"><!--表单验证-->
+    <link rel="stylesheet" href="../../css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/new-document.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/index.js"></script><!--公共-->
+    <script src="../../js/new-document.js"></script><!--新建文档-->
+    <script src="../../js/bootstrapValidator.js"></script><!--表单验证-->
+    <script src="../../js/angular.min.js"></script>
+    <!--文件新建于2017-6月-->
+</head>
+<body ng-app="">
+<!--公用头部-->
+<div ng-include="'../headr.html'"></div>
+    <!--公用头部end-->
+    <!--内容部分-->
+    <div class="content2">
+        <div class="new-left">
+            <ul>
+                <li class="updata"><a href="new-document1.html">个人信息</a></li>
+                <li class="updata"><a href="new-document2.html">基本信息</a></li>
+                <li class="on">既往史</li>
+                <li>过敏史</li>
+                <li>个人史</li>
+                <li class="yjs">月经及婚育史</li>
+                <li>家族史</li>
+                <li>育苗接种记录</li>
+                <li class="Chronic1">高血压情况</li>
+                <li class="Chronic2">糖尿病情况</li>
+                <li class="Chronic3">肺结核情况</li>
+                <li class="Chronic4">精神病情况</li>
+            </ul>
+        </div>
+        <div class="new-right">
+            <ul>
+                <li class="new-right-show">
+                    <div class="new-right-show-n">
+                        <ul>
+                            <li><div class="new-right-show-n-1-1">姓名:</div><div class="new-right-show-n-1"></div></li>
+                            <li><div class="new-right-show-n-1-1">性别:</div><div class="new-right-show-n-2"></div></li>
+                            <li><div class="new-right-show-n-1-1">年龄:</div><div class="new-right-show-n-3"></div></li>
+                        </ul>
+                    </div>
+                </li>
+                <!--既往史-->
+                <li class="on">
+                    <dl class="word-2">
+                        <dd class="mode-head-1">
+                            <h5>疾病名称：</h5><span class="mode-tianjia-1 btn btn-success">添加</span>
+                            <div class="mode-jb-1 jws mj"></div>
+                        </dd>
+                        <dd class="mode-head-2">
+                            <h5>手术名称：</h5><span class="mode-tianjia-2 btn btn-success">添加</span>
+                            <div class="mode-jb-2 jws mj"></div>
+                        </dd>
+                        <dd class="mode-head-3">
+                            <h5>外伤名称：</h5><span class="mode-tianjia-3 btn btn-success">添加</span>
+                            <div class="mode-jb-3 jws mj"></div>
+                        </dd>
+                        <dd class="mode-head-4">
+                            <h5>输血原因：</h5><span class="mode-tianjia-4 btn btn-success">添加</span>
+                            <div class="mode-jb-4 jws mj"></div>
+                        </dd>
+                    </dl>
+                    <div class="page-all">
+                        <a class="updata3-l page-1" href="new-document2.html">上一步</a>
+                        <button id="next" class="btn updata3-r page-1">下一步</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--弹窗-->
+    <div class="duihua1" title="疾病名称">
+        疾病名称:<input type="text" class="jbmingcheng">确诊时间:<input type="text" class="dhdate1">
+        <a class="btn btn-default jbmingcheng-an" href="#" role="button">提交</a>
+        <a class="btn btn-default jbmingcheng2-an" href="#" role="button">修改</a>
+        <p class="error error1-msg" style="color: red"></p>
+    </div>
+    <div class="duihua2" title="手术名称">
+        手术名称:<input type="text" class="ssmingcheng">确诊时间:<input type="text" class="dhdate2">
+        <a class="btn btn-default ssmingcheng-an" href="#" role="button">提交</a>
+        <a class="btn btn-default ssmingcheng2-an" href="#" role="button">修改</a>
+        <p class="error error2-msg" style="color: red"></p>
+    </div>
+    <div class="duihua3" title="外伤名称">
+        外伤名称:
+        <select class="duihua3-1">
+            <option value="" selected = "selected">请选择</option>
+        </select>
+        确诊时间:<input type="text" class="dhdate3">
+        <a class="btn btn-default duihua3-1-an" href="#" role="button">提交</a>
+        <a class="btn btn-default duihua3-2-an" href="#" role="button">修改</a>
+        <p class="error error3-msg" style="color: red"></p>
+    </div>
+    <div class="duihua4" title="输血原因">
+        <select id='select' class="duihua4-1">
+            <option value="">选择</option>
+            <option value="sxyy_zlx">治疗性</option>
+            <option value="sxyy_ss">手术</option>
+            <option value="sxyy_wu">无</option>
+            <option value="sxyy_qt">其它</option>
+        </select>
+        <input type="text" class="dhdate4">
+        <a class="btn btn-default duihua4-1-an" href="#" role="button">提交</a>
+        <a class="btn btn-default duihua4-2-an" href="#" role="button">修改</a>
+        <p class="error error4-msg" style="color: red"></p>
+    </div>
+    <script>
+        /*新建文档*/
+        var work = new FindSure();
+        work.init();
+    </script>
+
+    <!--内容部分end-->
+    <!--Foot-->
+    <div class="foot">
+        <div class="foot-border">Copyright &copy; 2017-2020 Yinghai Software Co., Ltd, Technical Support<br>
+            鹰海医疗信息技术有限公司 技术支持</div>
+    </div>
+    <!--Foot end-->
+    <script>
+
+        var count = 0;
+        //添加 div 行数据插入时执行
+        $(".mode-jb-1").on('DOMNodeInserted',function(){
+            count++;
+            //console.log(count);
+        });
+        if(count >0){
+            alert("55");
+        }
+        $(".mode-jb-1").on('DOMNodeRemoved',function(){
+            count--;
+            //console.log(count)
+        });
+
+        /*var mxb='高血压';
+        var mxb_cs=(mxb.split('高血压')).length-1;
+        console.log("检出"+mxb_cs);*/
+        //$(".new-right-baochun").bind("click");
+        //$(".mode-word-1 .mingcheng-1").each(function () {
+        //    console.log($(this).text())
+        //})
+    </script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+/*CSS-2017 hds */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0
+}
+a, :focus {
+    text-decoration: none;
+    outline: 0
+}
+img, object, embed {
+    border: 0;
+    outline: 0
+}
+button, input, select, textarea {
+    font-size: 100%;
+    outline: 0;
+    vertical-align: middle
+}
+em, i {
+    font-style: normal
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+td, th, ul, ol {
+    list-style: none
+}
+body {
+    font-family: "微软雅黑 Light";
+    min-width:1500px;
+}
+/*bootstap*/
+.head-dh ul li.glyphicon-home:before{ position: absolute; left:24px; top:1px;}
+.head-dh ul li.glyphicon-heart:before{ position: absolute; left:7px; top:3px;}
+.head-dh ul li.glyphicon-file:before{ position: absolute; left:10px; top:1px;}
+.glyphicon{ top:0;}
+/*自适应*/
+@media screen and (min-width:1100px){/*大于*/
+    .head-con{ width:100%; min-width:1250px; height: 50px; padding: 0 20px; float: left;}
+    .head-dh{ height: 50px; float: left; margin-left: 50px; width:40%; position: relative;}
+    .head-right{float:right;}
+}
+@media screen and (max-width:1100px) {/*小于*/
+    .head-con{ width:100%; min-width:1250px; height: 50px; margin: 0 auto;}
+    .head-dh{ height: 50px; float: left; margin-left: 50px; width:45%; position: relative;}
+    .head-right{ width:220px; float:right;}
+}
+/*公共内容部分*/
+.head{width: 100%; min-width:1250px; height: 50px; background:url("../img/bg.jpg") 0 0 repeat-x;}
+.head-left{ float: left; font-size:20px; color: #FFF; line-height:40px; padding-top:2px;}
+.head-left img{ float: left; margin-right:6px;}
+.head-dh ul{ float: left;}
+.head-dh ul li.glyphicon{ color:#FFF; height:49px; font-size:16px; width:120px; float: left; text-align: center; line-height:49px;}
+.head-dh ul li a{text-indent: 1em; width: 100%; float: left;}
+.head-dh-a{color: #ffffff;}
+.head-dh-a:hover{color: #ffffff; text-decoration:none;}
+.head-dh-01{ height:30px; line-height:42px; font-size:18px;}
+.head-admin{ float:left; color:#FFF; font-size:16px; line-height:27px; border-right: 1px solid #A9D5EF; padding-right:30px; margin-top:10px;}
+.head-admin2{ float:left; color: #FFF;}
+.head-admin2 button{ background-color:#67B6E4;  margin-top: 6px; margin-left: 6px;}
+.menu-a{color: #44a3dd; height: 35px;}
+.menu-a:hover{background-color: #44a3dd; color: #ffffff; text-decoration:none;}
+.active{background-color:#67B6E4; color: #ffffff;}
+.ah:hover{background-color:#67B6E4;}
+.service-word{ background-color: #EBF8FA !important; border-radius:5px!important; margin: 0!important; padding: 0!important; border: 0!important;  width:350px;!important;}
+.service-word li{ width:330px; float: left; margin-left: 10px;}
+.service-word li h4{ color: #000; float: left; width: 100%; margin-bottom: 0;}
+.service-word li span{ color:#2D99D9; float: left; width:150px; height:35px; line-height: 35px; margin-top:5px;}
+.service-word li span:hover{ background-color:#42A3DD; color: #FFF!important;}
+.ng-view input,.ng-view select{border: 1px #CCCCCC solid; border-radius:4px;}
+
+.input_class{ border: 1px #a20404 solid!important; border-radius:4px; color:#CCCCCC; text-indent: 1em; }
+.get_class{ color: #000!important;}
+/*健康栏目*/
+.health{ width:370px; background-color:#EBF8FA; position: absolute; left:118px; top: 50px; z-index: 9; display: none;}
+.health-1{ float: left; width:350px; border-bottom: 1px dotted #42A3DD; margin-left:10px; margin-bottom: 8px;}
+.health-1.onbot{ border-bottom: none;}
+.health-1 h3{ float: left; width:350px; font-size: 16px; font-weight: bold; color: #135073; margin-top:12px;}
+.health-1 span{ float: left; width: 150px; text-align:left; color: #42A3DD; height: 30px; line-height: 30px;}
+.health-1 span:hover{ float: left; width: 150px; text-align:left; height: 30px; line-height: 30px; background-color: #0e90d2; color: #FFF;}
+/*Foot*/
+.foot{ width:100%; min-width:1250px; height: 80px;  clear: both; line-height:30px; text-align: center; background-color: #fff; margin-top: 18px;}
+.foot-border{ border-top: 1px solid #ddd;   padding-top:25px; padding-bottom:25px;}
+
+/*归档弹窗*/
+.md-content {
+    color: #42A3DD;
+    background: #fff;
+}
+.gdbt{
+    background-color: #42A3DD;
+    color: #FFFFFF;
+    height: 40px;
+    padding: 8px 20px;
+}
+.form-group{
+    padding: 0 20px;
+    margin-top: 10px;
+}
+.btn-primary-1 {
+    color: #fff;
+    background-color: #42A3DD;
+    border-color: #42A3DD;
+}
+.btn-primary-1:focus,
+.btn-primary-1:active,
+.btn-primary-1:hover {
+    color: #fff;
+    background-color: #67B6E4;
+    border-color: #67B6E4;
+}
+select:disabled {
+    color: #DDDDDD;
+    border: 1px solid #DDDDDD;
+    background-color: #EEE;
+}
+input:disabled{
+    color: #DDDDDD;
+    border: 1px solid #DDDDDD;
+    background-color: #EEE;
+}
+/*颜色*/
+.green{ color:#5cb85c; margin-right: 10px;}
+.ng-scope{ color:#000;}
+.siteCtrl-head{ float: left; width: 100%; height: 30px; line-height: 30px; font-size: 18px;}
+.siteCtrl-list{ float: left; width: 50%; height: 50px; line-height: 50px;}

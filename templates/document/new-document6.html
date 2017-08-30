@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/new-document.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/highcharts.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/index.js"></script>
+    <script src="../../js/new-document.js"></script>
+    <script src="../../js/bootstrapValidator.js"></script>
+    <script src="../../js/angular.min.js"></script>
+    <script src="../../js/cookie.js"></script>
+</head>
+<body ng-app="">
+<!--公用头部-->
+<div ng-include="'../headr.html'"></div>
+    <!--公用头部end-->
+    <!--内容部分-->
+    <div class="content2">
+        <div class="new-left">
+            <ul>
+                <li class="updata"><a href="new-document1.html">个人信息</a></li>
+                <li class="updata"><a href="new-document2.html">基本信息</a></li>
+                <li class="updata"><a href="new-document3.html">既往史</a></li>
+                <li class="updata"><a href="new-document4.html">过敏史</a></li>
+                <li class="updata"><a href="new-document5.html">个人史</a></li>
+                <li class="on yjs"><a href="new-document6.html">月经及婚育史</a></li>
+                <li>家族史</li>
+                <li>育苗接种记录</li>
+                <li class="Chronic1">高血压情况</li>
+                <li class="Chronic2">糖尿病情况</li>
+                <li class="Chronic3">肺结核情况</li>
+                <li class="Chronic4">精神病情况</li>
+            </ul>
+        </div>
+        <div class="new-right">
+            <div class="new-right-baochun">
+                保存
+            </div>
+            <ul>
+                <li class="new-right-show">
+                    <div class="new-right-show-n">
+                        <ul>
+                            <li><div class="new-right-show-n-1-1">姓名:</div><div class="new-right-show-n-1"></div></li>
+                            <li><div class="new-right-show-n-1-1">性别:</div><div class="new-right-show-n-2"></div></li>
+                            <li><div class="new-right-show-n-1-1">年龄:</div><div class="new-right-show-n-3"></div></li>
+                        </ul>
+                    </div>
+                </li>
+                <!--月经史-->
+                <li class="on">
+                    <dl class="yj-word-2">
+                        <dt class="grs-perso-info-w">
+                            <span class="yj-word-2-huan"><b>*</b>初潮年龄:</span>
+                            <select id="yjhyswt_ccnl" name="初潮年龄" class="is-next form-control" style="width: 79px;">
+                                <option value="1">有</option>
+                                <option value="0">无</option>
+                            </select> <a> &nbsp;&nbsp;</a>
+                            <input id="yjhyswt_ccnl_0" name="初潮年龄" class="is-disabled form-control" style="width: 79px;" type="number" min="0">
+                            <a>岁</a>
+                        </dt>
+                        <dt class="grs-perso-info-w">
+                            <span class="yj-word-2-huan"><b>*</b>月经周期:</span>
+                            <select id="yjhyswt_yjzq" name="月经周期" class="is-disabled is-next form-control" style="width: 79px;">
+
+                            </select>
+                            <a>~</a>
+                            <select id="yjhyswt_yjzq_0" name="月经周期" class="is-disabled form-control" style="width: 79px;">
+
+                            </select>
+                            <a>天</a>
+                        </dt>
+                    </dl>
+                    <dl class="yj-word-2">
+                        <dt class="grs-perso-info-w">
+                            <span class="yj-word-2-huan"><b>*</b>经量:</span>
+                            <select id="yjhyswt_jl" name="经量" style="width: 174px;" class="is-disabled is-next form-control">
+                                <option value="一般">一般</option>
+                                <option value="少量">少量</option>
+                                <option value="较多">较多</option>
+                            </select>
+                        </dt>
+                        <dt class="grs-perso-info-w">
+                            <span class="yj-word-2-huan"><b>*</b>月经天数:</span>
+                            <select id="yjhyswt_jqts"  name="月经天数" class="is-disabled is-next form-control" style="width: 79px;">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                            <a>~</a>
+                            <select id="yjhyswt_jqts_0"  name="月经天数" class="is-disabled  form-control" style="width: 79px;">
+                            </select>
+                            <a>天</a>
+                        </dt>
+                    </dl>
+                    <dl class="yj-word-2">
+                        <dt class="grs-perso-info-w">
+                            <span class="yj-word-2-huan"><b>*</b>痛经:</span>
+                            <input  type="radio"  id="yjhyswt_tj_0" name="痛经" class="is-disabled " value="0" />否
+                            <input  type="radio"  id="yjhyswt_tj" name="痛经" class="is-disabled " value="1" />是
+
+                        </dt>
+                        <dt class="grs-perso-info-w">
+                            <span class="yj-word-2-huan"><b>*</b>绝经年龄:</span>
+                            <select id="yjhyswt_jjnl" name="绝经年龄" class="is-disabled is-next form-control">
+                                <option value="0">未绝经</option>
+                                <option value="1">已绝经</option>
+                            </select> <a> &nbsp;&nbsp;</a>
+                            <input  id="yjhyswt_jjnl_0" name="绝经年龄" class="is-disabled form-control"  style="width: 79px;" type="number"  min="0" disabled>
+                            <a>岁</a>
+                        </dt>
+                    </dl>
+                    <dl class="yj-word-2">
+                        <dt class="grs-perso-info-w">
+                            <span class="yj-word-2-huan"><b>*</b>结婚:</span>
+                            <input  type="radio"  name="结婚" id="yjhyswt_jh_0" value="0"  />否
+                            <input  type="radio"  name="结婚" id="yjhyswt_jh"  value="1"  />是
+                        </dt>
+                        <dt class="grs-perso-info-w">
+                            <span class="yj-word-2-huan"><b>*</b>结婚年龄:</span>
+                            <input id="yjhyswt_jhnl" name="结婚年龄" style="width: 174px;" class="is-next form-control" type="number" min="0">
+                            <a>岁</a>
+                        </dt>
+                    </dl>
+                    <dl class="yj-word-2">
+                        <dt class="grs-perso-info-w">
+                            <span class="yj-word-2-huan"><b>*</b>育有子女:</span>
+                            <select id="yjhyswt_yyzn" name="育有子女" style="width: 76px;" class="is-disabled is-next  form-control">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                            <a>男</a>
+                            <select id="yjhyswt_yyzn_0" name="育有子女" style="width: 76px;" class="is-disabled  form-control">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                            <a>女</a>
+                        </dt>
+                    </dl>
+
+                    <div class="page-all">
+                        <a class="updata3-l page-1" href="new-document5.html">上一步</a>
+                        <button id="next" class="btn updata3-r" onclick="saveYJHYS()" disabled>下一步</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="baochun" title="保存">
+        <div>已成功建档，请确认一下信息;</div>
+        <div><div class="baocun-l">姓名:</div><div class="baocun-name"></div></div>
+        <div><div class="baocun-l">性别:</div><div class="baocun-sex"></div></div>
+        <div><div class="baocun-l">年龄:</div><div class="baocun-age"></div></div>
+        <div><div class="baocun-l">档案号:</div><div class="baocun-fileNumber"></div></div>
+        <div><div class="baocun-l">所属人群:</div><div class="baocun-slowDiseaseFlag"></div></div>
+        <div class="baocun-queren">确认</div>
+        <div class="baocun-fanhui">返回修改</div>
+    </div>
+    <script>
+        /*新建文档*/
+        var work = new FindSure();
+        work.init();
+    </script>
+
+    <!--内容部分end-->
+    <!--Foot-->
+    <div class="foot">
+        <div class="foot-border">Copyright &copy; 2017-2020 Yinghai Software Co., Ltd, Technical Support<br>
+            鹰海医疗信息技术有限公司 技术支持</div>
+    </div>
+    <!--Foot end-->
+<script>
+    $(function(){
+        initPage();
+        queryYJHYS();
+    });
+
+    function initPage(){
+        for(var i = 1;i<41;i++){
+            var opt = '<option value="'+i+'">'+i+'</option>';
+            $("#yjhyswt_yjzq_0").append(opt);
+            if(i<31){
+                $("#yjhyswt_yjzq").append(opt);
+                $("#yjhyswt_jqts_0").append(opt);
+            }
+        }
+    };
+    /**
+     * 下一步
+     */
+    function saveYJHYS(){
+        var params = [];
+        $(".is-next").each(function(){
+            if(!this.disabled){
+                var param = {
+                    "answerText": this.value,
+                    "personMasterInfoId": $.cookie("user"),
+                    "requestId": this.id,
+                    "requestName": this.name
+                };
+                if($("#"+this.id+"_0").val()!=undefined){
+                    param["answerText"] = this.value + "_" + $("#"+this.id+"_0").val();
+                }
+                params.push(param);
+            }
+        })
+        $("input[type='radio']").each(function(){
+            if(!this.disabled){
+                var param = {
+                    "answerText": $("input[name='"+this.name+"']:checked").val(),
+                    "personMasterInfoId": $.cookie("user"),
+                    "requestId": (this.id).split("_0")[0],
+                    "requestName": this.name
+                };
+                params.push(param);
+            }
+        })
+        sendSaveGRS(params);
+    };
+    //请求保存
+    function sendSaveGRS(params){
+        $.ajax({
+            type : 'POST',
+            url:"/apis/file/merryHistoryInfo?n"+Math.random(),
+            data:JSON.stringify(params),
+            dataType:"json",
+            contentType: "application/json",
+            success:function(data){
+                if (data.returnFlag != 0) {
+                    alert( data.message);
+                }else{
+                    window.location.href='new-document7.html';
+                }
+            }
+        })
+    };
+
+    // 查询
+    function queryYJHYS(){
+        var id = $.cookie("user");
+        $.ajax({
+            url:"/apis/fileMerryHistoryInfo/"+id,
+            dataType:"json",
+            success:function(data){
+                if (data.returnFlag != 0) {
+                    alert( data.message);
+                }else{
+                    console.log(data.data);
+                    writeInfo(data.data);
+                }
+            }
+        });
+
+    };
+    function writeInfo(row){
+        $("input[name='结婚']").eq(parseInt(row["marry"])).click();
+        $("#yjhyswt_jhnl").val(row["marryAge"]);
+        var ism =row["menarcheAge"].split("_");
+        if(ism[0] == 0){
+            $("#yjhyswt_ccnl").val(0);
+            $("#yjhyswt_ccnl").change();
+        }else {
+            $("#yjhyswt_ccnl").val(1);
+            $("#yjhyswt_ccnl").change();
+            $("#yjhyswt_ccnl_0").val(ism[1]);
+            //月经周期
+            $("#yjhyswt_yjzq").val(parseInt(row["menstruationTimeBegin"]));
+            $("#yjhyswt_yjzq_0").val(parseInt(row["menstruationTimeEnd"]));
+            //月经量
+            $("#yjhyswt_jl").val(row["menstrualFlow"]);
+            //月经天数
+            $("#yjhyswt_jqts").val(parseInt(row["menstruationDaysBegin"]));
+            $("#yjhyswt_jqts_0").val(parseInt(row["menstruationDaysEnd"]));
+
+            $("input[name='痛经']").eq(parseInt(row["dysmenorrhea"])).click();
+            //绝经
+            var mp=row["menopauseAge"].split("_");
+            $("#yjhyswt_jjnl").val(mp[0]);
+            $("#yjhyswt_jjnl").change();
+            $("#yjhyswt_jjnl_0").val(mp[1]);
+
+            $("#yjhyswt_yyzn").val(parseInt(row["sonNumber"]));
+            $("#yjhyswt_yyzn_0").val(parseInt(row["daughterNumber"]));
+
+        }
+        isNext();
+    };
+
+
+/**************************************************所有验证****************************************************************/
+    $("input[type=number]").on("input",function(){
+        if(this.value < this.min){
+            this.value = "";
+        }
+        isNext();
+    });
+    //绝经年龄
+    $("#yjhyswt_jjnl").on("change",function(){
+        jjnlIsDisable();
+        isNext();
+    });
+    function jjnlIsDisable(){
+        var val =  $("#yjhyswt_jjnl").val();
+        if(val == 0){
+            $("#yjhyswt_jjnl_0").prop("disabled",true);
+            $("#yjhyswt_jjnl_0").val("");
+        }else if(val == 1){
+            $("#yjhyswt_jjnl_0").prop("disabled",false);
+            $("#yjhyswt_jjnl_0").focus();
+        }
+        isNext();
+    }
+    // 结婚年龄
+    $("input[name='结婚']").on("click",function(){
+        if(this.value == 0){
+            $("#yjhyswt_jhnl").prop("disabled",true);
+            $("#yjhyswt_jhnl").val("");
+        }else if(this.value == 1){
+            $("#yjhyswt_jhnl").prop("disabled",false);
+            $("#yjhyswt_jhnl").focus();
+        }
+        isNext();
+    });
+    //初潮年龄 有无
+    $("#yjhyswt_ccnl").on("change",function(){
+        if(this.value == 0){ //无
+            $(".is-disabled").each(function(){
+              this.disabled = true;
+                if(this.type=='number') this.value = "";
+            })
+        }else if(this.value == 1){ // 有
+            $(".is-disabled").each(function(){
+                this.disabled = false;
+            })
+            jjnlIsDisable();
+        }
+        isNext();
+    });
+    $("input[type='radio']").on("click",function(){
+        isNext();
+    });
+    //是否执行下一步
+    function isNext(){
+         var flag = true;
+        $("input").each(function(){
+            if(!this.disabled){
+              if(this.type == 'number'&&this.value.trim() == "" )
+                flag = false;
+              else if(this.type == 'radio' && !$("input[name='"+this.name+"']").is(':checked'))
+                flag =false;
+            }
+        })
+        if(flag){
+            $("#next").addClass("page-1");
+            $("#next").prop("disabled",false);
+        }else{
+            $("#next").removeClass("page-1");
+            $("#next").prop("disabled",true);
+        }
+    }
+    $("select[name='月经周期']").on("change",function(){
+        selectRange(this.id);
+    })
+    $("select[name='月经天数']").on("change",function(){
+        selectRange(this.id);
+    })
+    // 范围前后值
+    function selectRange(id){
+        var sid = id.split("_0")[0];
+        var f = parseInt($("#"+sid).val());
+        var s =parseInt($("#"+sid+"_0").val());
+        if( f>s){
+            $("#"+sid+"_0").val(f);
+        }
+    }
+</script>
+</body>
+</html>

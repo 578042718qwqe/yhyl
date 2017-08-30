@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        body {
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        .bg {
+            background-color: #3498db;
+            width: 100%;
+            height:632px;
+            position: absolute;
+            z-index: -1;
+            min-width: 1200px;
+        }
+
+        .div-login {
+            width: 100%;
+            height: 100%;
+            position:relative;
+            z-index: 2;
+            min-width: 1200px;
+        }
+
+        .div-left {
+            background-image: url(img/login/1.png);
+            background-repeat: no-repeat;
+            margin-left: 5%;
+            width: 691px;
+            height: 617px;
+            position: absolute;
+            top:102px;
+            left:50px;
+        }
+
+        .div-right {
+            width: 360px;
+            height: 100%;
+            margin-right: 10%;
+            position:absolute;
+            right:0;
+            top:90px;
+            z-index: 3;
+        }
+
+        .logo {
+            margin-top: 79px;
+            background-image: url(img/login/logo.png);
+            background-repeat: no-repeat;
+            height: 123px;
+        }
+
+        .login {
+            margin-top: 30px;
+            background-image: url(img/login/2.png);
+            background-repeat: no-repeat;
+            height: 358px;
+        }
+
+        .login ul {
+            width: 250px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .login ul, .login ul li {
+            list-style: none;
+            float: left;
+        }
+
+        input {
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        .btin {
+            width: 250px;
+            height: 40px;
+            background: url(img/login/login.png) no-repeat;
+            border: none;
+        }
+
+        .div-bottom {
+            width: 100%;
+            height: 14px;
+            font-family: "微软雅黑";
+            font-size: 14px;
+            text-align: center;
+            color: #666666;
+            min-width: 1200px;
+            position: absolute;
+            bottom:50px;
+        }
+        .yzmul{ width:300px; float: left;}
+        #code{ font-size: 22px; margin-left: 15px;}
+        .yzm{ display: none;}
+        .btin{ cursor: pointer;}
+        #Txtidcode{ width:90px; height:28px; text-indent: 1em;}
+        #idcode{ width: 50px; height: 28px;}
+        #ehong-code{ width: 50px; height: 50px;}
+    </style>
+</head>
+<body>
+<div class="div-login">
+    <div class="bg">
+        <div id="particles">
+            <div class="intro"></div>
+        </div>
+    </div>
+    <div class="div-left"></div>
+    <div class="div-right">
+
+        <div class="logo animated bounceInDown"></div>
+        <div class="login">
+            <ul style="margin: 100px auto auto 35px; background-color: #ffffff;">
+                <li style="margin-top: 5px; width: 20px;">
+                    <img src="img/login/yonghu.png"/>
+                </li>
+                <li>
+                    <input id="userName" style="width: 220px; height: 40px; margin-left: 10px;" type="text"
+                           placeholder="请输入您的账号" value=""/>
+                </li>
+            </ul>
+            <ul style="margin: 11px auto auto 35px; background-color: #ffffff;">
+                <li style="margin-top: 5px; width: 20px;">
+                    <img src="img/login/suo.png"/>
+                </li>
+                <li>
+                    <input id="pwd" style="width: 220px; height: 40px; margin-left: 10px;" type="password"
+                           placeholder="请输入您的密码" value=""/>
+                </li>
+            </ul>
+            <ul style="margin-left: 35px; margin-top:10px;">
+                <li class="yzm">
+                    <input type="text" id="Txtidcode" class="txtVerification" />
+                    <span id="idcode"></span>
+                </li>
+            </ul>
+            <ul style="margin: 15px auto auto 35px;">
+                <li style="height: 40px;">
+                    <input type="button" id="btns" class="btin"/>
+                </li>
+            </ul>
+            <ul style="margin: 5px auto auto 35px;">
+                <li><p id="error_msg" style="font-family: '微软雅黑'; font-size: 14px; color: red; line-height: 18px;"></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="div-bottom">
+        <a>琼ICP备16001269号 CopyRight© 2007-2016 鹰海医疗信息技术有限公司 版权所有</a>
+    </div>
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script type='text/javascript' src='js/jquery.particleground.min.js'></script>
+<script type='text/javascript' src='js/demo.js'></script>
+<script type='text/javascript' src='js/MD5.js'></script>
+<script type='text/javascript' src='js/base64.js'></script>
+<script type='text/javascript' src='js/jquery.cookie.js'></script>
+<script type='text/javascript' src='js/jquery.idcode.js'></script>
+<script>
+    $.idcode.setCode();
+    var num = 0;
+    $("#btns").click(function (){
+        var base64 = new Base64();
+        var userName = base64.encode($("#userName").val());
+        var pass = base64.encode(hex_md5($("#pwd").val()));
+        $.ajax({
+            type: "POST",
+            url: "/apis/login/user",
+            data: {userCode: userName, userPassWord: pass},
+            dataType: "json",
+            success: function (data) {
+                if (data.returnFlag == 1) {
+                    $("#error_msg").html(data.data);
+                    $(".yzm").show();
+                    num++;
+                    $.idcode.setCode();
+                    $("#Txtidcode").val("");
+                }
+                else if (data.returnFlag == 0) {
+                    if(num == 0){
+                        $.cookie("administrator",data.data.userName);
+                        $.cookie("admin_id",data.data.userId);
+                        window.location.href = "index.html";
+                    }else {
+                        var IsBy = $.idcode.validateCode();
+                        if(IsBy){
+                            $.cookie("administrator",data.data.userName);
+                            $.cookie("admin_id",data.data.userId);
+                            window.location.href = "index.html";
+                        }else {
+                            $("#error_msg").text("验证码错误!")
+                        }
+                    }
+                }else if(num ==0){
+                    if (userName == "" || pass == "") {
+                        $("#error_msg").html("账号密码不能为空!");
+                        $(".yzm").show();
+                        num++;
+                        $.idcode.setCode();
+                    }
+                }
+                else if(num>0){
+                    if (userName == "" || pass == "" || $("#Txtidcode").val() =="") {
+                        $("#error_msg").html("账号密码不能为空!");
+                        $(".yzm").show();
+                        num++;
+                        $.idcode.setCode();
+                    }
+                }
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+    });
+</script>
+</body>
+</html>

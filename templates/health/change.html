@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/new-document.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/highcharts.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/index.js"></script>
+    <script src="../../js/new-document.js"></script>
+</head>
+<body>
+    <!--公用头部-->
+    <div class="head">
+            <div class="head-con">
+                <div class="head-left"><img src="../../img/logo.png"></div>
+                <div class="head-dh">
+                    <ul>
+                        <li class="glyphicon glyphicon-home home ah"><a class="head-dh-a" href="../../index.html" >首页</a></li>
+                        <li class="glyphicon glyphicon-heart service btn-group ah">
+                            <a class="head-dh-a active" data-toggle="dropdown" style="cursor: pointer;">
+                                健康服务
+                            </a>
+                            <ul class="dropdown-menu service-word">
+                                <li>
+                                    <h4>档案中心</h4>
+                                    <span><a href="../../templates/archives/new-archives.html" class="archives menu-a">个人档案管理</a></span>
+                                    <span><a href="../../templates/health/chronic.html" class="menu-a">慢性病人群管理</a></span>
+                                </li>
+                                <li>
+                                    <h4>就诊信息</h4>
+                                    <span><a href="" class="menu-a">门诊信息</a></span>
+                                    <span><a href="" class="menu-a">住院信息</a></span>
+                                </li>
+                                <li>
+                                    <h4>体检信息</h4>
+                                    <span><a href="" class="menu-a">体检信息-管理</a></span>
+                                    <span><a href="" class="menu-a">体检信息-新增</a></span>
+                                </li>
+                                <li>
+                                    <h4>随访管理</h4>
+                                    <span><a href="" class="menu-a">常规随访</a></span>
+                                    <span><a href="" class="menu-a">慢性随访</a></span>
+                                    <span><a href="" class="menu-a">满意度调查</a></span>
+                                    <span><a href="" class="menu-a">统计分析</a></span>
+                                </li>
+                                <li>
+                                    <h4>行政区域管理</h4>
+                                    <span><a href="/templates/health/area.html#?/apis/baseRegion/regionGrade/1" class="menu-a">行政区</a></span>
+                                </li>
+                                <li>
+                                    <h4>权限管理</h4>
+                                    <span><a href="../admin/role.html" class="menu-a">角色管理</a></span>
+                                    <span><a href="../admin/user.html" class="menu-a">用户管理</a></span>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="glyphicon glyphicon-file jk ah"><a class="head-dh-a" onclick="sessionStorage.removeItem('user')" href="../document/new-document1.html">新建文档</a></li>
+                    </ul>
+                    <div class="health">
+                        <div class="health-1">
+                            <h3>档案中心</h3>
+                            <span>个人档案管理</span>
+                            <span>慢性病人群管理</span>
+                        </div>
+                        <div class="health-1">
+                            <h3>就诊信息</h3>
+                            <span>门诊信息</span>
+                            <span>住院信息</span>
+                        </div>
+                        <div class="health-1">
+                            <h3>体检信息</h3>
+                            <span>体检信息-管理</span>
+                            <span>体检信息-新增</span>
+                        </div>
+                        <div class="health-1 onbot">
+                            <h3>随访管理</h3>
+                            <span>常规随访</span>
+                            <span>慢性随访</span>
+                            <span>满意度调查</span>
+                            <span>统计分析</span>
+                        </div>
+                    </div>
+                </div>
+                <!--右边用户-->
+                <div class="head-right">
+                    <div class="head-admin">
+                        当前用户:王五
+                    </div>
+                    <div class="dropdown head-admin2 ">
+                        <button type="button" class="btn dropdown-toggle" id="dropdownMenu1"
+                                data-toggle="dropdown">
+                            用户
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="#">用户信息</a>
+                            </li>
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" href="#">账号安全</a>
+                            </li>
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-1" onclick="logout()">退出账号</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!--公用头部end-->
+    <!--内容部分-->
+    <link rel="stylesheet" href="../../js/bootstrap.table/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../../js/jquery.niftymodals/component.css">
+    <div style="width:1400px; margin: 0 auto;">
+        <div class="content3">
+            <div class="content3-head">
+                <dl>
+                    <dt>
+                        建档日期：
+                        <input id="startDate" type="text" class="diqu-befor">
+                        至
+                        <input id="endDate" type="text" class="diqu-after">
+                    </dt>
+                    <dt>
+                    <div class="diqu-chaxun btn btn-info" onclick="queryPresonArchives()">查询</div>
+                    </dt>
+                </dl>
+            </div>
+
+            <div class="content3-body">
+                <table id="tableArchives" class="table table-hover"
+                       data-side-pagination = "server"
+                       data-unique-id="id"
+                       data-toggle="tableArchives"
+                       data-pagination="true"
+                       data-pagination-loop = "false">
+                    <thead>
+                    <tr>
+                        <th data-field="chargeTime"  data-align="center">变更时间</th>
+                        <th data-field="chargeType" data-align="center" >变更类型</th>
+                        <th data-field="chargeName" data-align="center" >变更人</th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+            <!-- 归档-->
+            <div  class="md-modal colored-header  md-effect-9" id="filedPerson">
+                <div class="md-content">
+                    <div class="modal-body col-md-12 "  style="padding:0;">
+                        <input id="hiddenId" type="text"  hidden>
+                        <div class="gdbt">
+                            <label id="titleArchive" class="from-lable">归档原因：</label>
+                        </div>
+                        <div class="form-group">
+                            <select id="filedReasons"  name="filedReasons"  class="form-control">
+                                <option value="1" >死亡</option>
+                                <option value="2" >出国定居</option>
+                                <option value="-1" >其他</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <span id="msg" class="error-warning-msg"></span>
+                        <button type="button" class="btn btn-default btn-flat md-close" data-dismiss="modal">取 消</button>
+                        <button type="submit" class="btn btn-primary-1 btn-flat " onclick="filedOk()">归 档</button>
+                    </div>
+                </div>
+            </div>
+            <div class="md-overlay"></div>
+        </div>
+    </div>
+    <script src="../../js/bootstrap.table/bootstrap-table.min.js"></script>
+    <script src="../../js/bootstrap.table/bootstrap-table-zh-CN.min.js"></script>
+    <script src="../../js/jquery.niftymodals/jquery.modalEffects.js"></script>
+    <script src="../../js/date.js"></script>
+    <script>
+        var dq_chaxun ={
+            createdBy: 1,
+            formatCreatedBeginDate: "2017-05-10",
+            formatCreatedEndDate: "2017-05-25",
+            pageIndex: 0,
+            pageSize: 10,
+            personType: 0,
+            regionCode: 0,
+            searchKey: "string",
+            searchType: 0
+        };
+        /*个人档案内容部分*/
+        $( ".diqu-befor,.diqu-after" ).datepicker({regional:"zh-CN",dateFormat:'yy-mm-dd'});
+        jQuery(function($) {
+            $.datepicker.regional['zh-CN'] = {
+                clearText: '清除',
+                clearStatus: '清除已选日期',
+                closeText: '关闭',
+                closeStatus: '不改变当前选择',
+                prevText: '<上月',
+                prevStatus: '显示上月',
+                prevBigText: '<<',
+                prevBigStatus: '显示上一年',
+                nextText: '下月>',
+                nextStatus: '显示下月',
+                nextBigText: '>>',
+                nextBigStatus: '显示下一年',
+                currentText: '今天',
+                currentStatus: '显示本月',
+                monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+                monthNamesShort: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二'],
+                monthStatus: '选择月份',
+                yearStatus: '选择年份',
+                weekHeader: '周',
+                weekStatus: '年内周次',
+                dayNames: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+                dayNamesShort: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
+                dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
+                dayStatus: '设置 DD 为一周起始',
+                dateStatus: '选择 m月 d日, DD',
+                dateFormat: 'yy-mm-dd',
+                firstDay: 1,
+                initStatus: '请选择日期',
+                isRTL: false
+            };
+            $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
+            $("#startDate").val(getPreMonth(new Date(),1));
+            $("#endDate").val(getPreMonth(new Date(),0));
+        });
+        /*查询结果*/
+        function queryPresonArchives(){
+            // 查询条件参数验证
+            if($("#startDate").val().trim() == "" || $("#endDate").val().trim() == ""){
+                alert("请选择建档日期！！");
+                return false;
+            }else{
+                var start = new Date($("#startDate").val());
+                var end = new Date($("#endDate").val());
+                if(start - end > 0){
+                    alert("建档日期的起始日期不能大于结束日期，请修改！");
+                    return false;
+                }else{
+                    // 查询
+                    querybootstrapTable();
+                }
+            }
+        };
+        /**
+         * 查询实现
+         */
+        function querybootstrapTable(){
+            $('#tableArchives').bootstrapTable('destroy'); //先销毁表格
+            $('#tableArchives').bootstrapTable({
+                method:"post",
+                url: "/apis/logFileCharge/getList?n="+Math.random(),
+                queryParams: function (params) {
+                    params.chargeStartTime= $("#startDate").val().trim(); //起始时间
+                    params.chargeEndTime= $("#endDate").val().trim();
+                    params.pageIndex = this.pageNumber;
+                    params.pageSize = this.pageSize;
+                    return params;
+                },
+                onLoadSuccess: function (data) {
+                    if (data.returnFlag != 0) {
+                        alert( data.message);
+                    }
+                    console.log(data);
+                    var json = {};
+                    json["list"] = data.data.list;
+                    json["total"] = data.data.total;
+                    $('#tableArchives').bootstrapTable('load',json);
+                },
+                onLoadError: function () {
+                    alert(" 服务器无响应！");
+                }
+            })
+        };
+        /**
+         * 单元格格式化  ---- 操作
+         * @param value
+         * @param row
+         * @param index
+         * @returns {string}
+         */
+        function operate3Formatter(value,row,index){
+//            '<a href="new-archives-da1.html?key='+row["id"]+'" target="_blank"  onclick=seeInfo('+row[id]+') class="look">查看</a> ' +
+            return '<a href="JavaScript:;" target="_blank"  onclick=seeInfo('+row["id"]+') class="look">查看</a> ' +
+                '<a href="JavaScript:;" onclick=editInfo('+row["id"]+') class="edit">编辑</a> ' +
+                '<a href="JavaScript:;" onclick="filed('+row["id"]+')" class="homeback">归档</a>';
+        };
+
+        function indexFormatter(value,row,index){
+            var page = $("table").bootstrapTable("getPage");
+            return page.pageSize * (page.pageNumber - 1) + index + 1;
+        }
+        /**
+         * 打开归档
+         * @param id
+         */
+        function filed(id){
+            $('#filedPerson').niftyModal("show");
+            var row = $('#tableArchives').bootstrapTable('getRowByUniqueId', id);
+            $("#titleArchive").html("请选择【" + row["name"] + "】的归档原因：");
+            $("#hiddenId").val(id);
+        };
+
+        /**
+         * 确定归档
+         * @constructor
+         */
+        function filedOk(){
+            var para = {};
+            para["fileCause"]= $("#filedReasons").val();
+            para["personMasterInfoId"]=$("#hiddenId").val();
+            $.ajax({
+                type : 'POST',
+                url:"/apis/fileManager/fileArchiving?n"+Math.random(),
+                data:JSON.stringify(para),
+                dataType:"json",
+                contentType: "application/json",
+                success:function(data){
+                    if (data.returnFlag != 0) {
+                        alert( data.message);
+                    }else{
+                       var name= $("#titleArchive").html().split("【")[1];
+                        $('#filedPerson').niftyModal("hide");
+                        alert(name.split("】")[0]+"归档成功！");
+                        $('#tableArchives').bootstrapTable('refresh');
+                    }
+                }
+            })
+        };
+        /**
+         * 查看
+         * @param id
+         */
+        function seeInfo(id){
+            sessionStorage.setItem("user",id);
+            window.open("new-archives-show.html");
+//            window.location.href = "new-archives-da1.html";
+        };
+        /**
+         * 编辑
+         * @param id
+         */
+        function editInfo(id){
+            var urls = (window.location.href).split('/');
+            var urllogin =urls[0]+"//"+urls[2]+"/";
+            sessionStorage.setItem("user",id);
+            window.open(urllogin+"/templates/document/new-document1.html");
+//            window.location.href = "new-document1.html";
+        };
+
+    </script>
+
+    <!--内容部分end-->
+    <!--尾部-->
+    <div ng-include="'../foot.html'"></div>
+    <!--尾部end-->
+
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="../../css/base.css"><!--公共-->
+    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/bootstrapValidator.css"><!--表单验证-->
+    <link rel="stylesheet" href="../../css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/new-document.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/index.js"></script><!--公共-->
+    <script src="../../js/new-document.js"></script><!--新建文档-->
+    <script src="../../js/bootstrapValidator.js"></script><!--表单验证-->
+    <script src="../../js/angular.min.js"></script>
+    <!--文件新建于2017-6月-->
+</head>
+<body ng-app="">
+<!--公用头部-->
+<div ng-include="'../headr.html'"></div>
+    <!--公用头部end-->
+    <!--内容部分-->
+    <div class="content2">
+        <div class="new-left">
+            <ul>
+                <li class="updata"><a href="new-document1.html">个人信息</a></li>
+                <li class="updata"><a href="new-document2.html">基本信息</a></li>
+                <li class="updata"><a href="new-document3.html">既往史</a></li>
+                <li class="updata"><a href="new-document4.html">过敏史</a></li>
+                <li class="updata"><a href="new-document5.html">个人史</a></li>
+                <li class="updata yjs"><a href="new-document6.html">月经及婚育史</a></li>
+                <li class="updata"><a href="new-document7.html">家族史</a></li>
+                <li class="updata page" data="new-document8.html"><a href="new-document8.html">育苗接种记录</a></li>
+                <li class="on Chronic1"><a href="new-document9.html">高血压情况</a></li>
+                <li class="Chronic2" >糖尿病情况</li>
+                <li class="Chronic3" >肺结核情况</li>
+                <li class="Chronic4" >精神病情况</li>
+            </ul>
+        </div>
+        <div class="new-right">
+            <ul>
+                <form id="gxyform" class="form-horizontal">
+                <li class="new-right-show">
+                    <div class="new-right-show-n">
+                        <ul>
+                            <li><div class="new-right-show-n-1-1">姓名:</div><div class="new-right-show-n-1"></div></li>
+                            <li><div class="new-right-show-n-1-1">性别:</div><div class="new-right-show-n-2"></div></li>
+                            <li><div class="new-right-show-n-1-1">年龄:</div><div class="new-right-show-n-3"></div></li>
+                        </ul>
+                    </div>
+                </li>
+                <!--高血压情况-->
+                <li class="on">
+                        <div class="gxy2-all">
+                            <ul>
+                                <li>
+                                    <div class="gxy2-all-mc on"><b>*</b>病情分级</div>
+                                    <div class="gxy2-all-mc-list1">
+                                        <div class="form-group">
+                                            <select name="fenji" class="form-control" id="fenji" data-bv-notempty data-bv-notempty-message="">
+                                                <option value="">请选择</option>
+                                                <option value="1级">1级</option>
+                                                <option value="2级">2级</option>
+                                                <option value="3级">3级</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <select name="fenzu"  class="form-control" id="fenzhu" data-bv-notempty data-bv-notempty-message="">
+                                                <option value="">请选择</option>
+                                                <option value="低危">低危</option>
+                                                <option value="中危">中危</option>
+                                                <option value="高危">高危</option>
+                                                <option value="极高">极高危</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="gxy2-all-mc-list2 on">
+                                        随访频率
+                                    </div>
+                                    <div class="gxy2-all-mc-list3">
+                                        <div class="form-group">
+                                            <input type="number" class="form-control" name="ApplyUnit">
+                                        </div>
+                                        <div class="form-group cishu">次/</div>
+                                        <div class="form-group">
+                                            <select name="gay_chengdu" id="gxyny"  class="form-control" data-bv-notempty data-bv-notempty-message="">
+                                                <option value="">请选择</option>
+                                                <option value="月">月</option>
+                                                <option value="年">年</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="gxy2-all-mc"><b>*</b>高血压类</div>
+                                    <div class="gxy2-all-mc-list1">
+                                        <div class="form-group">
+                                            <select name="gxy_leixing" class="form-control" id="gxylei">
+                                                <option value="">请选择</option>
+                                                <option value="原发性高血压">原发性高血压</option>
+                                                <option value="续发性高血压">续发性高血压</option>
+                                                <option value="不详">不详</option>
+                                                <option value="其他">其他</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="gxy2-all-mc-list2">
+                                        <b>*</b>检出途径
+                                    </div>
+                                    <div class="gxy2-all-mc-list3">
+                                        <div class="form-group">
+                                            <select name="gxy_tujing" id="gxyjctj" class="form-control">
+                                                <option value="">请选择</option>
+                                                <option value="首诊测压">首诊测压</option>
+                                                <option value="普查">普查</option>
+                                                <option value="门诊就诊">门诊就诊</option>
+                                                <option value="健康档案">健康档案</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="gxy2-all-mc"><b>*</b>血压知晓情况</div>
+                                    <div class="form-group">
+                                        <span class="gxy2-list4"><input type="radio" name="gxy_zixiang" value="患有高血压" class="form-control gxy_zx" required>患有高血压</span>
+                                        <span class="gxy2-list4"><input type="radio" name="gxy_zixiang" value="血压正常">血压正常</span>
+                                        <span class="gxy2-list4"><input type="radio" name="gxy_zixiang" value="测过但不清楚">测过但不清楚</span>
+                                        <span class="gxy2-list4"><input type="radio" name="gxy_zixiang" value="从未测过">从未测过</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="gxy2-all-mc"><b>*</b>未服用降压药前血压水平</div>
+                                    <div class="gxy2-all-mc-list1">
+                                        <span>
+                                            <div class="form-group"><input type="number" value="" name="gxy_shuihan1" class="form-control"></div>
+                                        </span>
+                                        <span class="gxy_xiegang">/</span>
+                                        <span>
+                                            <div class="form-group"><input type="number" value="" name="gxy_shuihan2" class="form-control"></div>
+                                        </span>
+                                        <span>mmhg</span>
+                                    </div>
+                                    <div class="gxy2-all-mc-list2">
+                                        <b>*</b>是否服用降压药
+                                    </div>
+                                    <div class="form-group">
+                                        <span class="gxy2-list4"><input name="gxy_fuyao" type="radio" value="规律服药">规律服药</span>
+                                        <span class="gxy2-list4"><input name="gxy_fuyao" type="radio" value="间断服药">间断服药</span>
+                                        <span class="gxy2-list4"><input name="gxy_fuyao" type="radio" value="不服药">不服药</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="gxy2-all-mc"><b>*</b>血脂知晓情况</div>
+                                    <div class="form-group">
+                                        <span class="gxy2-list4"><input name="gxy_zhixiaoxue" type="radio" value="血脂异常" required>血脂异常</span>
+                                        <span class="gxy2-list4"><input name="gxy_zhixiaoxue" type="radio" value="血脂正常">血脂正常</span>
+                                        <span class="gxy2-list4"><input name="gxy_zhixiaoxue" type="radio" value="测过但不清楚">测过但不清楚</span>
+                                        <span class="gxy2-list4"><input name="gxy_zhixiaoxue" type="radio" value="从未测过">从未测过</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="gxy2-all-mc"><b>*</b>体重/身高（kg/m）</div>
+                                    <div class="gxy2-all-mc-list1">
+                                        <div class="form-group">
+                                            <input type="text" value="" name="gxy_tizhong" class="form-control">
+                                        </div>
+                                        <div class="gxy_xiegang">/</div>
+                                        <div class="form-group">
+                                            <input type="text" value="" name="gxy_shengao"  class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="gxy2-all-mc-list2">
+                                        <b>*</b>BMI（kg/m²）
+                                    </div>
+                                    <div>
+                                        <div class="form-group">
+                                            <input type="text" value="" name="gxy_bmi" class="form-control" disabled>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="gxy2-all-mc"><b>*</b>靶器官损坏</div>
+                                    <div>
+                                        <div class="form-group mxberror">
+                                            <span class="gxy2-list4"><input type="checkbox" class=" form-control gxy_radio" value="左室肥厚" name="gxy_qiguan" required>左室肥厚</span>
+                                            <span class="gxy2-list4"><input type="checkbox" class=" form-control gxy_radio" value="颈动脉内膜增厚" name="gxy_qiguan" >颈动脉内膜增厚</span>
+                                            <span class="gxy2-list4"><input type="checkbox"  class=" form-control gxy_radio" value="肾功能受损" name="gxy_qiguan" >肾功能受损</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="gxy2-all-mc"><b>*</b>患其它慢病</div>
+                                    <div class="form-group mxberror">
+                                       <span class="gxy2-list4"><input type="checkbox" class=" form-control gxy_radio" value="冠心病" name="gxy_gxb" required>冠心病</span>
+                                       <span class="gxy2-list4"><input type="checkbox" class=" form-control gxy_radio" value="脑卒中" name="gxy_gxb" >脑卒中</span>
+                                       <span class="gxy2-list4"><input type="checkbox"  class=" form-control gxy_radio" value="慢性阻塞性肺部疾病" name="gxy_gxb" >慢性阻塞性肺部疾病</span>
+                                       <span class="gxy2-list4"><input type="checkbox" class=" form-control gxy_radio" value="癌症" name="gxy_gxb" >癌症</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="gxy2-all-mc"><b>*</b>遵医行为</div>
+                                    <div class="form-group">
+                                                 <span class="gxy2-list4">
+                                                    <input type="radio" class="form-control gxy_radio" value="良好" name="gxy_xingwei" required>良好
+                                                 </span>
+                                        <span class="gxy2-list4">
+                                                    <input type="radio" class="form-control gxy_radio" value="一般" name="gxy_xingwei">一般
+                                                </span>
+                                        <span class="gxy2-list4">
+                                                    <input type="radio" class="form-control gxy_radio" value="差" name="gxy_xingwei">差
+                                                </span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="page-all">
+                            <a class="updata8-l page-1 page-u">上一步</a>
+                            <div class="form-group form-group-r">
+                                <button type="submit" class="btn updata9-r btn-primary page-s">下一步</button>
+                            </div>
+                        </div>
+                </li>
+                </form>
+            </ul>
+        </div>
+    </div>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        成功建档，是否保存全部信息!
+                    </h4>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default doc-updata-all-close" data-dismiss="modal">关闭
+                    </button>
+                    <button type="button" class="btn btn-primary doc-updata-all-12">
+                        提交全部
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <script>
+        /*新建文档*/
+        var work = new FindSure();
+        work.init();
+    </script>
+
+    <!--内容部分end-->
+    <!--Foot-->
+    <div class="foot">
+        <div class="foot-border">Copyright &copy; 2017-2020 Yinghai Software Co., Ltd, Technical Support<br>
+            鹰海医疗信息技术有限公司 技术支持</div>
+    </div>
+    <!--Foot end-->
+</body>
+</html>

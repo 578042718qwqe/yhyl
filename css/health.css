@@ -1,0 +1,50 @@
+@media screen and (min-width:1300px){/*大于*/
+    /*档案中心*/
+    .chronic-anniu{ float: left; margin-right: 10px;}
+    .search-chronic{ width:980px; margin: 0 auto; padding-top:15px; padding-bottom:15px; height: 77px;}
+    .search-chronic-time{ float: left; height:40px; line-height:40px; text-align: center;}
+    .search{}
+    .search-cx{ float: left; width:90px; margin:4px;}
+    .search-add{ float: left; width:90px; margin:4px;}
+    input[name='messageTitle']{ float: left; width:230px;}
+    input[name='messageSendType']{ display:initial; width:15px; height: 44px; border: none; background: none;}
+    input[name='messageSendObject']{ display:initial; width:15px; height: 44px; border: none; background: none;}
+    input[name='messageEnable']{ display:initial; width:15px; height: 44px; border: none; background: none;}
+    .chronic-add-win-t{ float:left; width: 100%;}
+    .chronic-add-win-t span{ float: left; height:40px; line-height:40px; width:80px;}
+    input[name='messageSendDatetime']{ float: left; width:300px;}
+    input[name='chronic-news']{ float: left; width:300px;}
+    .mb10{ margin-bottom: 10px;}
+    input[name='chronic-search']{ float: left; width:260px; margin-top: 4px;}
+    #test-table thead tr{ background-color:#44a3dd; color: #FFF;}
+    .ui-datepicker-month,.ui-datepicker-year{ color: #000;}
+    .chronic-error{color: red;}
+    .test-table-chronic{ width:980px; margin:0  auto;}
+    .test-table-chronic tr td{ border: 1px solid #DDD;}
+    .chronicw{ width:1400px; margin: 0 auto;}
+}
+@media screen and (max-width:1300px) {/*小于*/
+    /*档案中心*/
+    .chronic-anniu{ float: left; margin-right: 10px;}
+    .search-chronic{ width:980px; margin: 0 auto; padding-top:15px; padding-bottom:15px; height: 77px;}
+    .search-chronic-time{ float: left; height:40px; line-height:40px; text-align: center;}
+    .search{}
+    .search-cx{ float: left; width:90px; margin:4px;}
+    .search-add{ float: left; width:90px; margin:4px;}
+    input[name='messageTitle']{ float: left; width:230px;}
+    input[name='messageSendType']{ display:initial; width:15px; height: 44px; border: none; background: none;}
+    input[name='messageSendObject']{ display:initial; width:15px; height: 44px; border: none; background: none;}
+    input[name='messageEnable']{ display:initial; width:15px; height: 44px; border: none; background: none;}
+    .chronic-add-win-t{ float:left; width: 100%;}
+    .chronic-add-win-t span{ float: left; height:40px; line-height:40px; width:80px;}
+    input[name='messageSendDatetime']{ float: left; width:300px;}
+    input[name='chronic-news']{ float: left; width:300px;}
+    .mb10{ margin-bottom: 10px;}
+    input[name='chronic-search']{ float: left; width:260px; margin-top: 4px;}
+    #test-table thead tr{ background-color:#44a3dd; color: #FFF;}
+    .ui-datepicker-month,.ui-datepicker-year{ color: #000;}
+    .chronic-error{color: red;}
+    .test-table-chronic{ width:980px; margin:0  auto;}
+    .test-table-chronic tr td{ border: 1px solid #DDD;}
+    .chronicw{ width:1200px; margin: 0 auto;}
+}

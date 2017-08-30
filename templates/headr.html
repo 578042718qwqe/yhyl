@@ -1,0 +1,130 @@
+<link rel="stylesheet" href="../../css/animate.css">
+<div class="head">
+    <div class="head-con">
+        <div class="head-left animated flipInY"><img src="../../img/logo.png"></div>
+        <div class="head-dh">
+            <ul>
+                <li class="glyphicon glyphicon-home home ah"><a class="head-dh-a" href="../../index.html" >首页</a></li>
+                <li class="glyphicon glyphicon-heart service btn-group ah">
+                    <a class="head-dh-a" data-toggle="dropdown" style="cursor: pointer;">
+                        健康服务
+                    </a>
+                    <ul class="dropdown-menu service-word">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </li>
+                <li class="glyphicon glyphicon-file jk ah"><a class="head-dh-a" onclick="sessionStorage.removeItem('user')" href="../document/new-document1.html">新建文档</a></li>
+            </ul>
+        </div>
+        <!--右边用户-->
+        <div class="head-right">
+            <div class="head-admin">
+                当前用户:王五
+            </div>
+            <div class="dropdown head-admin2 ">
+                <button type="button" class="btn dropdown-toggle" id="dropdownMenu1"
+                        data-toggle="dropdown">
+                    用户
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="#">用户信息</a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href="#">账号安全</a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" onclick="logout()">退出账号</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    adminshow =$.cookie("administrator");
+    $(".head-admin").text("当前用户:"+adminshow);//登陆
+    var admin_id =$.cookie("admin_id");
+     $.ajax({
+         type: "GET",
+         url: "/apis/user/navigationBar/"+admin_id,
+         success: function(data){
+             var urls =(window.location.href).split('/');
+             var urlsto ="/"+urls[3]+"/"+urls[4]+"/"+urls[5];
+             var urlsover=[
+                 "/templates/document/new-document1.html",
+                 "/templates/document/new-document2.html",
+                 "/templates/document/new-document3.html",
+                 "/templates/document/new-document4.html",
+                 "/templates/document/new-document5.html",
+                 "/templates/document/new-document6.html",
+                 "/templates/document/new-document7.html",
+                 "/templates/document/new-document8.html",
+                 "/templates/document/new-document9.html",
+                 "/templates/document/new-document10.html",
+                 "/templates/document/new-document11.html",
+                 "/templates/document/new-document12.html"
+             ];
+             for(var as in data.data){//遍历URL
+                 data.data[as].forEach(function (e) {
+                     urlsover.push(e.moduleStaticUrl)
+                 })
+             }
+             if(urlsover.indexOf(urlsto) == -1){//跳转页面
+                 window.location.href='../403.html';
+             }else {
+                console.log("显示当前页");
+             }
+             if(data.data.档案中心 != undefined){
+                 data.data.档案中心.forEach(function (e) {
+                     var name = "<span><a href='"+e.moduleStaticUrl+"' class='archives menu-a'>"+e.moduleName+"</a></span>";
+                     $(".service-word li:nth-child(1)").append(name)
+                 });
+                 $(".service-word li:nth-child(1)").prepend("<h4>档案中心</h4>");
+             }
+             if(data.data.行政区域管理 != undefined){
+                 data.data.行政区域管理.forEach(function (e) {
+                     var name = "<span><a href='"+e.moduleStaticUrl+"' class='archives menu-a'>"+e.moduleName+"</a></span>";
+                     $(".service-word li:nth-child(2)").append(name)
+                 });
+                 $(".service-word li:nth-child(2)").prepend("<h4>行政区域管理</h4>");
+             }
+             if(data.data.权限管理 != undefined){
+                 data.data.权限管理.forEach(function (e) {
+                     var name = "<span><a href='"+e.moduleStaticUrl+"' class='archives menu-a'>"+e.moduleName+"</a></span>";
+                     $(".service-word li:nth-child(3)").append(name)
+                 });
+                 $(".service-word li:nth-child(3)").prepend("<h4>权限管理</h4>");
+             }
+             if(data.data.随访管理 != undefined){
+                 data.data.随访管理.forEach(function (e) {
+                     var name = "<span><a href='"+e.moduleStaticUrl+"' class='archives menu-a'>"+e.moduleName+"</a></span>";
+                     $(".service-word li:nth-child(4)").append(name)
+                 });
+                 $(".service-word li:nth-child(4)").prepend("<h4>随访记录</h4>");
+             }
+             if(data.data.消息作业管理 != undefined){
+                 data.data.消息作业管理.forEach(function (e) {
+                     var name = "<span><a href='"+e.moduleStaticUrl+"' class='archives menu-a'>"+e.moduleName+"</a></span>";
+                     $(".service-word li:nth-child(5)").append(name)
+                 });
+                 $(".service-word li:nth-child(5)").prepend("<h4>消息作业管理</h4>");
+             }
+         },
+         error:function (data) {
+            console.log(data);
+         }
+     });
+    /*url判定*/
+    var urls = (window.location.href).split('/');
+    if(urls[5].substring(0,12) =="new-document"){
+        $(".glyphicon-file a").addClass("active");
+    }else {
+        $(".glyphicon-heart a").addClass("active");
+    }
+</script>

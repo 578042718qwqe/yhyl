@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/new-document.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <link rel="stylesheet" href="../../js/bootstrap.table/bootstrap-table.min.css">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/index.js"></script><!--公共-->
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/angular.min.js"></script>
+</head>
+<body ng-app="">
+    <!--公用头部-->
+    <div ng-include="'../headr.html'"></div>
+    <!--公用头部end-->
+    <!--内容部分-->
+    <div class="role-name">
+        <div class="role-name-1"><span>姓名:</span><input type="text" class="form-control" name="user-search-c"></div><div class="role-name-2 btn btn-primary" onclick="usersearch()">查询</div><div class="role-name-3 btn btn-primary user-add">新增</div>
+    </div>
+    <table class="table table-hover" id="tablerole" style="width:1400px; margin: 0 auto">
+        <caption></caption>
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>姓名</th>
+                <th>登录名</th>
+                <th>角色</th>
+                <th>状态</th>
+                <th>手机</th>
+                <th>邮箱</th>
+                <th>最后登录时间</th>
+                <th>创建时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody class="user-tbody">
+            <tr>
+
+            </tr>
+        </tbody>
+    </table>
+    <div class="use-page">
+        <div class="use-page-1">分页数:</div>
+        <ul></ul>
+        <div class="con"></div>
+    </div>
+    <!--内容部分end-->
+    <!--尾部-->
+    <div ng-include="'../foot.html'"></div>
+    <!--尾部end-->
+    <!--新增弹窗-->
+    <div class="user-add-win" title="添加" style="display: none">
+        <div class="user-add-win-t"><span>姓名:</span><input type="text" name="userName" class="form-control"></div>
+        <div class="user-add-win-t"><span>登陆名:</span><input type="text" name="userCode" class="form-control"></div>
+        <div class="user-add-win-t"><span>密码:</span><input type="text" name="userPassword" class="form-control"></div>
+        <div class="user-add-win-t"><span>确认密码:</span><input type="text" name="userPassword2" class="form-control"></div>
+        <div class="user-add-win-qx">
+            <div class="role-add-win-qx-l">机构:</div>
+            <select name="select" class="userselect2 form-control">
+                <option value="">无</option>
+            </select>
+        </div>
+        <div class="user-add-win-qx">
+            <div class="role-add-win-qx-l">角色:</div>
+            <select name="select" class="userselect form-control">
+                <option value="">无</option>
+            </select>
+        </div>
+        <div class="user-add-win-t"><span>手机:</span><input type="text" name="userTelephone" class="form-control"></div>
+        <div class="user-add-win-t"><span>邮箱:</span><input type="email" name="userEmail" class="form-control"></div>
+        <div class="user-error"></div>
+        <a class="btn btn-default role-win-add user-anniu" href="#" role="button">提交</a>
+        <a class="btn btn-default user-win-dele" href="#" role="button">取消</a>
+    </div>
+    <!--编辑弹窗-->
+    <div class="user-edit-win" title="编辑" style="display: none">
+        <div class="user-add-win-t"><span>姓名:</span><input type="text" name="userName-edit" class="form-control"></div>
+        <div class="user-add-win-t"><span>登陆名:</span><input type="text" name="userCode-edit" class="form-control"></div>
+        <div class="user-add-win-qx">
+            <div class="usere-add-win-qx-l">机构:</div>
+            <select name="select" class="userselect2-edit">
+                <option value="">无</option>
+            </select>
+        </div>
+        <div class="user-add-win-qx">
+            <div class="usere-add-win-qx-l">角色:</div>
+            <select name="select" class="userselect-edit">
+                <option value="">无</option>
+            </select>
+        </div>
+        <div class="user-add-win-t"><span>手机:</span><input type="text" name="userTelephone-edit" class="form-control"></div>
+        <div class="user-add-win-t"><span>邮箱:</span><input type="email" name="userEmail-edit" class="form-control"></div>
+        <div class="user-error"></div>
+        <a class="btn btn-default user-win-edit" href="#" role="button">提交</a>
+        <a class="btn btn-default user-win-dele" href="#" role="button">取消</a>
+    </div>
+    <!--修改密码弹窗-->
+    <div class="user-Password-win" title="修改密码" style="display: none">
+        <div class="user-add-win-t"><span>密码:</span><input type="text" name="userPassword2-edit" class="form-control"></div>
+        <div class="user-add-win-t"><span>确认密码:</span><input type="text" name="userPassword2-edit-2" class="form-control"></div>
+        <div class="user-error"></div>
+        <a class="btn btn-default user-win-Password" href="#" role="button">提交</a>
+        <a class="btn btn-default user-win-dele" href="#" role="button">取消</a>
+    </div>
+    <script>
+        /*弹窗部分*/
+        $( ".user-add-win,.user-edit-win" ).dialog({
+            autoOpen: false,
+            width :350,
+            height :440
+        });
+        $( ".user-Password-win" ).dialog({
+            autoOpen: false,
+            width :350,
+            height :200
+        });
+        $.getJSON("/apis/sys/userManagement/user/belowRoles",function(date){//下拉框
+            date.data.forEach(function(item){
+                var pOption = "<option value='"+item.roleId+"'>"+item.roleName+"</option>";
+                $(".userselect,.userselect-edit").append(pOption);
+            });
+        });
+        $.getJSON("/apis/baseOrganization/list",function(date){// 机构信息
+            date.data.forEach(function(item){
+                var pOption = "<option value='"+item.id+"'>"+item.organizationFullName+"</option>";
+                $(".userselect2,.userselect2-edit").append(pOption);
+            });
+        });
+        $(".user-add").bind("click",function () {//添加弹窗
+            $(".user-error").text("");
+            $( ".user-add-win" ).dialog( "open" );
+            $( ".user-edit-win" ).dialog( "close" );
+            $( ".user-add-win" ).dialog({position: [450,250]});
+            $(".user-add-win input").val("");
+            $(".userselect2").val("");
+            $(".userselect").val("");
+        });
+        $(".user-win-dele").bind("click",function () {//关闭弹窗
+            $( ".user-add-win,.user-edit-win,.user-Password-win" ).dialog( "close" );
+        });
+        function loding(e) {
+            $("tbody").empty();
+            $.ajax({//查询
+                type: "GET",
+                url: "/apis/sys/userManagement/users?pageNum="+e+"&pageSize=10",
+                success: function(date){
+                    for(var i = 0 ; i<date.data.list.length; i++){
+                        var kaiguan = (date.data.list[i].userStatus == 1)?"禁用":"启用";
+                        var Grade = (date.data.list[i].userStatus == 1)?"正常":"禁用";
+                        var LoginTime = (date.data.list[i].lastLoginTime == null)?"无记录":date.data.list[i].lastLoginTime;
+                        var roletr = "<tr>"+"<td class='sequence' data='"+date.data.list[i].userId+"'>"+(i+1)+"</td>"+"<td class='usernames'>"+date.data.list[i].userName+"</td>"+"<td class='roleName'>"+date.data.list[i].userCode+"</td>"+"<td class='userjieshe'>"/*+date.data[i].sysRoleList[0].roleName*/+"</td>"+"<td>"+Grade+"</td>"+"<td>"+date.data.list[i].userTelephone+"</td>"+"<td>"+date.data.list[i].userEmail+"</td>"+"<td>"+LoginTime+"</td>"+"<td>"+date.data.list[i].createdTime+"</td>"+"<td>"+"<a class='user-edit' data='"+date.data.list[i].userId+"'>编辑</a>"+"<a class='user-zhuangtai' data='"+date.data.list[i].userId+"'>"+kaiguan+"</a>"+"<a class='user-Password' data='"+date.data.list[i].userId+"'>重置密码</a>"+"</td>"+"</tr>";
+                        $("tbody").append(roletr);
+                    }
+                    for(var j = 0 ; j<date.data.list.length; j++){
+                        var Rolelist = date.data.list[j].sysRoleList[0].roleName;
+                        $("tbody tr").eq(j).find(".userjieshe").text(Rolelist);
+                    }
+                    $(".use-page ul li").remove();
+                    $(".con").empty();
+                    for(var b=0; b<(date.data.total/date.data.pageSize); b++){
+                        $(".use-page ul").append("<li></li>");
+                        $(".use-page ul li").eq(b).append(b+1);
+                    }
+                    $(".use-page div.con").append("<div>"+"当前页"+date.data.pageNum+"</div>"+"<div>"+"总共"+date.data.total+"条记录"+"</div>")
+
+                }
+            });
+            $( ".user-add-win,.user-edit-win,.user-Password-win" ).dialog( "close" );
+        }
+        loding(1);
+        $("body").on("click",".use-page ul li",function () {
+            loding($(this).index()+1)
+        });
+        $("body").on("click",".role-win-add",function () {//添加按钮
+            var phone = /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/;
+            var pattern = /\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/;
+            if($("input[name='userPassword']").val() !== $("input[name='userPassword2']").val()){
+                $(".user-error").text("确认密码错误!")
+            }else if($("input[name='userName']").val()==""){
+                $(".user-error").text("姓名不能为空!")
+            }else if(phone.test($("input[name='userTelephone']").val()) == false){
+                $(".user-error").text("请输入正确手机号码!")
+            }else if(pattern.test($("input[name='userEmail']").val()) == false){
+                $(".user-error").text("请输入正确邮箱!")
+            }else {
+                var userrole=[];
+                if($(".userselect").val()==""){
+                    userrole =null;
+                }else {
+                    userrole.push($(".userselect").val());
+                }
+                console.log(userrole);
+                var useradd ={
+                    "organizationId":$(".userselect2").val(),
+                    "userName": $("input[name='userName']").val(),
+                    "userCode": $("input[name='userCode']").val(),
+                    "userPassword": $("input[name='userPassword']").val(),
+                    "roleIds": userrole,
+                    "userTelephone": $("input[name='userTelephone']").val(),
+                    "userEmail": $("input[name='userEmail']").val()
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "/apis/sys/userManagement/user/save",
+                    data: JSON.stringify(useradd),
+                    dataType: "json",
+                    contentType: 'application/json',
+                    success: function (data) {
+                        console.log(data);
+                        usersearch();
+                        if(data.returnFlag == 1){
+                            $(".user-error").text(data.data)
+                        }else if(data.returnFlag == 0){
+                            loding(1);
+                        }
+                    }
+                });
+            }
+        });
+
+        $("body").on("click",".user-edit",function () {//编辑
+            $( ".user-edit-win" ).dialog( "open" );
+            $( ".user-add-win" ).dialog( "close" );
+            $( ".user-Password-win" ).dialog( "close" );
+            $( ".user-edit-win" ).dialog({position: [450,250]});
+            userEdit = $(this).parents("tr").find(".usernames").text();
+            userEdit_id = $(this).parents("tr").find(".sequence").attr("data");
+            $.ajax({
+                type: "GET",
+                url: "/apis/sys/userManagement/user/list?userName="+userEdit,
+                success: function(data){
+                    $(".user-error").text("");
+                    $("input[name='userName-edit']").val(data.data[0].userName);
+                    $("input[name='userCode-edit']").val(data.data[0].userCode);
+                    if(data.data[0].sysRoleList.length == 0 ){
+                        $(".userselect-edit").val("").change();
+                    }else if(data.data[0].sysRoleList.length >0){
+                        data.data[0].sysRoleList.forEach(function (item) {
+                            $(".userselect-edit").val(item.roleId).change();
+                        });
+                    }
+                    $(".userselect2-edit").val(data.data[0].organizationId).change();
+                    $("input[name='userTelephone-edit']").val(data.data[0].userTelephone);
+                    $("input[name='userEmail-edit']").val(data.data[0].userEmail);
+                }
+            });
+        });
+        $(".user-win-edit").on("click",function () {//编辑提交
+            var userrole=[];
+            if($(".userselect-edit").val()==""){
+                userrole =null;
+            }else {
+                userrole.push($(".userselect-edit").val());
+            }
+            var phone = /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/;
+            var pattern = /\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/;
+            if(phone.test($("input[name='userTelephone-edit']").val()) == false){
+                $(".user-error").text("请输入正确手机号码!")
+            }else if($("input[name='userName-edit']").val()==""){
+                $(".user-error").text("姓名不能为空!")
+            }else if(pattern.test($("input[name='userEmail-edit']").val()) == false){
+                $(".user-error").text("请输入正确邮箱!")
+            }else {
+                var useredit ={
+                    "organizationId":$(".userselect2-edit").val(),
+                    "userId":userEdit_id,
+                    "userName": $("input[name='userName-edit']").val(),
+                    "userCode": $("input[name='userCode-edit']").val(),
+                    "roleIds": userrole,
+                    "userTelephone": $("input[name='userTelephone-edit']").val(),
+                    "userEmail": $("input[name='userEmail-edit']").val()
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "/apis/sys/userManagement/user/edit",
+                    data: JSON.stringify(useredit),
+                    dataType: "json",
+                    contentType: 'application/json',
+                    success: function (data) {
+                        console.log(data);
+                        if(data.returnFlag == 1){
+                            $(".user-error").text(data.data);
+                        }else if(data.returnFlag == 0){
+                            $(".user-error").text("提交成功!");
+                            loding(1);
+                        }
+                    }
+                });
+            }
+        });
+        $("body").on("click",".user-Password",function () {//密码编辑
+            $( ".user-Password-win" ).dialog( "open" );
+            $( ".user-add-win,.user-edit-win" ).dialog( "close" );
+            $( ".user-Password-win" ).dialog({position: [450,250]});
+            PasswordEdit = $(this).attr("data");
+            $(".user-error").text("");
+        });
+        $(".user-win-Password").bind("click",function () {//密码按钮
+            if($("input[name='userPassword2-edit']").val() !== $("input[name='userPassword2-edit-2']").val()){
+                $(".user-error").text("确认密码不对!")
+            }else {
+                var passedit={
+                    "userId":PasswordEdit,
+                    "userPassword":$("input[name='userPassword2-edit']").val()
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "/apis/sys/userManagement/user/editPassWord",
+                    data: JSON.stringify(passedit),
+                    dataType: "json",
+                    contentType: 'application/json',
+                    success: function (data) {
+                        console.log(data);
+                        if(data.returnFlag == 1){
+                            $(".user-error").text(data.data)
+                        }else if(data.returnFlag == 0){
+                            $(".user-error").text("提交成功!");
+                            loding(1);
+                        }
+                    }
+                });
+            }
+        });
+        $("body").on("click",".user-zhuangtai",function () {
+            zhuangtaiEdit = $(this).attr("data");
+            var kaiguans = ($(this).text()=="禁用")?0:1;
+            var zhuangtai={
+                "userId":zhuangtaiEdit,
+                "userStatus":kaiguans
+            };
+            $.ajax({
+                type: "POST",
+                url: "/apis/sys/userManagement/user/editStatus",
+                data: JSON.stringify(zhuangtai),
+                dataType: "json",
+                contentType: 'application/json',
+                success: function (data) {
+                    loding(1);
+                }
+            });
+        });
+
+        $(".user-search").bind("click",function () {//查询
+
+        });
+        function usersearch() {
+            var userquery =$("input[name='user-search-c']").val();
+            $.ajax({//遍历查询
+                type: "GET",
+                url: "/apis/sys/userManagement/user/list?userName="+userquery,
+                success: function(date){
+                    if(date.returnFlag==1){
+                        if(date.data == undefined){
+                            opentc("没有权限",200)
+                        }else {
+                            opentc(date.data,200)
+                        }
+                    }else {
+                        $("tbody").empty();
+                        for(var i = 0 ; i<date.data.length; i++){
+                            var kaiguan = (date.data[i].userStatus == 1)?"禁用":"启用";
+                            var Grade = (date.data[i].userStatus == 1)?"正常":"禁用";
+                            var LoginTime = (date.data[i].lastLoginTime == null)?"无记录":date.data[i].lastLoginTime;
+                            var roletr = "<tr>"+"<td class='sequence' data='"+date.data.list[i].userId+"'>"+(i+1)+"</td>"+"<td class='usernames'>"+date.data[i].userName+"</td>"+"<td class='roleName'>"+date.data[i].userCode+"</td>"+"<td class='userjieshe'>"/*+date.data[i].sysRoleList[0].roleName*/+"</td>"+"<td>"+Grade+"</td>"+"<td>"+date.data[i].userTelephone+"</td>"+"<td>"+date.data[i].userEmail+"</td>"+"<td>"+LoginTime+"</td>"+"<td>"+date.data[i].createdTime+"</td>"+"<td>"+"<a class='user-edit' data='"+date.data[i].userId+"'>编辑</a>"+"<a class='user-zhuangtai' data='"+date.data[i].userId+"'>"+kaiguan+"</a>"+"<a class='user-Password' data='"+date.data[i].userId+"'>重置密码</a>"+"</td>"+"</tr>";
+                            $("tbody").append(roletr);
+                        }
+                        for(var j = 0 ; j<date.data.length; j++){
+                            //console.log("长"+date.data[j].sysRoleList[0].length);
+                            var Rolelist = date.data[j].sysRoleList[0].roleName;
+                            $("tbody tr").eq(j).find(".userjieshe").text(Rolelist);
+                        }
+                    }
+                }
+            });
+        }
+        $(".ui-dialog-titlebar-close").addClass("role-close")
+    </script>
+</body>
+</html>

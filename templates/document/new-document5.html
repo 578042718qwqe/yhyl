@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/new-document.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/highcharts.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/index.js"></script>
+    <script src="../../js/new-document.js"></script>
+    <script src="../../js/bootstrapValidator.js"></script>
+    <script src="../../js/angular.min.js"></script>
+    <script src="../../js/cookie.js"></script>
+</head>
+<body ng-app="">
+<!--公用头部-->
+<div ng-include="'../headr.html'"></div>
+    <!--公用头部end-->
+    <!--内容部分-->
+    <div class="content2">
+        <div class="new-left">
+            <ul>
+                <li class="updata"><a href="new-document1.html">个人信息</a></li>
+                <li class="updata"><a href="new-document2.html">基本信息</a></li>
+                <li class="updata"><a href="new-document3.html">既往史</a></li>
+                <li class="updata"><a href="new-document4.html">过敏史</a></li>
+                <li class="on"><a href="new-document5.html">个人史</a></li>
+                <li class="yjs">月经及婚育史</li>
+                <li>家族史</li>
+                <li>育苗接种记录</li>
+                <li class="Chronic1">高血压情况</li>
+                <li class="Chronic2">糖尿病情况</li>
+                <li class="Chronic3">肺结核情况</li>
+                <li class="Chronic4">精神病情况</li>
+            </ul>
+        </div>
+        <div class="new-right">
+            <div class="new-right-baochun">
+                保存
+            </div>
+            <ul>
+                <li class="new-right-show">
+                    <div class="new-right-show-n">
+                        <ul>
+                            <li><div class="new-right-show-n-1-1">姓名:</div><div class="new-right-show-n-1"></div></li>
+                            <li><div class="new-right-show-n-1-1">性别:</div><div class="new-right-show-n-2"></div></li>
+                            <li><div class="new-right-show-n-1-1">年龄:</div><div class="new-right-show-n-3"></div></li>
+                        </ul>
+                    </div>
+                </li>
+                <!--个人史-->
+                <li class="on">
+                    <dl class="grs-word-2">
+                        <dt class="grs-perso-info-w">
+                            <span class="grs-word-2-huan"><b style="color: red">*</b>饮酒：</span>
+                            <label><input type="radio" name="grswt_yj" value="0" />否</label>
+                            &nbsp;&nbsp;
+                            <label><input type="radio" name="grswt_yj" value="1" checked/>是</label>
+                        </dt>
+                        <dt class="grs-perso-info-w">
+                            <span class="grs-word-2-huan">饮酒类型：</span>
+                            <select name="grswt_yj" class="form-control">
+                                <option value="1">白酒</option>
+                                <option value="2">啤酒</option>
+                                <option value="3">米酒</option>
+                                <option value="4">其他</option>
+                            </select>
+                            <span>饮酒量：</span>
+                            <input id="grswt_yj" name="饮酒" type="text" class="form-control">
+                        </dt>
+                    </dl>
+                    <dl class="grs-word-2">
+                        <dt class="grs-perso-info-w">
+                            <span class="grs-word-2-huan"><b style="color: red">*</b>吸烟：</span>
+                            <label><input type="radio" name="grswt_xy" value="0" />否</label>
+                            &nbsp;&nbsp;
+                            <label><input type="radio" name="grswt_xy" value="1" checked/>是</label>
+                        </dt>
+                        <dt class="grs-perso-info-w">
+                            <span class="grs-word-2-huan">吸烟量：</span>
+                            <input id="grswt_xy" name="吸烟" type="text" class="form-control">
+                        </dt>
+                    </dl>
+                    <dl class="grs-word-2">
+                        <dt class="grs-perso-info-w">
+                            <span class="grs-word-2-huan">疫水、疫区接触史：</span>
+                            <label><input type="radio" name="grswt_ysyqjc" value="0" />否</label>
+                            &nbsp;&nbsp;
+                            <label><input type="radio" name="grswt_ysyqjc" value="1" checked/>是</label>
+                        </dt>
+                        <dt class="grs-perso-info-w">
+                            <span class="grs-word-2-huan">疫区：</span>
+                            <input id="grswt_ysyqjc" name="疫水、疫区接触史" type="text" class="form-control">
+                        </dt>
+                    </dl>
+                    <dl class="grs-word-2">
+                        <dt class="grs-perso-info-w">
+                            <span class="grs-word-2-huan">毒物接触史：</span>
+                            <label><input type="radio" name="grswt_dwjcs" value="0" />否</label>
+                            &nbsp;&nbsp;
+                            <label><input type="radio" name="grswt_dwjcs" value="1" checked/>是</label>
+                        </dt>
+                        <dt class="grs-perso-info-w">
+                            <span class="grs-word-2-huan">毒物：</span>
+                            <input id="grswt_dwjcs" name="毒物接触史"  type="text" class="form-control">
+                        </dt>
+                    </dl>
+                    <dl class="grs-word-2">
+                        <dt class="grs-perso-info-w">
+                            <span class="grs-word-2-huan">放射性物质接触史：</span>
+                            <label><input type="radio" name="grswt_fsxwzjc" value="0" />否</label>
+                            &nbsp;&nbsp;
+                            <label><input type="radio" name="grswt_fsxwzjc" value="1" checked/>是</label>
+                        </dt>
+                        <dt class="grs-perso-info-w">
+                            <span class="grs-word-2-huan">放射性物质：</span>
+                            <input id="grswt_fsxwzjc" name="放射性物质接触史" type="text" class="form-control">
+                        </dt>
+                    </dl>
+                    <dl class="grs-word-2">
+                        <dt class="grs-perso-info-w">
+                            <span class="grs-word-2-huan">冶游史：</span>
+                            <label><input type="radio" name="grswt_zys" value="0" />否</label>
+                            &nbsp;&nbsp;
+                            <label><input type="radio" name="grswt_zys" value="1" checked/>是</label>
+                            <input id="grswt_zys" name="冶游史" type="text" value="" hidden>
+                        </dt>
+                    </dl>
+                    <dl class="grs-word-2">
+                        <dt class="grs-perso-info-w">
+                            <span class="grs-word-2-huan"><b style="color: red">*</b>性病：</span>
+                            <label><input type="radio" name="grswt_xb" value="0" />否</label>
+                            &nbsp;&nbsp;
+                            <label><input type="radio" name="grswt_xb" value="1" checked/>是</label>
+                        </dt>
+                        <dt class="grs-perso-info-w">
+                            <span class="grs-word-2-huan">性病名称：</span>
+                            <input id="grswt_xb"  name="性病" type="text" class="form-control">
+                        </dt>
+                    </dl>
+
+                    <div class="page-all">
+                        <a class="updata3-l page-1" href="new-document4.html">上一步</a>
+                        <button id="next" class="btn updata3-r" onclick="saveGRS()" disabled>下一步</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="baochun" title="保存">
+        <div>已成功建档，请确认一下信息;</div>
+        <div><div class="baocun-l">姓名:</div><div class="baocun-name"></div></div>
+        <div><div class="baocun-l">性别:</div><div class="baocun-sex"></div></div>
+        <div><div class="baocun-l">年龄:</div><div class="baocun-age"></div></div>
+        <div><div class="baocun-l">档案号:</div><div class="baocun-fileNumber"></div></div>
+        <div><div class="baocun-l">所属人群:</div><div class="baocun-slowDiseaseFlag"></div></div>
+        <div class="baocun-queren">确认</div>
+        <div class="baocun-fanhui">返回修改</div>
+    </div>
+    <script>
+        /*新建文档*/
+        var work = new FindSure();
+        work.init();
+        var ids = $.cookie("user");
+        $.ajax({
+            type: "GET",
+            url: "/apis/file/"+ids,
+            dataType: "json",
+            success: function (e) {
+                sex = e.data.sex;
+            }
+        })
+    </script>
+
+    <!--内容部分end-->
+    <!--Foot-->
+    <div class="foot">
+        <div class="foot-border">Copyright &copy; 2017-2020 Yinghai Software Co., Ltd, Technical Support<br>
+            鹰海医疗信息技术有限公司 技术支持</div>
+    </div>
+    <!--Foot end-->
+<script>
+    $(function(){
+        queryGRS();
+    })
+    // 有无选择执行
+    var count  = 7 ;
+    var textCount = 0;
+    $("input[type='radio']").on("change",function(){
+        if(this.value == 0){
+
+            $("#"+this.name).prop("disabled",true);
+            $("#"+this.name).val("");
+            if(this.name == "grswt_yj"){
+                $("select[name='grswt_yj']").prop("disabled",true);
+            }
+            count--;
+        }else if(this.value == 1){
+            $("#"+this.name).prop("disabled",false);
+            $("#"+this.name).focus();
+            if(this.name == "grswt_yj"){
+                $("select[name='grswt_yj']").prop("disabled",false);
+            }
+            if(this.name == "grswt_zys"){
+                $("#"+this.name).val("1");
+            }
+            count++;
+        }
+        inss();
+    });
+    //输入框 变化时执行
+    $("input[type='text']").on("input",function(){
+        inss();
+    });
+    //检索
+    function  inss(){
+        textCount = 0;
+        $("input[type='text']").each(function(){
+            if(this.value.trim()!=""){
+                textCount++;
+            }
+        });
+        console.log("textCount"+textCount +"count"+count);
+        if(count == textCount){
+            $("#next").addClass("page-1");
+            $("#next").prop("disabled",false);
+        }else{
+            $("#next").removeClass("page-1");
+            $("#next").prop("disabled",true);
+        }
+    }
+    //保存
+
+    function saveGRS() {
+        if (count == 0) {
+            var params=[{
+                "personMasterInfoId": $.cookie("user")
+            }]
+            sendSaveGRS(params);
+        } else if (count > 0) {
+            var params = [];
+            $("input[type='text']").each(function () {
+                if (this.value.trim() != "") {
+                    var param = {
+                        "answerText": this.value,
+                        "personMasterInfoId": $.cookie("user"),
+                        "requestId": this.id,
+                        "requestName": this.name
+                    };
+                    if (this.id == "grswt_yj") {
+                        param["answerText"] = $("select[name='grswt_yj']").val() + "_" + this.value;
+                    }
+                    params.push(param);
+                }
+            });
+            sendSaveGRS(params);
+        }
+    };
+    //请求保存
+    function sendSaveGRS(params){
+        $.ajax({
+            type : 'POST',
+            url:"/apis/file/filePersonalHistoryInfo?n"+Math.random(),
+            data:JSON.stringify(params),
+            dataType:"json",
+            contentType: "application/json",
+            success:function(data){
+                if (data.returnFlag != 0) {
+                    alert( data.message);
+                }else{
+                    if(sex)window.location.href = 'new-document7.html';
+                    else window.location.href = 'new-document6.html';
+                }
+            }
+        })
+    };
+    // 查询
+    function queryGRS(){
+        var id = $.cookie("user");
+        $.ajax({
+            url:"/apis/filePersonalHistoryInfo/"+id,
+            dataType:"json",
+            success:function(data){
+                if (data.returnFlag != 0) {
+                    alert( data.message);
+                }else{
+                    console.log(data.data);
+                    writeInfo(data.data);
+                }
+            }
+        });
+
+    };
+    function writeInfo(rows){
+        for(var i =0;i<rows.length;i++){
+            var row  = rows[i];
+            if(row["requestId"].trim() == "grswt_yj"){
+                var an =row["answerText"].split("_");
+                $("#"+row["requestId"].trim()).val(an[1]);
+                $("select[name='grswt_yj']").val(an[0]);
+            }else{
+                $("#"+row["requestId"].trim()).val(row["answerText"]);
+            }
+        }
+        $("input[type='text']").each(function(){
+            if(this.value.trim()==""){
+                $("input[name='"+this.id+"']").eq(0).click();
+            }
+        });
+
+        inss();
+    };
+</script>
+</body>
+</html>

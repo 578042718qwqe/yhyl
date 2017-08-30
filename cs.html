@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>小鹰健康服务平台</title>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <th>Month1</th>
+        <th>Savings</th>
+    </tr>
+    <tr>
+        <td>January2</td>
+        <td>$100</td>
+    </tr>
+    <tr>
+        <td>January3</td>
+        <td>$100</td>
+    </tr>
+    <tr>
+        <td>January4</td>
+        <td>$100</td>
+    </tr>
+    <tr>
+        <td>January5</td>
+        <td>$100</td>
+    </tr>
+</table>
+<script>
+    $("table tr").bind("click",function () {
+       alert($(this).find("th").eq(1).text())
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+/*模块一*/
+.content{width: 100%; min-width: 1250px; margin: 0 auto;}
+.home-left{float: left; width:700px; position: relative;}
+.home-left h2{float: left; width:322px; text-align: center; padding-top:0; font-size:35px; padding-bottom: 10px;}
+.home-left-date{ position: absolute; left:670px; top:130px; width: 150px; z-index: 9;}
+.home-left-date ul{width: 150px; float: left;}
+.home-left-date ul li{width: 150px; float: left; line-height:25px; font-size:16px; font-weight: bold;}
+.home-left-date ul li b.on1{width:15px; float: left; height:15px; background-color:#0C4C8B; margin-top:6px; margin-right: 5px;border-radius:3px;}
+.home-left-date ul li b.on2{width:15px; float: left; height:15px; background-color:#97D5E1; margin-top:6px; margin-right: 5px; border-radius:3px;}
+.home-left-date ul li b.on3{width:15px; float: left; height:15px; background-color:#89B14A; margin-top:6px; margin-right: 5px; border-radius:3px;}
+.home-left-date ul li b.on4{width:15px; float: left; height:15px; background-color:#F7D358; margin-top:6px; margin-right: 5px; border-radius:3px;}
+.home-left-date ul li b.on5{width:15px; float: left; height:15px; background-color:#EF562C; margin-top:6px; margin-right: 5px; border-radius:3px;}
+/*模块一右侧*/
+.home-right{ float: right; width:500px;}
+.home-right-work{ width:480px; border-radius: 10px; height:435px; overflow: hidden; float:left; margin-top:200px; background-color: #EEEEEE;}
+.home-right-work h2{font-size:18px; color:#CE0005; font-weight:bold; padding-top: 20px; border-bottom: 1px solid #DDD; padding-bottom: 5px;width:430px; margin: 0 auto;}
+.home-right-work ul.home-right-work-2{ width:430px; height:370px; overflow-y: auto; margin: 0 auto;}
+.home-right-work .home-right-work-2 div{display: none; float: left;}
+.home-right-work .home-right-work-2 div.on{display:block; float: left; width: 100%;}
+.home-right-work ul.home-right-work-2 li{float: left; width: 100%; line-height:35px; border-bottom: 1px solid #DDD;}
+.home-right-work ul.home-right-work-2 li a{ color: #000; float:left;}
+.home-right-work-3{width: 430px; height: 370px; overflow-y: auto; margin: 0 auto; line-height: 35px;}
+.home-right-work-3 li{ border-bottom: 1px solid #DDD;}
+.home-right-work-3 a{ color: #000; cursor: pointer;}
+.home-right-work-l{ float:left; width:30px; text-align: center;}
+.home-right-work-r{ float:right; width: 50px; height:25px; line-height:25px; margin-top: 6px; color: #FFF; border-radius: 6px; background-color: #67B6E4; text-align: center;}
+.home-right-work-1{ width: 100%;}
+.home-right-work-1 ul{ width: 100%;}
+.home-right-work-1 li{ width: 100px; float:left; text-align: center; font-size:17px; font-weight: bold; line-height: 50px; color: #666; cursor: pointer;}
+.home-right-work-1 li.on{ color: red;}
+.shenfen{ padding-left: 20px;}
+/**/
+#chart-area{ display: inline-block;}
+/*自适应*/
+@media screen and (min-width:1300px){/*大于*/
+    .content{ width:80%; margin: 0 auto; position: relative; margin-bottom: 120px; height:680px;}
+    .content2{ width:80%; margin: 0 auto; position: relative; margin-bottom: 120px; height:680px;}
+    /*模块二*/
+    .new-left{ width:200px; float: left; border: 1px solid #e1e1e1; border-radius:8px; overflow: hidden; margin-top: 10px; border-bottom: none;}
+    .new-left ul{ margin-bottom:0!important;}
+    .new-left ul li{ width:100%; text-align: center; line-height:50px; height:50px; font-size: 16px; border-bottom: 1px solid #e1e1e1; color: #888888;}
+    .new-left ul li.updata{ color: #000;}
+    .new-left ul li.on{ background-color:#42A3DD; color: #FFF;}
+    .new-right{ width:78%; border: 1px solid #DDD; float: left; margin-top: 10px; border-radius:6px; margin-left:16px; margin-bottom: 10px;}
+    .new-right ul{ width: 100%;}
+    .new-right ul li{/* display: none;*/ width: 100%;}
+    .new-right ul li.on{/* display:block;*/ width: 100%;}
+    /*模块三*/
+    .content3{ width:1400px; margin: 0 auto; position: relative;}
+    /*角色名称*/
+    .role-name{ width:1400px; margin: 0 auto; height: 40px; margin-top:30px;}
+    .role-name-1{ float: left; margin-right: 10px;}
+    .role-name-1 span{ float: left; height:38px; line-height:38px; padding-right: 10px;}
+    .role-name-1 input{ float: left; width:150px;}
+    .role-name-2{ float: left; margin-top:3px; margin-right: 10px;}
+    .role-name-3{ float: left; margin-top:3px;}
+    .role-error{color: red; height:25px; width: 100%; float: left;}
+    input[name='role-name']{float: left; width:160px;}
+    input[name='role-Code']{float: left; width:160px;}
+    .role-add-win-t{ float: left; width: 100%; padding-bottom: 10px;}
+    .role-add-win-t span{ float: left; height:30px; line-height:30px;}
+    .role-add-win-qx{ float: left; width: 100%;}
+    .role-add-win-qx-l{ float: left; width: 75px; text-align: center;}
+    .role-add-win-qx-1-1{ clear: both;}
+    .userselect2{float: left; width: 160px!important;}
+    .userselect{float: left; width: 160px!important;}
+    .role-add-win-suoshu{ margin-bottom: 10px; float: left; width: 100%; padding-top:8px;}
+    .role-add-win-suoshu span{ float: left; line-height: 35px;}
+    /*角色编辑*/
+    input[name='role-name-edit']{float: left; width:160px;}
+    input[name='role-Code-edit']{float: left; width:160px;}
+    #tablerole th,#tablerole td{text-align: center; padding: 5px 8px; line-height: 28px;}
+    .tdbd td{border: 1px #ddd solid;}
+    .role-edit{ cursor: pointer;}
+    .role-quanxian{ cursor: pointer; background-color: #44a3dd; color:#fff; width:60px; height: 28px; line-height: 28px!important; border-radius:3px;}
+    .role-quanxian-win-headr{ width: 100%; border: 1px solid #DDD; background-color: #EEEEEE; float: left; height: 30px; line-height: 30px; border-radius:5px;}
+    .role-quanxian-win-headr div:nth-child(1){ width: 10%; float: left; text-align: center;}
+    .role-quanxian-win-headr div:nth-child(2){ width: 80%; float: left;}
+    .role-quanxian-win-headr div:nth-child(3){ width: 10%; float: left;}
+    .role-quanxian-win-ul{ float: left; width: 100%;}
+    .role-quanxian-win-ul li{ float: left; width: 100%;}
+    .role-quanxian-win-ul li div:nth-child(1){ float: left; width:10%; text-align: center;}
+    .role-quanxian-win-ul li div:nth-child(2){ float: left; width:80%;}
+    .role-close{
+        background: url("../img/icon_close.png") 0 0 no-repeat!important;
+        background-size: 100% 100%;
+        border: none;
+        width: 30px!important;
+        margin: -15px 0 0 0!important;
+        height: 30px!important;
+    }
+    #roleFather{width:130px; float: left;}
+    .small{ width: 100%!important; text-align: left; clear: both;}
+    .small input[name='role-qx']{ float: left;}
+    /*用户部分*/
+    .user-name{ width:1400px; margin: 0 auto; height: 40px; margin-top:30px;}
+    .user-name-1{ float: left; margin-right: 10px;}
+    .user-name-1 span{ float: left; height:38px; line-height:38px; padding-right: 10px;}
+    .user-name-1 input{ float: left; width:150px;}
+    .user-name-2{ float: left; margin-top:3px; margin-right: 10px;}
+    .user-name-3{ float: left; margin-top:3px;}
+    .user-error{color: red; height:25px; width: 100%; float: left;}
+    input[name='userName'],input[name='userCode'],input[name='userPassword'],input[name='userPassword'],input[name='userPassword2'],input[name='userTelephone'],input[name='userEmail']{float: left; width:160px;}
+    input[name='userName-edit'],input[name='userCode-edit'],input[name='userPassword-edit'],input[name='userPassword-edit'],input[name='userPassword2-edit'],input[name='userPassword2-edit-2'],input[name='userTelephone-edit'],input[name='userEmail-edit']{float: left; width:160px;}
+    .user-add-win-t{ float: left; width: 100%;}
+    .user-zhuangtai{padding-left: 10px; cursor: pointer;}
+    .user-add-win-t span{ float: left; height:40px; line-height:40px; width: 75px; text-align: center;}
+    .user-add-win-qx{ float: left; width: 100%; margin-bottom: 6px;}
+    .user-add-win-qx-l{ float: left;}
+    .user-add-win-suoshu{ margin-bottom: 10px; float: left; width: 100%; padding-top:8px;}
+    /*用户编辑*/
+    input[name='user-name-edit']{float: left; width:160px;}
+    input[name='user-Code-edit']{float: left; width:160px;}
+    .user-edit{ cursor: pointer;}
+    .user-Password{padding-left: 10px; cursor: pointer;}
+    .usere-add-win-qx-l{ float: left; width: 75px; text-align: center;}
+    #userselect{ float: left;}
+    .liebiaos{ cursor: pointer; font-weight: bold;}
+    .liebiao{ padding-left:60px; padding-right: 10px; float: left;}
+    .use-page{ width:1400px; margin: 0 auto; margin-top: 10px;}
+    .use-page ul {float: left;}
+    .use-page ul li{ float: left;  padding: 0 5px; cursor: pointer;}
+    .use-page ul li:hover{ color: #0e90d2;}
+    .use-page-1{ float: left;}
+    .use-page .con{ float: left;}
+    .use-page .con div:nth-child(1){ float: left; margin-left: 10px;}
+    .use-page .con div:nth-child(2){ float: left; margin-left: 10px;}
+}
+@media screen and (max-width:1300px) {/*小于*/
+    .content{ width: 1165px; margin: 0 auto; position: relative; margin-bottom: 120px; height:480px;}
+    .content2{ width: 1165px; margin: 0 auto; position: relative; margin-bottom: 120px; height:480px;}
+    /*模块二*/
+    .new-left{ width:200px; float: left; border: 1px solid #e1e1e1; border-radius:8px; overflow: hidden; margin-top: 10px; border-bottom: none;}
+    .new-left ul{ margin-bottom:0!important;}
+    .new-left ul li{ width:100%; text-align: center; line-height:50px; height:50px; font-size: 16px; border-bottom: 1px solid #e1e1e1; color: #888888;}
+    .new-left ul li.updata{ color: #000;}
+    .new-left ul li.on{ background-color:#42A3DD; color: #FFF;}
+    .new-right{ width:933px; border: 1px solid #DDD; float: left; margin-top: 10px; border-radius:6px; margin-left:16px; margin-bottom: 10px;}
+    .new-right ul{ width: 100%;}
+    .new-right ul li{/* display: none;*/ width: 100%;}
+    .new-right ul li.on{/* display:block;*/ width: 100%;}
+    /*模块三*/
+    .content3{ width:1200px; margin: 0 auto; position: relative;}
+    /*角色名称*/
+    .role-name{ width:1400px; margin: 0 auto; height: 40px; margin-top:30px;}
+    .role-name-1{ float: left; margin-right: 10px;}
+    .role-name-1 span{ float: left; height:38px; line-height:38px; padding-right: 10px;}
+    .role-name-1 input{ float: left; width:150px;}
+    .role-name-2{ float: left; margin-top:3px; margin-right: 10px;}
+    .role-name-3{ float: left; margin-top:3px;}
+    .role-error{color: red; height:25px; width: 100%; float: left;}
+    input[name='role-name']{float: left; width:160px;}
+    input[name='role-Code']{float: left; width:160px;}
+    .role-add-win-t{ float: left; width: 100%; padding-bottom: 10px;}
+    .role-add-win-t span{ float: left; height:30px; line-height:30px;}
+    .role-add-win-qx{ float: left; width: 100%;}
+    .role-add-win-qx-l{ float: left; width: 75px; text-align: center;}
+    .role-add-win-qx-1-1{ clear: both;}
+    .userselect2{float: left; width:160px!important;}
+    .userselect{float: left; width:160px!important;}
+    .role-add-win-suoshu{ margin-bottom: 10px; float: left; width: 100%; padding-top:8px;}
+    .role-add-win-suoshu span{  float: left; line-height:35px;}
+    /*角色编辑*/
+    input[name='role-name-edit']{float: left; width:160px;}
+    input[name='role-Code-edit']{float: left; width:160px;}
+    #tablerole th,#tablerole td{text-align: center; padding: 5px 8px; line-height: 28px;}
+    .tdbd td{border: 1px #ddd solid;}
+    .role-edit{ cursor: pointer;}
+    .role-quanxian{ cursor: pointer; background-color: #44a3dd; color:#fff; width:60px; height: 28px; line-height: 28px!important; border-radius:3px;}
+    .role-quanxian-win-headr{ width: 100%; border: 1px solid #DDD; background-color: #EEEEEE; float: left; height: 30px; line-height: 30px; border-radius:5px;}
+    .role-quanxian-win-headr div:nth-child(1){ width: 10%; float: left; text-align: center;}
+    .role-quanxian-win-headr div:nth-child(2){ width: 80%; float: left;}
+    .role-quanxian-win-headr div:nth-child(3){ width: 10%; float: left;}
+    .role-quanxian-win-ul{ float: left; width: 100%;}
+    .role-quanxian-win-ul li{ float: left; width: 100%;}
+    .role-quanxian-win-ul li div:nth-child(1){ float: left; width:10%; text-align: center;}
+    .role-quanxian-win-ul li div:nth-child(2){ float: left; width:80%;}
+    .role-close{
+        background: url("../img/icon_close.png") 0 0 no-repeat!important;
+        background-size: 100% 100%;
+        border: none;
+        width: 30px!important;
+        margin: -15px 0 0 0!important;
+        height: 30px!important;
+    }
+    /*用户部分*/
+    .user-name{ width:1400px; margin: 0 auto; height: 40px; margin-top:30px;}
+    .user-name-1{ float: left; margin-right: 10px;}
+    .user-name-1 span{ float: left; height:38px; line-height:38px; padding-right: 10px;}
+    .user-name-1 input{ float: left; width:150px;}
+    .user-name-2{ float: left; margin-top:3px; margin-right: 10px;}
+    .user-name-3{ float: left; margin-top:3px;}
+    .user-error{color: red; height:25px; width: 100%; float: left;}
+    input[name='userName'],input[name='userCode'],input[name='userPassword'],input[name='userPassword'],input[name='userPassword2'],input[name='userTelephone'],input[name='userEmail']{float: left; width:160px;}
+    input[name='userName-edit'],input[name='userCode-edit'],input[name='userPassword-edit'],input[name='userPassword-edit'],input[name='userPassword2-edit'],input[name='userPassword2-edit-2'],input[name='userTelephone-edit'],input[name='userEmail-edit']{float: left; width:160px;}
+    .user-add-win-t{ float: left; width: 100%;}
+    .user-zhuangtai{padding-left: 10px; cursor: pointer;}
+    .user-add-win-t span{ float: left; height:40px; line-height:40px; width: 75px; text-align: center;}
+    .user-add-win-qx{ float: left; width: 100%; margin-bottom: 6px;}
+    .user-add-win-qx-l{ float: left;}
+    .user-add-win-suoshu{ margin-bottom: 10px; float: left; width: 100%; padding-top:8px;}
+    /*用户编辑*/
+    input[name='user-name-edit']{float: left; width:160px;}
+    input[name='user-Code-edit']{float: left; width:160px;}
+    .user-edit{ cursor: pointer;}
+    .user-Password{padding-left: 10px; cursor: pointer;}
+    .usere-add-win-qx-l{ float: left; width: 75px; text-align: center;}
+    #userselect{ float: left;}
+    .liebiaos{ cursor: pointer; font-weight: bold;}
+    .liebiao{ padding-left:60px; padding-right: 10px; float: left;}
+    .use-page{ width:1400px; margin: 0 auto;}
+    .use-page ul li{ float: left; padding: 0 5px; cursor: pointer;  color: #0e90d2;}
+}

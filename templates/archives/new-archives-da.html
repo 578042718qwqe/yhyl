@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/new-document.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <link rel="stylesheet" href="../../js/bootstrap.table/bootstrap-table.min.css">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/highcharts.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/index.js"></script>
+    <script src="../../js/new-document.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body ng-app="">
+    <!--公用头部-->
+    <div ng-include="'../headr.html'"></div>
+    <!--公用头部end-->
+    <!--内容部分-->
+    <div class="content2">
+        <div class="new-left">
+            <ul>
+                <li class="updata on">个人信息</li>
+                <li class="updata">基本信息</li>
+                <li class="updata">既往史</li>
+                <li class="updata ">过敏史</li>
+                <li class="updata ">个人史</li>
+                <li>月经及婚育史</li>
+                <li>家族史</li>
+                <li>育苗接种记录</li>
+                <li>高血压情况</li>
+                <li>糖尿病情况</li>
+                <li>肺结核情况</li>
+            </ul>
+        </div>
+        <div class="new-right">
+            <ul>
+                <li class="on person-info" style="padding: 0 20px;">
+                    <dl class="word-1-ck" style="margin-top: 20px;">
+                        <dt>
+                            <span class="word-1-ck-huan">姓名:</span>
+                            <label id="name" class="word-1-ck-huan-1">kn</label>
+                        </dt>
+                        <dt class="xingbie">
+                            <span class="word-1-ck-huan">性别:</span>
+                            <label id="sex" class="word-1-ck-huan-1">kn</label>
+                        </dt>
+                    </dl>
+                    <dl class="word-1-ck">
+                        <dt>
+                            <span class="word-1-sf">
+                                <span class="word-1-ck-huan">证件类型:</span>
+                                <label id="cardType" class="word-1-ck-huan-1">kn</label>
+                            </span>
+                        </dt>
+                        <dt>
+                            <span class="word-1-sf">
+                                <span class="word-1-ck-huan">证件号:</span>
+                                <label id="cardNum" class="word-1-ck-huan-1">kn</label>
+                            </span>
+                        </dt>
+                    </dl>
+                    <dl class="word-1-ck">
+                        <dt>
+                            <span class="word-1-ck-huan">国籍:</span>
+                            <label id="country" class="word-1-ck-huan-1">kn</label>
+                        </dt>
+                        <dt>
+                            <span class="word-1-ck-huan">民族:</span>
+                            <label id="nationName" class="word-1-ck-huan-1">kn</label>
+                        </dt>
+                    </dl>
+                    <dl class="word-1-ck">
+                        <dt>
+                            <span class="word-1-ck-huan">出生日期:</span>
+                            <label id="birthday" class="word-1-ck-huan-1">kn</label>
+                        </dt>
+                        <dt>
+                            <span class="word-1-ck-huan">血型:</span>
+                            <label id="bloodType" class="word-1-ck-huan-1a">kn</label>
+                            <label id="rh" class="word-1-ck-huan-1a">kn</label>
+                        </dt>
+                    </dl>
+                    <dl class="word-1-ck">
+                        <dt>
+                            <span class="word-1-ck-huan">建档时间:</span>
+                            <label id="fileCreateTime" class="word-1-ck-huan-1">kn</label>
+                        </dt>
+                    </dl>
+                </li>
+                <!--基本信息-->
+                <li class="person-info">
+                    <!--<div class="perso-info-w-all">-->
+                        <!--<div class="perso-info-w"><span class="info-ws">医保类型:</span>新农合</div>-->
+                        <!--<div class="perso-info-w"><span class="info-ws">医保编号:</span>05564</div>-->
+                        <!--<div class="perso-info-w"><span class="info-ws">常住地址:</span>海南省海口市龙华区金盘路11号</div>-->
+                        <!--<div class="perso-info-w"><span class="info-ws">户籍地址:</span>海南省海口市龙华区金盘路11号</div>-->
+                        <!--<div class="perso-info-w"><span class="info-ws">职业类别:</span>公务员</div>-->
+                        <!--<div class="perso-info-w"><span class="info-ws">工作单位:</span>海南鹰海医疗信息技术有限公司</div>-->
+                        <!--<div class="perso-info-w"><span class="info-ws">联系人:</span>王某</div>-->
+                        <!--<div class="perso-info-w"><span class="info-ws">联系电话:</span>15654211118</div>-->
+                        <!--<div class="perso-info-w"><span class="info-ws">所属人群:</span>糖尿病人群</div>-->
+                    <!--</div>-->
+                    <div class="perso-info-w-all-ck">
+                        <dl class="word-2-ck">
+                            <dt class="perso-info-w-ck">
+                                <span class="word-2-ck-huan">医保类型:</span>
+                                <label id="medicareType" class="word-2-ck-huan-1">kn</label>
+                            </dt>
+                            <dt class="perso-info-w-ck">
+                                <span class="word-2-ck-huan">医保编号:</span>
+                                <label id="medicareCode" class="word-2-ck-huan-1">kn</label>
+                            </dt>
+                        </dl>
+                        <dl class="word-2-ck">
+                            <dt class="perso-info-w-cka">
+                                <span class="word-2-ck-huan">常住地址:</span>
+                                <label id="commonAddressName" class="word-2-ck-huan-1a">海南省海口市龙华区龙华路龙华里108号龙华大厦A座2108室</label>
+                            </dt>
+                        </dl>
+                        <dl class="word-2-ck">
+                            <dt class="perso-info-w-cka">
+                                <span class="word-2-ck-huan">户籍地址:</span>
+                                <label id="registerAddressName" class="word-2-ck-huan-1a">kn</label>
+                            </dt>
+                        </dl>
+                        <dl class="word-2-ck">
+                            <dt class="perso-info-w-ck">
+                                <span class="word-2-ck-huan">职业类别:</span>
+                                <label id="professionName" class="word-2-ck-huan-1">kn</label>
+                            </dt>
+                            <dt class="perso-info-w-ck">
+                                <span class="word-2-ck-huan">工作单位:</span>
+                                <label id="companyOrOrganization" class="word-2-ck-huan-1">kn</label>
+                            </dt>
+                        </dl>
+                        <dl class="word-2-ck">
+                            <dt class="perso-info-w-ck">
+                                <span class="word-2-ck-huan">联系人:</span>
+                                <label id="connectPersonName" class="word-2-ck-huan-1">kn</label>
+                            </dt>
+                            <dt class="perso-info-w-ck">
+                                <span class="word-2-ck-huan">联系电话:</span>
+                                <!--<label id="connectType" class="word-2-ck-huan">手机号码:</label>-->
+                                <label id="connectDetail" class="word-2-ck-huan-1">kn</label>
+                            </dt>
+                        </dl>
+                        <dl class="word-2-ck">
+                            <dt class="perso-info-w-ck">
+                                <span class="word-2-ck-huan">所属人群:</span>
+                                <label id="slowDiseaseFlag" class="word-2-ck-huan-1">kn</label>
+                            </dt>
+                        </dl>
+                    </div>
+                <!-- 既往史-->
+                <li>
+                    <dl id="history-iless" class="word-2">
+                        <table id="tableHis" class="table table-hover"
+                               data-toggle="tableHis"
+                               data-show-header = "false">
+                            <thead>
+                            <tr>
+                                <th  data-field="requestName" data-align="center" data-valign="middle" data-cell-style ="cellStyle"></th>
+                                <th data-field="answerName" data-align="left" ></th>
+                                <th data-field="answerId" data-align="center" data-valign="middle" data-formatter="timeFormatter" data-cell-style ="cellStyle"></th>
+                                <th data-field="answerDate" data-align="left"></th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </dl>
+                </li>
+
+                <!--</div>-->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        /*新建文档*/
+        var work = new FindSure();
+        work.init();
+    </script>
+
+    <!--内容部分end-->
+    <!--Foot-->
+    <div class="foot">
+        <div class="foot-border">Copyright &copy; 2017-2020 Yinghai Software Co., Ltd, Technical Support<br>
+            鹰海医疗信息技术有限公司 技术支持</div>
+    </div>
+    <!--Foot end-->
+    <script src="../../js/bootstrap.table/bootstrap-table.min.js"></script>
+    <script src="../../js/bootstrap.table/bootstrap-table-zh-CN.min.js"></script>
+    <script src="../../js/date.js"></script>
+<script>
+    var url= window.location.href;
+    var id =url.split("key=")[1];
+    sessionStorage.setItem("user",id);
+    $(function(){
+        loadPersonInfo();
+        loadPersonHistoryIless();
+    });
+    var blood = {
+            b1:"A型",
+            b2:"B型",
+            b3:"O型",
+            b4:"AB型",
+            b5 :"不详"
+    };
+    var medica ={
+        m1:"新农合",
+        m2:"城镇职工",
+        m3:"城镇居民"
+    };
+    var card = {
+        c1:"身份证",
+        c2:"护照",
+        c3:"警官证"
+    };
+    /**
+     * 加载个人信息
+     */
+    function loadPersonInfo(){
+        $.ajax({
+            async:false,
+            url:"/apis/file/"+id,
+            success:function(data){
+                if (data.returnFlag != 0) {
+                    alert( data.message);
+                }else{
+                    console.log(data);
+                    var row = data.data;
+                    $(".person-info label").each(function(){
+                        var key = this.id;
+                        if(row[key] == null || row[key] == undefined){
+                            this.innerHTML = "(空)";
+                        } else{
+                            if(key=="sex"){
+                                if(row["sex"]) this.innerHTML = "男";
+                                else  this.innerHTML = "女";
+                            }else if(key.indexOf("Time") >0 || key == "birthday"){
+                                this.innerHTML = getPreMonth(new Date( row[key]),0);
+                            }else if(key =="bloodType"){
+                                if(row[key] == -1)    key = "5";
+                                this.innerHTML = blood["b"+row[key]];
+                            }else if(key == "medicareType"){
+                                this.innerHTML = medica["m"+row[key]];
+                            } else if(key == "country"){
+                                if(row[key] == 1)  this.innerHTML ="中国";
+                                else this.innerHTML ="其他";
+                            }
+//                            else if(key== "connectType"){
+//                                if( row[key] == 1)  this.innerHTML = "手机号码";
+//                                else if( row[key] == 2)  this.innerHTML = "固定电话";
+//                                else this.innerHTML = "";
+//                            }
+                            else if(key == "cardType"){
+                                this.innerHTML = card["c"+row[key]];
+                            }else if(key == "rh"){
+                                if(row[key])  this.innerHTML = "(RH阴)";
+                            } else this.innerHTML = row[key];
+                        }
+                    })
+                }
+            }
+        })
+    }
+    /**
+     * 既往史
+     */
+    function loadPersonHistoryIless(){
+        $('#tableHis').bootstrapTable('destroy'); //先销毁表格
+        $('#tableHis').bootstrapTable({
+            url: "/apis/fileHistoryPastIllnessInfo/"+id,
+            onLoadSuccess: function (data) {
+                if (data.returnFlag != 0) {
+                    alert( data.message);
+                } else {
+                    mergeCell(data.data);
+                }
+                console.log(data);
+//                if((data.data).length == 0){
+//                    $("#history-iless").html('<dd class="mode-head-1"><h5>（无）</h5></dd>');
+//              }
+            },
+            onLoadError: function () {
+                alert(" 服务器无响应！");
+            }
+        })
+    };
+
+    /**
+     * 合并元各
+     * @param rows
+     */
+    function mergeCell(rows){
+        var index = 0;
+        var rowspan = 1;
+        for(var i = 0;i<rows.length;i++){
+            if(i == rows.length - 1)
+                $("#tableHis").bootstrapTable('mergeCells', {index: index, field: 'requestName', colspan: 1, rowspan: rowspan});
+            else{
+                if(rows[i].requestId == rows[i+1].requestId) rowspan++;
+                else {
+                    $("#tableHis").bootstrapTable('mergeCells', {index: index, field: 'requestName', colspan: 1, rowspan: rowspan});
+                    index = i+1;
+                    rowspan = 1;
+                }
+            }
+        }
+        $("#tableHis").bootstrapTable('mergeCells', {index:0, field: 'answerId', colspan:1, rowspan:rows.length});
+    };
+    function timeFormatter(value,row,index){
+        return "确诊时间";
+    }
+    
+    function cellStyle(value,row,index){
+        return  {  css: {"color": "#000","font-weight":" bold"} };
+    }
+</script>
+</body>
+</html>

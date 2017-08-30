@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="../../css/base.css"><!--公共-->
+    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/bootstrapValidator.css"><!--表单验证-->
+    <link rel="stylesheet" href="../../css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/new-document.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/index.js"></script><!--公共-->
+    <script src="../../js/new-document.js"></script><!--新建文档-->
+    <script src="../../js/bootstrapValidator.js"></script><!--表单验证-->
+    <script src="../../js/angular.min.js"></script>
+</head>
+<body ng-app="">
+    <!--公用头部-->
+    <div ng-include="'../headr.html'"></div>
+    <!--公用头部end-->
+    <!--内容部分-->
+    <div class="content2">
+        <div class="area-head-top">
+            <div class="area-head-top-r">
+                <div class="area-head-top-2 btn btn-primary">新增</div>
+            </div>
+        </div>
+        <div class="area-all">
+            <div class="area-all-jibie">
+                <ul>
+                    <li><a class="diqu-huoqu" data="0">全国 ></a></li>
+                </ul>
+            </div>
+            <div class="area-all-head">
+                <ul>
+                    <li>序号</li>
+                    <li>区划名称</li>
+                    <li>区划编码</li>
+                    <li>行政级别</li>
+                    <li>父区划级别</li>
+                    <li class="CodeList">层级代码</li>
+                    <li>操作</li>
+                </ul>
+            </div>
+            <ul class="area-ul">
+
+            </ul>
+        </div>
+    </div>
+    <!--内容部分end-->
+    <!--弹窗-->
+    <div class="area-win" title="添加" style="display: none">
+        <div class="area-win-1">区划名称:<input type="text" name="area-win-1"></div>
+        <div class="area-win-2">区划编码:<input type="text" name="area-win-2"></div>
+        <div class="area-error"></div>
+        <a class="btn btn-default area-win-delet" style="margin-left: 10px; float: right;" href="#" role="button">取消</a>
+        <a class="btn btn-default area-win-add" style="float: right;" href="#" role="button">提交</a>
+    </div>
+    <!--弹窗2-->
+    <div class="area-win2" title="编辑" style="display: none">
+        <div class="area-win-1">区划名称:<input type="text" name="area-win-edit-1"></div>
+        <div class="area-win-2">区划编码:<input type="text" name="area-win-edit-2"></div>
+        <a class="btn btn-default area-win-delet" style="margin-left: 10px; float: right;" href="#" role="button">取消</a>
+        <a class="btn btn-default area-win-xiugai" style="float: right;" href="#" role="button">修改</a>
+    </div>
+    <!--尾部-->
+    <div ng-include="'../foot.html'"></div>
+    <!--尾部end-->
+    <script>
+        /*弹窗部分*/
+        $( ".area-win,.area-win2" ).dialog({
+            autoOpen: false,
+            width :400,
+            height :200
+        });
+        $(".area-head-top-2").bind("click",function () {//添加弹窗
+            $( ".area-win" ).dialog( "open" );
+            $( ".area-win2" ).dialog( "close" );
+            $( ".area-win" ).dialog({position: [600,180]});
+            $("input[name='area-win-1']").val("");
+            $("input[name='area-win-2']").val("");
+            $(".ui-dialog-title").text("添加"+($(".area-all-jibie ul li").last().find("a").text())+"区划");
+        });
+        $("body").on("click",".area-win-edit",function () {//编辑弹窗
+            $( ".area-win2" ).dialog( "open" );
+            $( ".area-win" ).dialog( "close" );
+            $( ".area-win2" ).dialog({position: [600,180]});
+            $(".ui-dialog-title").text("编辑");
+        });
+        $(".area-win-delet").bind("click",function () {
+            $( ".area-win,.area-win2" ).dialog( "close" );
+        });
+
+            $.ajax({//遍历父节点
+             type: "GET",
+             url: "/apis/baseRegion/regionParent/0",
+                 success: function(date){
+                     for(var i = 0 ; i<date.data.length; i++){
+                     var pOption = "<li>"+"<a class='area-url'><div class='num'>"+(i+1)+"</div>"+"<div class='area-name'>"+date.data[i].regionName+"</div>"+"<div class='regionGrade'>"+date.data[i].regionCode+"</div>"+"<div>"+date.data[i].regionGrade+"</div>"+"<div>"+date.data[i].regionParent+"</div>"+"<div class='area-list CodeList'>"+date.data[i].regionCodeList+"</div></a>"+"<div class='area-bj'><a class='area-win-edit' data='"+date.data[i].id+"'>编辑</a></div>"+"</li>";
+                     $(".area-ul").append(pOption);
+                     }
+                 },
+                 error:function (data) {
+                    console.log(data);
+                 }
+             });
+
+            $("body").on("click",".area-url",function () {//点击操作
+                var url = $(this).find(".regionGrade").text();
+                //var index = $(this).parents("li").index();
+                var name = $(this).find(".area-name").text();
+                $.ajax({
+                    type: "GET",
+                    url: "/apis/baseRegion/regionParent/"+url,
+                    success: function(date){
+                        $(".area-ul").empty();
+                        for(var i = 0 ; i<date.data.length; i++){
+                            var pOption = "<li>"+"<a class='area-url'><div class='num'>"+(i+1)+"</div>"+"<div class='area-name'>"+date.data[i].regionName+"</div>"+"<div class='regionGrade'>"+date.data[i].regionCode+"</div>"+"<div>"+date.data[i].regionGrade+"</div>"+"<div>"+date.data[i].regionParent+"</div>"+"<div class='area-list CodeList'>"+date.data[i].regionCodeList+"</div></a>"+"<div class='area-bj'><a class='area-win-edit' data='"+date.data[i].id+"'>编辑</a></div>"+"</li>";
+                            $(".area-ul").append(pOption);
+                        }
+
+                        $(".area-all-jibie ul").append("<li><a class='diqu-huoqu' data ='"+url+"'>"+name+">"+"</a></li>");
+                    }
+                });
+            });
+
+            $(document).on("click",".diqu-huoqu",function () {//面包屑查询
+                var url = $(this).attr("data");
+                $(this).parents("li").next().remove();
+                $.ajax({
+                    type: "GET",
+                    url: "/apis/baseRegion/regionParent/"+url,
+                    success: function(date){
+                        $(".area-ul").empty();
+                        for(var i = 0 ; i<date.data.length; i++){
+                            var pOption = "<li>"+"<a class='area-url'><div class='num'>"+(i+1)+"</div>"+"<div class='area-name'>"+date.data[i].regionName+"</div>"+"<div class='regionGrade'>"+date.data[i].regionCode+"</div>"+"<div>"+date.data[i].regionGrade+"</div>"+"<div>"+date.data[i].regionParent+"</div>"+"<div class='area-list CodeList'>"+date.data[i].regionCodeList+"</div></a>"+"<div class='area-bj'><a class='area-win-edit' data='"+date.data[i].id+"'>编辑</a></div>"+"</li>";
+                            $(".area-ul").append(pOption);
+                        }
+                    }
+                })
+            });
+
+            $(".area-win-add").bind("click",function () {//添加
+                if($("input[name='area-win-1']").val() ==""){
+                    $(".area-error").text("区划名称不能为空!")
+                }if($("input[name='area-win-2']").val() ==""){
+                    $(".area-error").text("区划编码不能为空!")
+                }else {
+                    $(".area-error").text("");
+                    var areadd ={
+                        regionCode:$("input[name='area-win-2']").val(),//区别编码
+                        regionName:$("input[name='area-win-1']").val(),//区别名称
+                        regionParent:$(".area-all-jibie ul li:last").find(".diqu-huoqu").attr("data")//当前父级
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: "/apis/baseRegion/save",
+                        data: JSON.stringify(areadd),
+                        dataType: "json",
+                        contentType: 'application/json',
+                        success: function (data) {
+                            console.log(data);
+                            $(".area-all-jibie ul li").last().find("a").click();
+                            $(".area-error").text(data.data);
+                        }
+                    });
+                }
+            });
+
+            $("body").on("click",".area-win-edit",function () {//获取编辑
+                var name = $(this).parents("div").siblings(".area-url").find(".area-name").text();
+                var Code = $(this).parents("div").siblings(".area-url").find(".regionGrade").text();
+                $("input[name='area-win-edit-1']").val(name);
+                $("input[name='area-win-edit-2']").val(Code);
+                edit_id=$(this).attr("data");
+            });
+            $(".area-win-xiugai").bind("click",function () {//编辑
+                var areedit ={
+                    id: edit_id,//区别ID
+                    regionCode:$("input[name='area-win-edit-2']").val(),//区别编码
+                    regionName:$("input[name='area-win-edit-1']").val(),//区别名称
+                    regionParent:$(".area-all-jibie ul li:last").find(".diqu-huoqu").attr("data")//当前父级
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "/apis/baseRegion/edit",
+                    data: JSON.stringify(areedit),
+                    dataType: "json",
+                    contentType: 'application/json',
+                    success: function (data) {
+                        $(".area-error").text(data.data);
+                        $(".area-all-jibie ul li").last().find("a").click();
+                        opentc("修改成功",200);
+                        $( ".area-win2" ).dialog( "close" );
+                    }
+                });
+            });
+
+    </script>
+</body>
+</html>

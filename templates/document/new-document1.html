@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="../../css/base.css"><!--公共-->
+    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/bootstrapValidator.css"><!--表单验证-->
+    <link rel="stylesheet" href="../../css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/new-document.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/index.js"></script><!--公共-->
+    <script src="../../js/new-document.js"></script><!--新建文档-->
+    <script src="../../js/bootstrapValidator.js"></script><!--表单验证-->
+    <script src="../../js/angular.min.js"></script>
+    <!--文件新建于2017-6月-->
+    <style>
+        .form-group {
+            float: left;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        .help-block{ display: none!important;}
+    </style>
+</head>
+<body ng-app="">
+<!--公用头部-->
+<div ng-include="'../headr.html'"></div>
+<!--公用头部end-->
+<!--内容部分-->
+<div class="content2">
+    <div class="new-left">
+        <ul>
+            <li class="on">个人信息</li>
+            <li>基本信息</li>
+            <li>既往史</li>
+            <li>过敏史</li>
+            <li>个人史</li>
+            <li class="yjs">月经及婚育史</li>
+            <li>家族史</li>
+            <li>育苗接种记录</li>
+            <li class="Chronic1">高血压情况</li>
+            <li class="Chronic2">糖尿病情况</li>
+            <li class="Chronic3">肺结核情况</li>
+            <li class="Chronic4">精神病情况</li>
+        </ul>
+    </div>
+    <div class="new-right">
+        <ul>
+            <form id="defaultForm" class="form-horizontal">
+                <li class="on">
+                    <dl class="word-1 doc-1-top">
+                        <dt><span class="word-1-huan"><b>*</b>姓名:</span>
+                        <div class="form-group"><input type="text" id="bl-name" value="" class="form-control"
+                                                       name="username" required/></div>
+                        </dt>
+                        <dt class="xingbie">
+                            <span class="word-1-huan"><b>*</b>性别:</span>
+                            <div class="form-group">
+                                <span class="word-1-xb">
+                                    <label><input type="radio" name="sex" value="1"  required/>男</label>
+                                    <label><input type="radio" name="sex" value="0"/>女</label>
+                                </span>
+                            </div>
+                        </dt>
+                        <dt>
+                        <span class="word-1-sf">
+                            <span class="word-1-huan"><b>*</b>证件类型:</span>
+                            <select class="form-control shenfenleixing">
+                                <option value="1">身份证</option>
+                            </select>
+                        </span>
+                        </dt>
+                        <dt>
+                        <span class="word-1-sf">
+                        <span class="word-1-huan"><b>*</b>证件:</span>
+                            <div class="form-group"><input type="text" id="word-l-zj" class="shenfenzheng form-control"
+                                                           name="username2" required/></div>
+                        <input type="checkbox" id="box-sf" style="margin-left: 5px;">本人无身份证</span>
+                        </dt>
+                        <dt class="box-show">
+                            <span class="word-1-huan"><b>*</b>证件所属:</span>
+                            <select class="suoshu form-control">
+                                <option value="1">父亲</option>
+                                <option value="2">母亲</option>
+                                <option value="3">爷爷</option>
+                                <option value="4">奶奶</option>
+                                <option value="5">兄弟</option>
+                                <option value="6">姐妹</option>
+                                <option value="-1">其他监护人</option>
+                            </select>
+                        </dt>
+                        <dt class="box-show">
+                            <span class="word-1-huan"><b>*</b>身份证件号:</span><input type="text" id="word-l-zj2"
+                                                                                  class="shenfenzheng2 form-control"/>
+                        </dt>
+                        <dt>
+                            <span class="word-1-huan"><b>*</b>国家:</span>
+                            <select name="" class="gj form-control">
+                                <option value="1">中国</option>
+                            </select>
+                        </dt>
+                        <dt>
+                            <span class="word-1-huan"><b>*</b>民族:</span>
+                            <div class="form-group">
+                                    <select class="geren-mz form-control" name="country" data-bv-notempty required>
+                                        <option value="">请选择</option>
+                                    </select>
+                             </div>
+                        </dt>
+                        <dt>
+                            <span class="word-1-huan">出生日期:</span>
+                            <input type="text" class="geren-time form-control">
+                        </dt>
+                        <dt>
+                            <span class="word-1-huan"><b>*</b>血型:</span>
+                            <div class="form-group">
+                                    <select class="xuexing form-control" required name="country" data-bv-notempty>
+                                        <option value="">请选择</option>
+                                        <option value="1">A型</option>
+                                        <option value="2">B型</option>
+                                        <option value="3">O型</option>
+                                        <option value="4">AB型</option>
+                                        <option value="-1">不详</option>
+                                    </select>
+                            </div>
+                        <span class="word-1-hr">
+                            <input type="checkbox" class="geren-hr" name="hr" style="margin-left: 5px;">HR阴性</span>
+                        </dt>
+                        <dt>
+                            <span class="word-1-huan">建档时间:</span>
+                            <input type="text" class="geren-jd form-control">
+                        </dt>
+                    </dl>
+                    <!--page-->
+                    <div class="page-all">
+                        <div class="form-group form-group-r">
+                            <button type="submit" class="btn btn-primary updata1-r on">下一步</button>
+                        </div>
+                    </div>
+                </li>
+            </form>
+            <!--基本信息-->
+        </ul>
+    </div>
+</div>
+
+<script>
+    /*个人信息*/
+    var work = new FindSure();
+    work.init();
+
+    function IdentityCodeValid(code) {
+        var city={11:"北京",12:"天津",13:"河北",14:"山西",15:"内蒙古",21:"辽宁",22:"吉林",23:"黑龙江 ",31:"上海",32:"江苏",33:"浙江",34:"安徽",35:"福建",36:"江西",37:"山东",41:"河南",42:"湖北 ",43:"湖南",44:"广东",45:"广西",46:"海南",50:"重庆",51:"四川",52:"贵州",53:"云南",54:"西藏 ",61:"陕西",62:"甘肃",63:"青海",64:"宁夏",65:"新疆",71:"台湾",81:"香港",82:"澳门",91:"国外 "};
+        var tip = "";
+        var pass= true;
+
+        if (!code || !/^[1-9][0-9]{5}(19[0-9]{2}|200[0-9]|2010)(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])[0-9]{3}[0-9xX]$/i.test(code)) {
+            tip = "身份证号格式错误";
+            pass = false;
+        }
+
+        else if(!city[code.substr(0,2)]){
+            tip = "地址编码错误";
+            pass = false;
+        }
+        else{
+            //18位身份证需要验证最后一位校验位
+            if(code.length == 18){
+                code = code.split('');
+                //∑(ai×Wi)(mod 11)
+                //加权因子
+                var factor = [ 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 ];
+                //校验位
+                var parity = [ 1, 0, 'X', 9, 8, 7, 6, 5, 4, 3, 2 ];
+                var sum = 0;
+                var ai = 0;
+                var wi = 0;
+                for (var i = 0; i < 17; i++)
+                {
+                    ai = code[i];
+                    wi = factor[i];
+                    sum += ai * wi;
+                }
+                var last = parity[sum % 11];
+                if(parity[sum % 11] != code[17]){
+                    tip = "校验位错误";
+                    pass =false;
+                }
+            }
+        }
+        if(!pass) alert(tip);
+        return pass;
+    }
+
+    $("#word-l-zj").blur(function () {
+        var c = $("#word-l-zj").val();
+        var res= IdentityCodeValid(c);
+        if(!res){
+            $("#word-l-zj").val("").trim();
+        }
+    });
+</script>
+
+<!--内容部分end-->
+<!--Foot-->
+<div class="foot">
+    <div class="foot-border">Copyright &copy; 2017-2020 Yinghai Software Co., Ltd, Technical Support<br>
+        鹰海医疗信息技术有限公司 技术支持
+    </div>
+</div>
+<!--Foot end-->
+
+</body>
+</html>

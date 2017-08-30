@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小鹰健康服务平台</title>
+    <!--标题logo-->
+    <link rel="shortcut icon" href="../../img/favicon.png">
+    <link rel="stylesheet" href="../../css/base.css">
+    <link rel="stylesheet" href="../../css/home.css">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/new-document.css">
+    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="shortcut icon" href="" type="image/x-icon">
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/highcharts.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/jquery-ui.js"></script>
+    <script src="../../js/index.js"></script>
+    <script src="../../js/new-document.js"></script>
+    <script src="../../js/bootstrapValidator.js"></script>
+    <script src="../../js/angular.min.js"></script>
+</head>
+<body ng-app="">
+<!--公用头部-->
+<div ng-include="'../headr.html'"></div>
+    <!--公用头部end-->
+    <!--内容部分-->
+    <div class="content2">
+        <div class="new-left">
+            <ul>
+                <li class="updata"><a href="new-document1.html">个人信息</a></li>
+                <li class="updata"><a href="new-document2.html">基本信息</a></li>
+                <li class="updata"><a href="new-document3.html">既往史</a></li>
+                <li class="updata"><a href="new-document4.html">过敏史</a></li>
+                <li class="updata"><a href="new-document5.html">个人史</a></li>
+                <li class="updata yjs"><a href="new-document6.html">月经及婚育史</a></li>
+                <li class="updata"><a href="new-document7.html">家族史</a></li>
+                <li class="updata page" data="new-document8.html"><a href="new-document8.html">育苗接种记录</a></li>
+                <li class="updata Chronic1"><a href="new-document9.html">高血压情况</a></li>
+                <li class="on Chronic2">糖尿病情况</li>
+                <li class="Chronic3">肺结核情况</li>
+                <li class="Chronic4">精神病情况</li>
+            </ul>
+        </div>
+        <div class="new-right">
+            <ul>
+                <li class="new-right-show">
+                    <div class="new-right-show-n">
+                        <ul>
+                            <li><div class="new-right-show-n-1-1">姓名:</div><div class="new-right-show-n-1"></div></li>
+                            <li><div class="new-right-show-n-1-1">性别:</div><div class="new-right-show-n-2"></div></li>
+                            <li><div class="new-right-show-n-1-1">年龄:</div><div class="new-right-show-n-3"></div></li>
+                        </ul>
+                    </div>
+                </li>
+                <!--糖尿病情况-->
+                <li class="on">
+                    <form id="tnbForm" class="form-horizontal">
+                        <dl class="gxy-word-2">
+                        <dt>
+                                 <table class="gxy-tb">
+                                <tr>
+                                    <td width="25%" class="font-size-14"><b>*</b>随访频率</td>
+                                    <td colspan="3" style="text-align: left">
+                                        <div class="form-group">
+                                            <input type="number" class="form-control" value="" name="tnb_pinlv"/>
+                                        </div>
+                                        <div class="form-group cishu">次/</div>
+                                        <div class="form-group">
+                                            <select class="form-control" id="tnb_nyn" name="tnb_nyn" data-bv-notempty data-bv-notempty-message="">
+                                                <option value="">请选择</option>
+                                                <option value="月">月</option>
+                                                <option value="年">年</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="font-size-14"><b>*</b>糖尿病类型</td>
+                                    <td width="25%" style="text-align: left">
+                                        <div class="form-group">
+                                            <select  id="tnb_leixing"class="form-control" name="tnb_leixing" data-bv-notempty data-bv-notempty-message="">
+                                                <option value="">请选择</option>
+                                                <option value="I型糖尿病">I型糖尿病</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                    <td width="20%" class="font-size-14"><b>*</b>检出途径</td>
+                                    <td width="30%" style="text-align: left">
+                                        <div class="form-group tnb-jctj-error">
+                                            <select id="tnb_tuijing"class="form-control" name="tnb_tuijing" data-bv-notempty data-bv-notempty-message="">
+                                                <option value="">请选择</option>
+                                                <option value="门诊就诊">门诊就诊</option>
+                                            </select>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="font-size-14"><b>*</b>糖尿病知晓情况</td>
+                                    <td colspan="3" style="text-align: left">
+                                        <div class="form-group tnb-error">
+                                            <input name="tnb_zhixiao" type="radio" value="患有糖尿病" required />患有糖尿病
+                                            <input name="tnb_zhixiao" type="radio" style="margin-left: 10px" value="患空腹血糖受损或糖耐量受损" />患空腹血糖受损或糖耐量受损
+                                            <input name="tnb_zhixiao" type="radio" style="margin-left: 10px" value="血糖正常" />血糖正常
+                                            <input name="tnb_zhixiao" type="radio" style="margin-left: 10px" value="测过但不清楚" />测过但不清楚
+                                            <input name="tnb_zhixiao" type="radio" style="margin-left: 10px" value="从未测过" />从未测过
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="font-size-14"><b>*</b>未服用降糖药前血糖水平</td>
+                                    <td style="text-align: left">
+                                        <div class="form-group tnb-xuetang"><span style="width: 100%;">空腹血糖：<input class="form-control" type="number" style="width:100px" name="tnb_xuetang" required />mmol/L</span></div>
+                                        <div class="form-group tnb-xuetang"><span style="width: 100%;">随机血糖：<input class="form-control" type="number" style="width:100px" name="tnb_shuji" required  />mmol/L</span></div>
+                                    </td>
+                                    <td class="font-size-14"><b>*</b>是否服药</td>
+                                    <td style="text-align: left">
+                                        <div class="form-group tnb-fuyao-error">
+                                            <input name="tnb_fuyao" type="radio" value="规律服药" required />规律服药
+                                            <input name="tnb_fuyao" type="radio" value="间断服药" />间断服药
+                                            <input name="tnb_fuyao" type="radio" value="不服药" />不服药
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="font-size-14"><b>*</b>并发症</td>
+                                    <td colspan="3" style="text-align: left">
+                                        <div class="form-group tnb-bfz-error">
+                                            <span style="margin-right: 10px"><input name="tnb_bingfa" type="checkbox" value="糖尿病肾病" required />糖尿病肾病</span>
+                                            <span style="margin-right: 10px"><input name="tnb_bingfa" type="checkbox" value="糖尿病眼部并发症" />糖尿病眼部并发症</span>
+                                            <span style="margin-right: 10px"><input name="tnb_bingfa" type="checkbox" value="糖尿病足" />糖尿病足</span>
+                                            <span style="margin-right: 10px"><input name="tnb_bingfa" type="checkbox" value="糖尿病心血管并发症" />糖尿病心血管并发症</span>
+                                            <span style="margin-right: 10px"><input name="tnb_bingfa" type="checkbox" value="糖尿病脑血管病" />糖尿病脑血管病</span>
+                                            <span style="margin-right: 10px"><input name="tnb_bingfa" type="checkbox" value="糖尿病神经病变" />糖尿病神经病变</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="font-size-14"><b>*</b>遵医行为</td>
+                                    <td colspan="3" style="text-align: left">
+                                        <div class="form-group tnb-zyxw-error">
+                                            <input name="tnb_xingwei" type="radio" value="良好" required />良好
+                                            <input name="tnb_xingwei" type="radio" style="margin-left: 10px" value="一般" />一般
+                                            <input name="tnb_xingwei" type="radio" style="margin-left: 10px" value="差" />差
+                                        </div>
+                                    </td>
+                                </tr>
+
+                        </table>
+                        </dt>
+                         </dl>
+
+                        <div class="page-all">
+                            <a class="updata9-l page-1 page-u">上一步</a>
+                            <div class="form-group form-group-r">
+                                <button type="submit" class="btn updata10-r btn-primary page-s">下一步</button>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        成功建档，是否保存全部信息!
+                    </h4>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                    </button>
+                    <button type="button" class="btn btn-primary doc-updata-all-12">
+                        提交全部
+                    </button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+    <script>
+        /*新建文档*/
+        var work = new FindSure();
+        work.init();
+    </script>
+
+    <!--内容部分end-->
+    <!--Foot-->
+    <div class="foot">
+        <div class="foot-border">Copyright &copy; 2017-2020 Yinghai Software Co., Ltd, Technical Support<br>
+            鹰海医疗信息技术有限公司 技术支持</div>
+    </div>
+    <!--Foot end-->
+</body>
+</html>
